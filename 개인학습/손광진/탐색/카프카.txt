@@ -1,0 +1,28 @@
+# 카프카
+
+**카프카 클러스트에 대해서 매우 잘 설명하고 있는 블로그**
+
+[https://namsick96.github.io/kafka/Kafka_Cluster/](https://namsick96.github.io/kafka/Kafka_Cluster/)
+
+### **요약**
+
+카프카는 퍼블리셔,브로커, 컨슈머의 메세지 큐 형식의 아키텍처이다.
+단순히 카프카를 1개만 사용한다고하면
+
+퍼블리셔가 (토픽,메세지) 브로커에게 주입 → 브로커가 토픽을 저장 → 컨슈머가 해당 토픽을 읽고 동작
+
+ 카프카 외에 주키퍼를 따로 설치하는 이유는
+
+다수개의 카프카를 주키퍼가 조율하는데 도움을 주기 때문
+
+카프카 : 주키퍼 = 3:3 설치 시 주키퍼가 서로 통신하며 클러스터 유지 ?
+
+카프카 3개 중 1개는 leader 나머지 2개는 follower 
+
+**유투브  주키퍼를 이용한 카프카 클러스트 구성과정**
+
+[https://www.youtube.com/watch?v=Qr0HVvtMFhg](https://www.youtube.com/watch?v=Qr0HVvtMFhg)
+
+**하둡 에코시스템에 대한 설명이 있는 사이트**
+
+[https://wikidocs.net/83117](https://wikidocs.net/83117)
