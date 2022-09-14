@@ -31,7 +31,7 @@ public class RecipeController {
     }
 
     @PutMapping("/reviews/{reviews-id}")
-    public ResponseEntity<> updateReviews(@Valid @RequestBody , @PathVariable Long recipeSeq) {
+    public ResponseEntity<> updateReviews(@Valid @RequestBody, @PathVariable Long recipeSeq) {
         return;
     }
 
@@ -45,7 +45,7 @@ public class RecipeController {
         return;
     }
 
-    x
+
 
 //    @GetMapping("/recommendation?minPrice=<값>&maxPrice=<값>")
     @GetMapping("/recommendation")
