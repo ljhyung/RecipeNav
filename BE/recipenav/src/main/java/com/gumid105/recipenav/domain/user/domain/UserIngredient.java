@@ -1,7 +1,9 @@
-package com.gumid105.recipenav.recipe.domain;
+package com.gumid105.recipenav.domain.user.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.gumid105.recipenav.user.domain.User;
+import com.gumid105.recipenav.domain.ingredient.domain.Ingredient;
+import com.gumid105.recipenav.domain.ingredient.domain.Ingredient;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,16 +13,10 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Review {
-
+public class UserIngredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "rec_rev_seq")
-    private Long recRevSeq;
-
-    private String recRevTitle;
-    private String recRevContent;
-    private Integer recRevGrade;
+    private Long key;
 
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
@@ -29,7 +25,6 @@ public class Review {
 
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "rec_seq")
-    private Recipe recipe;
-
+    @JoinColumn(name = "ing_seq")
+    private Ingredient ingredient;
 }

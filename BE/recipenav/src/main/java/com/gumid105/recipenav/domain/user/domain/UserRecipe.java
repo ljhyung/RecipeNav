@@ -1,8 +1,8 @@
-package com.gumid105.recipenav.user.domain;
+package com.gumid105.recipenav.domain.user.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.gumid105.recipenav.ingredient.domain.Ingredient;
-import com.gumid105.recipenav.recipe.domain.Recipe;
+import com.gumid105.recipenav.domain.ingredient.domain.Ingredient;
+import com.gumid105.recipenav.domain.recipe.domain.Recipe;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

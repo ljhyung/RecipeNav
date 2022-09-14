@@ -1,8 +1,8 @@
-package com.gumid105.recipenav.user.domain;
+package com.gumid105.recipenav.domain.user.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.gumid105.recipenav.recipe.domain.Review;
+import com.gumid105.recipenav.domain.recipe.domain.Review;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

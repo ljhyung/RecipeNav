@@ -1,4 +1,4 @@
-package com.gumid105.recipenav.recipe.domain;
+package com.gumid105.recipenav.domain.recipe.domain;
 
 import lombok.AccessLevel;
 import lombok.Getter;

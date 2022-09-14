@@ -1,11 +1,11 @@
-package com.gumid105.recipenav.ingredient.domain;
+package com.gumid105.recipenav.domain.ingredient.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.gumid105.recipenav.user.domain.UserIngredient;
+import com.gumid105.recipenav.domain.user.domain.UserIngredient;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.*;
 import java.util.ArrayList;
