@@ -1,4 +1,4 @@
-package com.gumid105.recipenav.user.controller;
+package com.gumid105.recipenav.domain.user.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
