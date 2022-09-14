@@ -1,6 +1,0 @@
-rootProject.name = 'recipenav'
-
-include 'module-auth'
-include 'module-api'
-include 'module-common'
-
