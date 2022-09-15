@@ -44,13 +44,14 @@ jwt:
     key3: "Despite the fact that both annotations can be used to inject properties from configuration files, they are quite"
     key4: "different. The major difference between these two annotations is that each one serves a different purpose."
     key5: "In this brief article, we discussed how to inject a Map from a YAML file in Spring Boot. Then we highlighted the"
+
+
 #로그파일 경로
 log:
+  config:
+    path: "/logs/local"
+    filename: "auth_log"
+
+logging:
   level:
     root: info
-  config:
-    path: /logs/recipenav/auth
-    #로그파일 이름
-    filename: recipenav_auth_log
-
-

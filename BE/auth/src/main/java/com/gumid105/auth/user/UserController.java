@@ -75,8 +75,6 @@ public class UserController {
         response.put("data","");
 
         try {
-
-
             OAuthAttribute oAuthAttribute = oauthTokenValidateService.validateToken(providerName, accessDto);
 
             //성공이라면 oAuthAttribute에는 유니크한 Id가 넘어올 것이다.

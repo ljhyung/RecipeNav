@@ -56,7 +56,7 @@ IllegalArgumentException – if the specified string is null or empty or only wh
         Date expireAt =Timestamp.valueOf( LocalDateTime.now().plusHours(12));
         String iss = userDto.getUserRole() == UserRole.ROLE_USER ? UserRole.ROLE_USER.toString():UserRole.ROLE_ADMIN.toString();
 
-        Pair<String,String> keyPair = getKeyPair();
+       Pair<String,String> keyPair = getKeyPair();
 
         Map<String, Object> header = new HashMap<>();
         header.put("type","JWT");

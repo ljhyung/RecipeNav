@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class UserRecipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long key;
+    private Long userRecipeSeq;
 
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
