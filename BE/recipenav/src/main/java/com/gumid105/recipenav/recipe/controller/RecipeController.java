@@ -3,9 +3,7 @@ package com.gumid105.recipenav.recipe.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
-import java.io.IOException;
 import java.util.Map;
-
 
 @RestController
 @RequestMapping("/recipes")
