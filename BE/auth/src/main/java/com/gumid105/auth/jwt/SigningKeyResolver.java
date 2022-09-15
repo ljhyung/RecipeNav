@@ -11,7 +11,7 @@ import java.security.Key;
 @Component
 @RequiredArgsConstructor
 public class SigningKeyResolver extends SigningKeyResolverAdapter {
-    private final KeyProvideUtil keyProvideUtil;
+    private final com.gumid105.recipenav.jwt.util.KeyProvideUtil keyProvideUtil;
     @Override
     public Key resolveSigningKey(JwsHeader jwsHeader, Claims claims) {
         String kid = jwsHeader.getKeyId();

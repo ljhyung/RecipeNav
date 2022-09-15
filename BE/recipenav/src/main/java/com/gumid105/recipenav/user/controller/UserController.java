@@ -4,47 +4,47 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("my-infos/")
+@RequestMapping("/my-infos")
 public class UserController {
 
     @PutMapping("")
-    public ResponseEntity<> updateProfile() {
-        return;
+    public ResponseEntity<?> updateProfile() {
+        return null;
     }
 
     @GetMapping("")
-    public ResponseEntity<> getProfile() {
-        return;
+    public ResponseEntity<?> getProfile() {
+        return null;
     }
 
     @GetMapping("/ingredients")
-    public ResponseEntity<> getMyIngredients() {
-        return;
+    public ResponseEntity<?> getMyIngredients() {
+        return null;
     }
 
     @PostMapping("/ingredients/{ingredients-id}")
-    public ResponseEntity<> addMyIngredient(@PathVariable Long ingredientsSeq) {
-        return;
+    public ResponseEntity<?> addMyIngredient(@PathVariable Long ingredientsSeq) {
+        return null;
     }
 
     @DeleteMapping("/ingredients/{ingredients-id}")
-    public ResponseEntity<> deleteMyIngredient(@PathVariable Long ingredientsSeq) {
-        return;
+    public ResponseEntity<?> deleteMyIngredient(@PathVariable Long ingredientsSeq) {
+        return null;
     }
 
     @GetMapping("/recipes")
-    public ResponseEntity<> getMyRecipes() {
-        return;
+    public ResponseEntity<?> getMyRecipes() {
+        return null;
     }
 
     @PostMapping("/recipes/{recipes-id}")
-    public ResponseEntity<> addMyRecipe(@PathVariable Long recipesSeq) {
-        return;
+    public ResponseEntity<?> addMyRecipe(@PathVariable Long recipesSeq) {
+        return null;
     }
 
     @DeleteMapping("/recipes/{recipes-id}")
-    public ResponseEntity<> deleteMyRecipe(@PathVariable Long recipesSeq) {
-        return;
+    public ResponseEntity<?> deleteMyRecipe(@PathVariable Long recipesSeq) {
+        return null;
     }
 
 
