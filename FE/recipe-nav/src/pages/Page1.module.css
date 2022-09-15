@@ -1,0 +1,10 @@
+.Notice {
+    background: url("https://placeimg.com/200/100/any");
+    /* background-color: red; */
+    height: 100vh;
+}
+
+.Signin {
+    background: rgba(156, 217, 24, 1);
+    height: 100vh;
+}
