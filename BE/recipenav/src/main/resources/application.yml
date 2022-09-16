@@ -22,7 +22,7 @@ spring:
             user-name-attribute: response
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://j7d105.p.ssafy.io:3306/userdb?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://j7d105.p.ssafy.io:3306/recipenav?serverTimezone=Asia/Seoul
     username: recipenav
     password: navan
 
@@ -30,6 +30,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update  # option type: create, create-drop, update, validate, none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     properties:
       hibernate:
         diarect: org.hibernate.dialect.MySQL8Dialect  # 쿼리의 기준이 되는 데이터베이스 엔진을 설정합니다.
