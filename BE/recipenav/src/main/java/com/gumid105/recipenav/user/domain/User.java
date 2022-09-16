@@ -17,6 +17,7 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "t_user", schema = "recipenav")
 public class User {
 
     @Id
@@ -24,26 +25,33 @@ public class User {
     @Column(name = "user_seq")
     private Long userSeq;
 
-    @Column(nullable = false)
+    @Column(name = "user_id", nullable = false)
     private String userId;
 
-    @Column(nullable = true)
+    @Column(name = "user_pass", nullable = false)
     private String userPass;
 
-    @Column(nullable = false)
+    @Column(name = "user_name", nullable = false)
     private String userName;
 
-    @Column(nullable = false)
+    @Column(name = "user_role", nullable = false)
     @Enumerated(value = EnumType.STRING)
     private UserRole userRole;
 
-    @Column(nullable = true)
+    @Column(name = "user_email", nullable = false)
     private String userEmail;
 
+    @Column(name = "user_tel")
     private String userTel;
+
+    @Column(name = "user_age")
     private String userAge;
+
+    @Column(name = "user_gender")
     @Enumerated(value = EnumType.STRING)
     private Gender userGender;
+
+    @Column(name = "user_img")
     private String userImg;
 
     @JsonManagedReference

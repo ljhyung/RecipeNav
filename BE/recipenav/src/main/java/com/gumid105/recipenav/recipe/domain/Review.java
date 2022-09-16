@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "t_review", schema = "recipenav")
 public class Review {
 
     @Id
@@ -18,8 +19,13 @@ public class Review {
     @Column(name = "rec_rev_seq")
     private Long recRevSeq;
 
+    @Column(name = "rec_rev_title")
     private String recRevTitle;
+
+    @Column(name = "rec_rev_content")
     private String recRevContent;
+
+    @Column(name = "rec_rev_grade")
     private Integer recRevGrade;
 
     @JsonBackReference

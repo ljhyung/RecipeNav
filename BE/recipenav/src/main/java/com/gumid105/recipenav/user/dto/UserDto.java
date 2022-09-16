@@ -27,6 +27,8 @@ public class UserDto {
     private String userAge;
     //성별
     private Gender userGender;
+    //프로필이미지
+    private String userImg;
 
     private int isNewUser;
 
@@ -40,6 +42,7 @@ public class UserDto {
         userDto.userTel = user.getUserTel();
         userDto.userAge = user.getUserAge();
         userDto.userGender = user.getUserGender();
+        userDto.userImg = user.getUserImg();
 
         return userDto;
     }

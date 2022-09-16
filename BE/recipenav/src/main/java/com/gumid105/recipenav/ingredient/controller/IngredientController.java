@@ -1,5 +1,7 @@
 package com.gumid105.recipenav.ingredient.controller;
 
+import com.gumid105.recipenav.ingredient.dto.IngredientDto;
+import com.gumid105.recipenav.ingredient.service.IngredientService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -8,6 +10,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/ingredients")
 public class IngredientController {
+    private final IngredientService ingredientService;
+
+    public IngredientController(IngredientService ingredientService) {
+        this.ingredientService = ingredientService;
+    }
 
     @GetMapping("")
     public ResponseEntity<?> getIngredients(@PathVariable Long recipeSeq) {
@@ -21,7 +28,8 @@ public class IngredientController {
     }
 
     @GetMapping("/{ingredients-id}")
-    public ResponseEntity<?> getIngredientDetail(@PathVariable Long ingredientsSeq) {
+    public ResponseEntity<IngredientDto> getIngredientDetail(@PathVariable Long ingredientsSeq) {
+
         return null;
     }
 
