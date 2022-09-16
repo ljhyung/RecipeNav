@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gumid105.recipenav.jwt.JwtAuthFilter;
 import com.gumid105.recipenav.jwt.util.JwtService;
 import com.gumid105.recipenav.oauth.OAuthLoginCodeValidateFilter;
+import com.gumid105.recipenav.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -34,9 +35,9 @@ import java.util.Map;
 public class SpringSecurityConfig {
 
     private final JwtService jwtService;
-
     private final ObjectMapper objectMapper;
     private final OAuthLoginCodeValidateFilter oAuthLoginCodeValidateFilter;
+    private final UserRepository userRepo;
     //시큐리티 설정 메인
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -47,7 +48,7 @@ public class SpringSecurityConfig {
         http.csrf().disable(); // csrf 보안 사용 안함
         http.anonymous().disable(); // 익명 사용자 허용 x
 
-        http.addFilterBefore(new JwtAuthFilter(jwtService),
+        http.addFilterBefore(new JwtAuthFilter(jwtService, userRepo),
                 UsernamePasswordAuthenticationFilter.class); //기본 인증단계전 인가를 검사하자.
 
         //인가 필터로 가기전 사용자의 요청이 인증을 위한 것이였을 수 있다. 따라서 인가 전에 실행한다.
@@ -66,6 +67,7 @@ public class SpringSecurityConfig {
 
             }
         });
+
         //AuthenticationEntryPoint는 인증이 되지않은 유저가 요청을 했을때 동작된다.
         http.exceptionHandling().authenticationEntryPoint(new AuthenticationEntryPoint() {
             @Override

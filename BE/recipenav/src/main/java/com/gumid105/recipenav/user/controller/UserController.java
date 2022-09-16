@@ -1,7 +1,11 @@
 package com.gumid105.recipenav.user.controller;
 
+import com.gumid105.recipenav.user.dto.UserDto;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RestController
 @RequestMapping("/my-infos")

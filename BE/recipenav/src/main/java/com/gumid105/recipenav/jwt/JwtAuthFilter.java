@@ -1,7 +1,9 @@
 package com.gumid105.recipenav.jwt;
 
 import com.gumid105.recipenav.jwt.util.JwtService;
+import com.gumid105.recipenav.user.domain.User;
 import com.gumid105.recipenav.user.dto.UserDto;
+import com.gumid105.recipenav.user.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,16 +16,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
 public class JwtAuthFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
+    private final UserRepository userRepo;
 
-    public JwtAuthFilter(JwtService jwtService) {
+    public JwtAuthFilter(JwtService jwtService, UserRepository userRepo) {
         this.jwtService = jwtService;
+        this.userRepo = userRepo;
     }
 
     @Override
@@ -41,7 +44,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
             //## DB에 해당하는 유저가 있는지 확인 , 토큰은 유효하나, DB에사용자가 없을 수 있다.
 
-            UserDto fromDb = null;
+            User user = userRepo.findByUserId(userDto.getUserId()).orElseThrow(()->{return new Exception();});
+            UserDto fromDb = UserDto.of(user);
             //<====
 
             List<SimpleGrantedAuthority> athorities = List.of(new SimpleGrantedAuthority(fromDb.getUserRole().name()));
