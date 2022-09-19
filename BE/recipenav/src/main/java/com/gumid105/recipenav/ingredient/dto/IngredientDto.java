@@ -5,6 +5,7 @@ import com.gumid105.recipenav.user.domain.UserIngredient;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -33,6 +34,29 @@ public class IngredientDto {
         ingredientDto.userIngredients = ingredient.getUserIngredients();
 
         return ingredientDto;
+    }
+
+    public static ArrayList<IngredientDto> ofList(List<Ingredient> ingredientList){
+        ArrayList<IngredientDto> listIngredientDto = new ArrayList<>();
+        int i=0;
+        while(i < ingredientList.size()){
+            IngredientDto ingredientDto = new IngredientDto();
+            ingredientDto.ingSeq = ingredientList.get(i).getIngSeq();
+            ingredientDto.ingName = ingredientList.get(i).getIngName();
+            ingredientDto.ingDescription = ingredientList.get(i).getIngDescription();
+            ingredientDto.ingExDate = ingredientList.get(i).getIngExDate();
+            ingredientDto.ingCalorie = ingredientList.get(i).getIngCalorie();
+            ingredientDto.ingSeason = ingredientList.get(i).getIngSeason();
+            ingredientDto.ingCategory = ingredientList.get(i).getIngCategory();
+            ingredientDto.ingImg = ingredientList.get(i).getIngImg();
+            ingredientDto.userIngredients = ingredientList.get(i).getUserIngredients();
+
+            listIngredientDto.add(ingredientDto);
+            i++;
+        }
+
+
+        return listIngredientDto;
     }
 
 

@@ -25,7 +25,7 @@ public class RecipeController {
     }
 
     @GetMapping("/{recipe-id}")
-    public ResponseEntity<RecipeDto> getRecipeDetail(@PathVariable Long recipeSeq) {
+    public ResponseEntity<RecipeDto> getRecipeDetail(@PathVariable("recipe-id") Long recipeSeq) {
         return ResponseEntity.ok(recipeService.getRecipeDetail(recipeSeq));
     }
 
