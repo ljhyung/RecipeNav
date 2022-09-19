@@ -1,0 +1,28 @@
+.container {
+    background: rgba(166, 141, 96, 1);
+    height: 100vh;
+}
+
+.Copyright {
+    min-height: 100%;
+    color: #EAF2CE;
+}
+
+.sideImg {
+    background-image: url("https://placeimg.com/2000/1000/any");
+    background-size: cover;
+    height: 100%;
+}
+
+.main {
+    background: rgba(166, 141, 96, 1);
+    height: 100%;
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 32px;
+    color: black;
+    text-align: center;
+
+}

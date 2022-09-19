@@ -1,51 +1,23 @@
-import SigninMain from './Signin/SigninMain.js'
-import 'antd/dist/antd.css';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { Col, Row } from "antd";
-
+import Signin from './Signin/Signin.js'
+import React, { useEffect, useState } from "react";
+import "antd/dist/antd.css";
+import { Button, Layout, Menu } from "antd";
+//첫페이지
 
 const Page2 = () => {
-  const ref = useRef(null);
 
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
+  const [userstate, setUserstate] = useState('Main');
 
-  const [windowSize, setWindowSize] = useState(
-    { width: window.innerWidth, height: window.innerHeight }
-  );
-
-  const handleResize = () => {
-    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-    setWidth(ref.current.offsetWidth);
-    setHeight(ref.current.offsetHeight);
+  const changeState = () => {
+    setUserstate('FirstLogin')
   }
-
-  useEffect(() => {
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    }
-  }, []);
-
-
   return (
-    window.innerWidth > 900 ?
-      <Row >
-        <Col flex="auto" ref={ref}>x: {window.innerWidth}, y: {window.innerHeight} width:{width}, height:{height}</Col>
-        <Col flex="500px" style={{
-          background: 'rgba(166, 141, 96, 1)',
-          height: '100vh'
-        }} ><Signin /></Col>
-      </Row >
-      : <Row >
-        <Col style={{
-          background: 'rgba(166, 141, 96, 1)',
-          height: '100vh',
-          width: '100vw',
-        }}><Signin /></Col>
-      </Row>
-
+    <Layout className="layout">
+      <Button type='primary' onClick={changeState}> 사랑은 언제나 눈물이 돼</Button>
+      <Signin USA={userstate}></Signin>
+    </Layout >
   );
+
 };
 
 export default Page2;

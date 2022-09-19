@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import NaverOauth from "./pages/oauth/NaverOauth";
 import Page1 from "./pages/Page1";
 import Page2 from "./pages/Page2";
 import Page3 from "./pages/Page3";
@@ -21,6 +22,7 @@ function App() {
       <Route path="/profile/*" element={<Page3 />} />
       <Route path="/home" element={<Page3 />} />
 
+      <Route path="oauth/naver" element={<NaverOauth />} />
       <Route path="*" element={<h1>에러</h1>} />
     </Routes>
   );

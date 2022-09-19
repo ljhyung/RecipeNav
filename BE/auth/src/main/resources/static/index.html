@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>네이버 로그인</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<!-- 네이버 로그인 버튼 노출 영역 -->
+<div id="naver_id_login">
+    <button id="btnLogin">qwe</button>
+</div>
+
+<script>
+    let btnLogin = document.querySelector("#btnLogin");
+
+    let loginClickEventHandle = function(){
+    console.log("클릭");
+        let apiUrl = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+        let state = "454as1d321as6512asd";
+
+        apiUrl += "&client_id=" + "myHwxRjxWCDFTNG6amzZ";
+        apiUrl += "&redirect_uri=" + "http://localhost:8081/oauth/authentication/naver";
+        apiUrl += "&state=" + state;
+
+        axios.get(apiUrl)
+        .then((response)=>{
+        console.log(response);}
+        );
+    }
+    btnLogin.addEventListener("click",loginClickEventHandle);
+</script>
+</body>
+</html>
