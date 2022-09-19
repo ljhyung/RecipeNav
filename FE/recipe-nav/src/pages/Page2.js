@@ -1,16 +1,14 @@
-import Signin from './Signin/Signin.js'
+import SigninMain from './Signin/SigninMain.js'
 import 'antd/dist/antd.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Col, Row } from "antd";
 
-// 첫페이지 console.log(`브라우저 화면 사이즈 x: ${window.innerWidth},y:
-// ${window.innerHeight}`);
 
 const Page2 = () => {
+  const ref = useRef(null);
 
-  const [background, setBackground] = useState(
-    '#fffff'
-  );
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
 
   const [windowSize, setWindowSize] = useState(
     { width: window.innerWidth, height: window.innerHeight }
@@ -18,14 +16,9 @@ const Page2 = () => {
 
   const handleResize = () => {
     setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+    setWidth(ref.current.offsetWidth);
+    setHeight(ref.current.offsetHeight);
   }
-
-  useEffect(() => {
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    }
-  }, []);
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
@@ -36,18 +29,19 @@ const Page2 = () => {
 
 
   return (
-    window.innerWidth > 600 ?
+    window.innerWidth > 900 ?
       <Row >
-        <Col flex="auto" style={{ backgroundColor: `${background}` }}>x: {window.innerWidth}, y: {window.innerHeight}</Col>
+        <Col flex="auto" ref={ref}>x: {window.innerWidth}, y: {window.innerHeight} width:{width}, height:{height}</Col>
         <Col flex="500px" style={{
           background: 'rgba(166, 141, 96, 1)',
           height: '100vh'
         }} ><Signin /></Col>
       </Row >
       : <Row >
-        <Col flex="500px" style={{
+        <Col style={{
           background: 'rgba(166, 141, 96, 1)',
           height: '100vh',
+          width: '100vw',
         }}><Signin /></Col>
       </Row>
 
