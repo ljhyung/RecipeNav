@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'; // eslint-disable-line no-unused-vars
 import { Routes, useNavigate, Link, Route, BrowserRouter as Router } from 'react-router-dom'; // eslint-disable-line no-unused-vars
 import axios from 'axios';
+import styles from './Mypage.module.css'; // eslint-disable-line no-unused-vars
 
 const Mypage = () => {
   // 프로필 수정페이지로 이동
@@ -112,17 +113,17 @@ const Mypage = () => {
   return (
     <>
       <div className="Myinfos">
-        <div className="Userinfo">
+        <div className={styles.Userinfo}>
           <p>
-            <img src={user_img.default} alt='userimage'/>
+            <img className={styles.UserImage} src={user_img.default} alt='userimage'/>
           </p>
-          <p>
+          <p className={styles.UserNickname}>
             {user_name} 님 
           </p>
-          <p>
+          <p className={styles.UserGender}>
             성별 {user_gender}
           </p>
-          <p>
+          <p className={styles.UserAge}>
             나이 {user_age}
           </p>
           <div className="Logout">
@@ -141,18 +142,18 @@ const Mypage = () => {
         <div className="UserContents">
           <div className="Recipes">
             <div className="Myrecipes">
-              <p>
+              <p className={styles.MyrecipesTitle}>
                 즐겨찾는 레시피
               </p>
-              <div>
+              <div className={styles.MyrecipesImage}>
                 즐겨찾는 레시피 사진들~
               </div>
             </div>
-            <div className="Recentrecipes">
-              <p>
+            <div className={styles.RecentRecipe}>
+              <p className={styles.RecentRecipeTitle}>
                 최근 조회 레시피
               </p>
-                <div>
+                <div className={styles.RecentRecipeImage}>
                   {recentrec.map((value, index) => (
                     <span key={index}>
                       {value}
@@ -161,12 +162,12 @@ const Mypage = () => {
                 </div>
             </div>
           </div>
-          <div className="Ingredients">
-            <div className="Myingredients">
-              <p>
+          <div className={styles.Ingredient}>
+            <div className={styles.Myingredient}>
+              <p className={styles.MyingredientTitle}>
                 즐겨찾는 식재료
               </p>
-                <div>
+                <div className={styles.MyingredientImage}>
                   {ing.map((value, index) => (
                     <span key={index}>
                       {value}
@@ -174,11 +175,11 @@ const Mypage = () => {
                   ))}
                 </div>
             </div>
-            <div className="RecentIngredients">
-              <p>
+            <div className={styles.Rencentingredient}>
+              <p className={styles.RencentIngredientTitle}>
                 최근 조회 식재료
               </p>
-                <div>
+                <div className={styles.RecentINGREDIENTImage}>
                   {recenting.map((value, index) => (
                     <span key={index}>
                       {value}
