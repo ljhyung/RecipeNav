@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,10 +16,18 @@ import java.util.Optional;
 public class IngredientService {
     private final IngredientRepository ingredientRepository;
 
+    public List<IngredientDto> getAllIngredient(){
+        //optional
+        List<Ingredient> ingredientList = ingredientRepository.findAll();
+        return IngredientDto.ofList(ingredientList);
+    }
+
     public IngredientDto getIngredientDetail(Long seq){
         Optional<Ingredient> ingredientOptional = ingredientRepository.findById(seq);
         Ingredient ingredient = ingredientOptional.get();
         return IngredientDto.of(ingredient);
     }
+
+
 
 }
