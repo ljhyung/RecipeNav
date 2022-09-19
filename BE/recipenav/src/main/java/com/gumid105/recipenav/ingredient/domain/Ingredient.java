@@ -13,6 +13,7 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "t_ingredient", schema = "recipenav")
 public class Ingredient {
 
     @Id
@@ -20,15 +21,26 @@ public class Ingredient {
     @Column(name = "ing_seq")
     private Long ingSeq;
 
+    @Column(name = "ing_name")
     private String ingName;
+
+    @Column(name = "ing_description")
     private String ingDescription;
-    private String ingMinCost;
-    private String ingMaxCost;
-    private String ingAvgCost;
+
+    @Column(name = "ing_ex_date")
     private String ingExDate;
+
+    @Column(name = "ing_calorie")
     private Integer ingCalorie;
+
+    @Column(name = "ing_season")
     private String ingSeason;
+
+    @Column(name = "ing_category")
     private String ingCategory;
+
+    @Column(name = "ing_img")
+    private String ingImg;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL, orphanRemoval = true)

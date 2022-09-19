@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "t_user_ingredient", schema = "recipenav")
 public class UserIngredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
