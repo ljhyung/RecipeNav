@@ -17,8 +17,8 @@ public class RecipeProcess {
     @Column(name = "rec_pro_seq")
     private Long recProSeq;
 
-    @ManyToOne
-    @JoinColumn(name = "recipe")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "rec_seq")
     @JsonBackReference
     private Recipe recipe;
 

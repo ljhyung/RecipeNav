@@ -18,8 +18,8 @@ public class RecipeIngredient {
     @Column(name = "rec_ing_seq")
     private Long recIngSeq;
 
-    @ManyToOne
-    @JoinColumn(name = "recipe")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "rec_seq")
     @JsonBackReference
     private Recipe recipe;
 
