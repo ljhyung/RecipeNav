@@ -57,3 +57,7 @@ log:
 logging:
   level:
     root: info
+
+springdoc:
+  paths-to-match:
+    - /**
