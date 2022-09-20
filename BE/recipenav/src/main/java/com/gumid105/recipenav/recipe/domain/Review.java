@@ -2,14 +2,14 @@ package com.gumid105.recipenav.recipe.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.gumid105.recipenav.user.domain.User;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "t_review", schema = "recipenav")
 public class Review {
@@ -38,4 +38,9 @@ public class Review {
     @JoinColumn(name = "rec_seq")
     private Recipe recipe;
 
+    public void updateReview (String recRevTitle, String recRevContent, Integer recRevGrade){
+        this.recRevTitle = recRevTitle;
+        this.recRevContent = recRevContent;
+        this.recRevGrade = recRevGrade;
+    }
 }

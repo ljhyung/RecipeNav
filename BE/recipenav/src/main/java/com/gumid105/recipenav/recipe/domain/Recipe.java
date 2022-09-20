@@ -64,7 +64,7 @@ public class Recipe {
     private String recIngFrac;
 
     @Column(name = "rec_price")
-    private String recPrice;
+    private Integer recPrice;
 
     @Column(name = "rec_img")
     private String recImg;

@@ -17,7 +17,6 @@ public class IngredientService {
     private final IngredientRepository ingredientRepository;
 
     public List<IngredientDto> getAllIngredient(){
-        //optional
         List<Ingredient> ingredientList = ingredientRepository.findAll();
         return IngredientDto.ofList(ingredientList);
     }
