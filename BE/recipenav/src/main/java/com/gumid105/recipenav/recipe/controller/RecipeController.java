@@ -1,11 +1,17 @@
 package com.gumid105.recipenav.recipe.controller;
 
 import com.gumid105.recipenav.recipe.dto.RecipeDto;
+import com.gumid105.recipenav.recipe.dto.ReqReviewDto;
+import com.gumid105.recipenav.recipe.dto.ReviewDto;
 import com.gumid105.recipenav.recipe.service.RecipeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.print.attribute.standard.RequestingUserName;
 import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -15,13 +21,11 @@ public class RecipeController {
 
     private final RecipeService recipeService;
 
-//    public RecipeController(RecipeService recipeService) {
-//        this.recipeService = recipeService;
-//    }
 
-    @GetMapping("")
-    public ResponseEntity<?> getRecipes() {
-        return null;
+    @GetMapping("/all")
+    public ResponseEntity<List<RecipeDto>> getRecipes(@RequestParam Integer page) {
+
+        return ResponseEntity.ok(recipeService.getRecipes(page-1, 20));
     }
 
     @GetMapping("/{recipe-id}")
@@ -30,23 +34,31 @@ public class RecipeController {
     }
 
     @GetMapping("/reviews/{recipe-id}")
-    public ResponseEntity<?> getReviews(@PathVariable Long recipeSeq) {
-        return null;
+    public ResponseEntity<List<ReviewDto>> getReviews(@PathVariable("recipe-id") Long recipeSeq) {
+
+        return ResponseEntity.ok(recipeService.getReviews(recipeSeq));
     }
 
     @PostMapping("/reviews/{recipe-id}")
-    public ResponseEntity<?> registerReviews(@PathVariable Long recipeSeq, @RequestBody Map req ) {
-        return null;
+    public ResponseEntity<ReviewDto> registerReviews(@PathVariable("recipe-id") Long recipeSeq, @Valid @RequestBody ReqReviewDto reqReviewDto ) {
+        return ResponseEntity.ok(recipeService.createReview(reqReviewDto, recipeSeq));
     }
 
     @PutMapping("/reviews/{reviews-id}")
-    public ResponseEntity<?> updateReviews(@PathVariable Long recipeSeq,@Valid @RequestBody Map req) {
-        return null;
+    public ResponseEntity<ReviewDto> updateReviews(@PathVariable("reviews-id") Long reviewSeq,@Valid @RequestBody ReqReviewDto reqReviewDto) {
+        return ResponseEntity.ok(recipeService.updateReview(reqReviewDto, reviewSeq));
     }
 
     @DeleteMapping("/reviews/{reviews-id}")
-    public ResponseEntity<?> deleteReviews(@PathVariable Long recipeSeq) {
-        return null;
+    public Map<String, Object> deleteReviews(@PathVariable("reviews-id") Long reviewSeq) {
+        Map<String, Object> response = new HashMap<>();
+        if(recipeService.deleteReview(reviewSeq) > 0){
+            response.put("result", "SUCCESS");
+        }else {
+            response.put("result", "FAIL");
+            response.put("reason", "일치하는 리뷰가 없습니다.");
+        }
+        return response;
     }
 
     @GetMapping("/season-recipes")
@@ -58,7 +70,7 @@ public class RecipeController {
 
 //    @GetMapping("/recommendation?minPrice=<값>&maxPrice=<값>")
     @GetMapping("/recommendation")
-    public ResponseEntity<?> getRecipeByPrice(@RequestParam Long minPrice, @RequestParam Long maxPrice) {
-        return null;
+    public ResponseEntity<List<RecipeDto>> getRecipeByPrice(@RequestParam(required = true, defaultValue = "1") Integer minPrice, @RequestParam(required = true, defaultValue = "1") Integer maxPrice) {
+        return ResponseEntity.ok(recipeService.getRecipeByPrice(minPrice, maxPrice));
     }
 }
