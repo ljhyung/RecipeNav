@@ -15,6 +15,7 @@ public class ReqReviewDto {
     private Integer recRevGrade;
 
 
+
     public static ReqReviewDto of(Review review){
         ReqReviewDto reqReviewDto = new ReqReviewDto();
         reqReviewDto.recRevTitle = review.getRecRevTitle();

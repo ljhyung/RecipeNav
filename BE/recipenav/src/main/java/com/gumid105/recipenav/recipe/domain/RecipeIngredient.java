@@ -1,6 +1,8 @@
 package com.gumid105.recipenav.recipe.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.gumid105.recipenav.ingredient.domain.Ingredient;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,4 +36,8 @@ public class RecipeIngredient {
 
     @Column(name = "ing_type")
     private String ingType;
+
+//    @JsonManagedReference
+//    @OneToOne(mappedBy = "recipeIngredient")
+//    private Ingredient ingredient;
 }

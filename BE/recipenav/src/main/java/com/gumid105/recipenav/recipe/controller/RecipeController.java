@@ -23,9 +23,9 @@ public class RecipeController {
 
 
     @GetMapping("/all")
-    public ResponseEntity<List<RecipeDto>> getRecipes(@RequestParam Integer page) {
+    public ResponseEntity<List<RecipeDto>> getRecipes(@RequestParam Integer page, @RequestParam Integer size) {
 
-        return ResponseEntity.ok(recipeService.getRecipes(page-1, 20));
+        return ResponseEntity.ok(recipeService.getRecipes(page-1, size));
     }
 
     @GetMapping("/{recipe-id}")

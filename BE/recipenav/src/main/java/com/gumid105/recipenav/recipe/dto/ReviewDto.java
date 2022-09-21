@@ -5,6 +5,7 @@ import com.gumid105.recipenav.user.domain.User;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +16,8 @@ public class ReviewDto {
     private String recRevTitle;
     private String recRevContent;
     private Integer recRevGrade;
+    private LocalDateTime revRegDate;
+    private LocalDateTime revModDate;
     private User user;
 
     public static ReviewDto of(Review review){
@@ -23,6 +26,8 @@ public class ReviewDto {
         reviewDto.recRevTitle = review.getRecRevTitle();
         reviewDto.recRevContent = review.getRecRevContent();
         reviewDto.recRevGrade = review.getRecRevGrade();
+        reviewDto.revRegDate = review.getRevRegDate();
+        reviewDto.revModDate = review.getRevModDate();
         reviewDto.user = review.getUser();
 
         return reviewDto;
@@ -37,6 +42,8 @@ public class ReviewDto {
             reviewDto.recRevTitle = reviewList.get(i).getRecRevTitle();
             reviewDto.recRevContent = reviewList.get(i).getRecRevContent();
             reviewDto.recRevGrade = reviewList.get(i).getRecRevGrade();
+            reviewDto.revRegDate = reviewList.get(i).getRevRegDate();
+            reviewDto.revModDate = reviewList.get(i).getRevModDate();
             reviewDto.user = reviewList.get(i).getUser();
 
             reviewDtoArrayList.add(reviewDto);
