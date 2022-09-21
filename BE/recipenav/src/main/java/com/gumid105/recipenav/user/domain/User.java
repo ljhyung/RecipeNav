@@ -25,10 +25,10 @@ public class User {
     @Column(name = "user_seq")
     private Long userSeq;
 
-    @Column(name = "user_id", nullable = false)
+    @Column(name = "user_id", nullable = false,unique = true)
     private String userId;
 
-    @Column(name = "user_pass", nullable = false)
+    @Column(name = "user_pass", nullable = true)
     private String userPass;
 
     @Column(name = "user_name", nullable = false)

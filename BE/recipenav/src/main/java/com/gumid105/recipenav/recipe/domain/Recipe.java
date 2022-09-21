@@ -73,18 +73,18 @@ public class Recipe {
 
     @JsonManagedReference
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Review> reviews = new ArrayList<>();
+    private final List<Review> reviews = new ArrayList<>();
 
     @JsonManagedReference
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<UserRecipe> userRecipes = new ArrayList<>();
+    private final List<UserRecipe> userRecipes = new ArrayList<>();
 
     @JsonManagedReference
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<RecipeIngredient> recipeIngredientList = new ArrayList<>();
+    private final List<RecipeIngredient> recipeIngredientList = new ArrayList<>();
 
     @JsonManagedReference
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<RecipeProcess> recipeProcessList = new ArrayList<>();
+    private final List<RecipeProcess> recipeProcessList = new ArrayList<>();
 
 }

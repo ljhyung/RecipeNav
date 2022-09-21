@@ -6,7 +6,6 @@ import com.gumid105.recipenav.jwt.util.JwtService;
 import com.gumid105.recipenav.oauth.req.AccessDto;
 import com.gumid105.recipenav.user.dto.UserDto;
 import com.gumid105.recipenav.user.service.UserService;
-import io.jsonwebtoken.lang.Strings;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -14,7 +13,6 @@ import org.springframework.util.AntPathMatcher;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.GenericFilterBean;
 
-import javax.persistence.Access;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -53,6 +51,7 @@ public class OAuthLoginCodeValidateFilter extends GenericFilterBean {
             }
         } catch (Exception e) {
             Map<String,Object> responseMap = new HashMap();
+            log.info("로그인 요청 에러 : {}",e.getMessage());
             responseMap.put("isSuccess",0);
             responseMap.put("data","");
             return;
