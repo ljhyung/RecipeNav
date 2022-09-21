@@ -45,7 +45,8 @@ const SelectIngredient = () => {
                 <div className={style.Content}>
                     나는 그걸 낭만이라고 부르기로 했다.
                     <Row gutter={[16, 16]} justify="space-evenly" className={style.Cards}>
-                        <SubmitButton> 그냥 정이라고 하자</SubmitButton>
+                        <SubmitButton > 그냥 정이라고 하자</SubmitButton>
+
                         <Col>
 
                             <Card

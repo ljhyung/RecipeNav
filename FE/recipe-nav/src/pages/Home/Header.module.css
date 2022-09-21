@@ -1,0 +1,18 @@
+.header {
+    position: fixed;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.25);
+    border-bottom: 1px solid transparent;
+    transition: border .5s cubic-bezier(0.455, 0.03, 0.515, 0.955), background .5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    height: 80px;
+    padding: 0 48px;
+    width: 100%;
+}
+
+.nav {
+    color: green;
+}
+
+.nav .li .ant-menu-item-active {
+    color: green;
+}

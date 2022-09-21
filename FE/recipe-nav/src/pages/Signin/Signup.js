@@ -25,8 +25,6 @@ color: #EAF2CE;
     background: #8F7951;
     border: #8F7951;
 }
-
-
 `;
 
 const ProfileForm = styled(Form)`

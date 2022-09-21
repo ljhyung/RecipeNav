@@ -1,10 +1,13 @@
-.Notice {
-    background: url("https://placeimg.com/200/100/any");
-    /* background-color: red; */
-    height: 100vh;
+.logo {
+    float: left;
+    width: 120px;
+    height: 31px;
+    margin: 16px 24px 16px 0;
+    background: rgba(255, 255, 255, 0.2);
 }
 
-.Signin {
-    background: rgba(156, 217, 24, 1);
-    height: 100vh;
+.siteLayout .siteLayoutBackground {
+    background: #fff;
+    padding: 0 50px;
+    margin-top: 64px;
 }
