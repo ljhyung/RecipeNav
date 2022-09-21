@@ -1,10 +1,12 @@
 package com.gumid105.recipenav.ingredient.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.gumid105.recipenav.recipe.domain.RecipeIngredient;
 import com.gumid105.recipenav.user.domain.UserIngredient;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -41,6 +43,18 @@ public class Ingredient {
 
     @Column(name = "ing_img")
     private String ingImg;
+
+    @JsonManagedReference
+    @OneToOne(mappedBy = "ingredient")
+    private IngredientPrice ingredientPrice;
+
+//    @JsonManagedReference
+//    @OneToOne(mappedBy = "ingredient")
+//    private RecipeIngredient recipeIngredient;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "ingredient")
+    private List<IngredientPriceLog> ingredientPriceLogList = new ArrayList<>();
 
     @JsonManagedReference
     @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL, orphanRemoval = true)

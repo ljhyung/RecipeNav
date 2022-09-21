@@ -3,14 +3,19 @@ package com.gumid105.recipenav.recipe.domain;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.gumid105.recipenav.user.domain.User;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "t_review", schema = "recipenav")
 public class Review {
 
@@ -27,6 +32,14 @@ public class Review {
 
     @Column(name = "rec_rev_grade")
     private Integer recRevGrade;
+
+    @CreatedDate
+    @Column(name = "rev_reg_date")
+    private LocalDateTime revRegDate;
+
+    @LastModifiedDate
+    @Column(name = "rev_mod_date")
+    private LocalDateTime revModDate;
 
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
