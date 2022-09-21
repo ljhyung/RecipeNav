@@ -3,6 +3,7 @@ package com.gumid105.recipenav.ingredient.controller;
 import com.gumid105.recipenav.ingredient.domain.Ingredient;
 import com.gumid105.recipenav.ingredient.dto.IngredientDto;
 import com.gumid105.recipenav.ingredient.service.IngredientService;
+import com.gumid105.recipenav.recipe.dto.RecipeDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,9 +20,8 @@ public class IngredientController {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<IngredientDto>> getIngredients() {
-
-        return ResponseEntity.ok(ingredientService.getAllIngredient());
+    public ResponseEntity<List<IngredientDto>> getIngredients(@RequestParam Integer page, @RequestParam Integer size) {
+        return ResponseEntity.ok(ingredientService.getAllIngredient(page-1, size));
     }
 
     @GetMapping("/list")
@@ -36,8 +36,8 @@ public class IngredientController {
     }
 
     @GetMapping("/{ingredients-id}/recipes")
-    public ResponseEntity<?> getRecipesByIngredient(@PathVariable Long ingredientsSeq) {
-        return null;
+    public ResponseEntity<List<RecipeDto>> getRecipesByIngredient(@PathVariable("ingredients-id") Long ingredientsSeq) {
+        return ResponseEntity.ok(ingredientService.getRecipesByIngredient(ingredientsSeq));
     }
 
     @GetMapping("/season-ingredients")
