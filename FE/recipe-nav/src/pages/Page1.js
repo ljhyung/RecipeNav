@@ -1,6 +1,5 @@
-import style from "./Page1.module.css";
 import "antd/dist/antd.css";
-import Home from "./Home/Home";
+import Home from "./Home";
 import { nanoid } from "nanoid";
 
 const Page1 = () => {
@@ -19,11 +18,12 @@ const Page1 = () => {
   requestUrl += `&redirect_uri=${redirectUrl}`;
 
   return (
-    <>
-      Hellow
-      <Home />
-      <a href={requestUrl}>네이버 로그인</a>
-    </>
+    [
+      <Home />,
+      <a href={requestUrl}>네이버 로그인</a>,
+      <div style={{width: 4000}}></div>,
+    ]
+
   );
 };
 

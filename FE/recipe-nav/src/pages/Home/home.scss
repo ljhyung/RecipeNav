@@ -1,0 +1,95 @@
+
+.banner-anim {
+    &-arrow {
+      opacity: 0;
+      transition: opacity .3s ease-out;
+    }
+    &:hover {
+      .banner-anim-arrow {
+        opacity: 1;
+      }
+    }
+  }
+  
+  .banner {
+    background: url(https://gw.alipayobjects.com/zos/rmsportal/okhVRKJXxQpbpKGtKneS.svg) no-repeat center top;
+    background-size: contain;
+    overflow: hidden;
+    font-family: PingFang SC, Helvetica Neue For Number, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
+    .page-wrapper {
+      margin-top: 80px;
+      background-color: black;
+    }
+    .page {
+      max-width: 1248px;
+    }
+    .logo {
+      background: url('https://gw.alipayobjects.com/zos/rmsportal/khXpcyRYlACLokoNTzwc.svg') no-repeat;
+      width: 127px;
+      height: 110px;
+      margin: 86px auto 40px;
+    }
+    & &-anim {
+      margin: 0 auto 64px;
+      height: 600px;
+      box-shadow: 0 20px 32px rgba(1, 4, 8, .12);
+      background: #fff;
+      border-radius: 8px;
+      &-elem {
+        .banner-bg {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          overflow: hidden;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+      }
+    }
+    .seeconf {
+      &-wrap {
+        text-align: center;
+        color: banner-text-color;
+        .banner-button {
+          margin: 64px 0 26px;
+          .ant-btn {
+            height: 35px;
+            line-height: 35px;
+            border-radius: 35px;
+            background: #2354eb;
+            box-shadow: 0 7px 13px #91a5f2;
+            padding: 0 28px;
+            font-size: 12px;
+            a {
+              text-decoration: none;
+            }
+          }
+        }
+      }
+      &-en-name {
+        margin: 140px 0 0;
+        font-size: 12px;
+        line-height: 32px;
+      }
+      &-title {
+        margin: 16px 0 24px;
+        font-size: 56px;
+        line-height: 68px;
+        text-indent: 2px;
+        font-weight: 600;
+        color: #02063D;
+      }
+      &-cn-name {
+        font-size: 18px;
+      }
+    }
+    &-button {
+      .ant-btn {
+        color: #fff;
+        border: none;
+      }
+    }
+  }
+  
