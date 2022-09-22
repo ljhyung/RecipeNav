@@ -6,8 +6,9 @@ import com.gumid105.recipenav.user.dto.UserDto;
 import com.gumid105.recipenav.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -22,7 +23,7 @@ public class UserServiceImpl implements UserService {
      * @return 새로운 사용자 : true 기존 사용자: false
      */
     @Override
-    @Transactional
+    @Transactional(isolation = Isolation.SERIALIZABLE) //팬텀 리드시 에러 , 아이디는 유니크해야함
     public UserDto authenticationProcess(OAuthAttribute oAuthAttribute) {
         //주어진 아이디가 있다면, 그에 따른 정보를 가져오고 , 없다면
         //만든다.
