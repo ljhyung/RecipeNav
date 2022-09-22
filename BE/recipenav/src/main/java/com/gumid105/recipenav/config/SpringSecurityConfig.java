@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
@@ -108,6 +109,11 @@ public class SpringSecurityConfig {
         source.registerCorsConfiguration("/**", configuration);
         //url기반 cors 컨피규레이션 ,모든 url에 모든 오리진,헤더값,메소드 허용,쿠키도 일단 허용
         return source;
+    }
+
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring().antMatchers("/swagger-ui/**", "/v3/api-docs/**");
     }
 
 }
