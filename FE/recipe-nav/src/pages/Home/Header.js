@@ -1,6 +1,5 @@
-import style from './Header.module.css';
 import { Menu, Row, Col, Button, Popover, Badge } from 'antd';
-
+import './header.scss';
 
 
 const Header = () => {
@@ -45,19 +44,17 @@ const Header = () => {
     ];
 
     return (
-        <header id="header" >
-            <Row>
-                <Col lg={4} md={5} sm={24} xs={24}>
-                    <a className={style.logo}>
-                        <img alt="logo" src="/Logo.png" />
-                        <span>Recipe</span>
-                    </a>
-                </Col>
-                <Col lg={20} md={19} sm={0} xs={0}>
-                    {menu}
-                </Col>
-            </Row>
-        </header>
+        <Row>
+            <Col lg={4} md={5} sm={24} xs={24}>
+                <a id="logo">
+                    <img alt="logo" src="https://t.alipayobjects.com/images/rmsweb/T1B9hfXcdvXXXXXXXX.svg" />
+                    <span>Ant Design</span>
+                </a>
+            </Col>
+            <Col lg={20} md={19} sm={0} xs={0}>
+                {menu}
+            </Col>
+        </Row>
     );
 };
 

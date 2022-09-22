@@ -1,0 +1,101 @@
+@import 'default.scss';
+$header-height: 80px;
+
+#header {
+    position: fixed;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.25);
+    border-bottom: 1px solid transparent;
+    transition: border 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955), background 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    height: $header-height;
+    padding: 0 48px;
+    width: 100%;
+
+    &.home-nav-bottom {
+        background: rgba(255, 255, 255, 0.9);
+        border-bottom-color: #00ffee;
+
+        .search {
+            border-left-color: #00ffee;
+        }
+
+        a {
+            color: $text-color;
+        }
+    }
+}
+
+#logo {
+    float: left;
+    height: 80px;
+    line-height: 80px;
+}
+
+#logo img {
+    height: 80px;
+    line-height: 80px;
+    width: 40px;
+    margin-right: 8px;
+}
+
+#logo span {
+    float: right;
+    font-size: 16px;
+    font-family: 'Raleway', 'Hiragino Sans GB', sans-serif;
+    height: 80px;
+    line-height: 80px;
+    text-transform: uppercase;
+}
+
+#nav {
+    border: 0;
+    float: right;
+    font-size: 14px;
+}
+
+#nav li {
+    height: $header-height;
+    line-height: $header-height;
+    min-width: 72px;
+    text-align: center;
+    border-bottom-width: 3px;
+
+    &.ant-menu-item-selected a {
+        color: black;
+        font-size: 100px;
+    }
+}
+
+.ant-menu-item {
+    color: green;
+    font-size: large;
+
+    &.ant-menu-item-active {
+        color: yellow;
+    }
+
+    &.ant-menu-item-selected {
+        color: yellow;
+
+    }
+
+    :hover {
+        color: yellow;
+    }
+
+    :active {
+        color: red;
+    }
+}
+
+.ant-menu-overflow-item {
+    color: red;
+
+    .ant-menu-item {
+        color: black;
+
+        &.ant-menu-item-active {
+            color: red;
+        }
+    }
+}
