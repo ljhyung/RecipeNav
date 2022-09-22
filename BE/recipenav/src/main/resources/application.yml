@@ -4,6 +4,8 @@ client:
 
 server:
   port: 8081
+  servlet:
+    context-path: /api
 spring:
   profiles:
     active: local

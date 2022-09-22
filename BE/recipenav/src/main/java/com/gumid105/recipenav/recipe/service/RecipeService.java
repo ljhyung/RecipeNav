@@ -1,5 +1,7 @@
 package com.gumid105.recipenav.recipe.service;
 
+import com.gumid105.recipenav.ingredient.domain.Ingredient;
+import com.gumid105.recipenav.ingredient.repository.IngredientRepository;
 import com.gumid105.recipenav.recipe.domain.Recipe;
 import com.gumid105.recipenav.recipe.domain.RecipeProcess;
 import com.gumid105.recipenav.recipe.domain.Review;
@@ -17,6 +19,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,6 +30,7 @@ public class RecipeService {
     private final RecipeRepository recipeRepository;
     private final ReviewRepository reviewRepository;
     private final UserRepository userRepository;
+    private final IngredientRepository ingredientRepository;
 
     public List<RecipeDto> getRecipes(Integer page, Integer size){
         PageRequest pageRequest = PageRequest.of(page,size);
@@ -79,5 +83,20 @@ public class RecipeService {
         return 0;
 
 //        return ReviewDto.of();
+    }
+
+    public List<RecipeDto> getSeasonRecipes(Integer month){
+        List<Ingredient> ingredientList = ingredientRepository.findIngredientsByIngSeasonContaining(month);
+        List<Recipe> recipeList = new LinkedList<>();
+        for(Ingredient ingredient:ingredientList){
+            List<Recipe> recipeListTemp = recipeRepository.findRecipesByIngredientName(ingredient.getIngName());
+            for(Recipe recipeTemp:recipeListTemp){
+                if(!recipeList.contains(recipeTemp)){
+                    recipeList.add(recipeTemp);
+                }
+            }
+        }
+
+        return RecipeDto.ofList(recipeList);
     }
 }

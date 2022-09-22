@@ -40,6 +40,11 @@ public class IngredientService {
         return RecipeDto.ofList(recipeList);
     }
 
+    public List<IngredientDto> getSeasonIngredients(Integer month){
+        List<Ingredient> ingredientList = ingredientRepository.findIngredientsByIngSeasonContaining(month);
+        return IngredientDto.ofList(ingredientList);
+    }
+
 
 
 }
