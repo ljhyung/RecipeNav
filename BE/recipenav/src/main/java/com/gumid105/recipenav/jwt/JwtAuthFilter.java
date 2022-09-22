@@ -33,6 +33,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         //1.헤더에서 토큰 추출
         String token = ((HttpServletRequest) request).getHeader(JwtProperties.JWT_ACESS_NAME);
+        if (token.startsWith("Bearer")){
+            token = token.substring(7);
+        }
 
         try{
             UserDto userDto =  jwtService.ParseJwt(token);
