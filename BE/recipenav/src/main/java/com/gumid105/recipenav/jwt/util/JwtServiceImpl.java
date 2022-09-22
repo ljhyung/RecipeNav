@@ -53,7 +53,7 @@ IllegalArgumentException – if the specified string is null or empty or only wh
     public AccessTokenDto generateAccessToken(UserDto userDto) {
         long nowMillis = System.currentTimeMillis();
         Date now = Timestamp.valueOf(LocalDateTime.now());
-        Date expireAt =Timestamp.valueOf( LocalDateTime.now().plusHours(12));
+        //Date expireAt =Timestamp.valueOf( LocalDateTime.now().plusHours(12));
         String iss = userDto.getUserRole() == UserRole.ROLE_USER ? UserRole.ROLE_USER.toString():UserRole.ROLE_ADMIN.toString();
 
         Pair<String,String> keyPair = getKeyPair();
@@ -76,7 +76,7 @@ IllegalArgumentException – if the specified string is null or empty or only wh
                 .setIssuer("recipenav")
                 .setAudience(iss)
                 .setIssuedAt(now)
-                .setExpiration(expireAt)
+               // .setExpiration(expireAt)
                 .setSubject("user")
                 .addClaims(claims)
                 .signWith(Keys.hmacShaKeyFor(keyPair.getSecond().getBytes(StandardCharsets.UTF_8)), SignatureAlgorithm.HS256)

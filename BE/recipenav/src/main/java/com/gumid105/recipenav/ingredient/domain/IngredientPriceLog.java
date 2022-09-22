@@ -24,16 +24,25 @@ public class IngredientPriceLog {
     @JsonBackReference
     private Ingredient ingredient;
 
+    @Column(name="ing_pcode")
+    private Integer ingPcode;
+    @Column(name="ing_pscode")
+    private Integer ingPScode;
+
+
+    @Column(name="unit")
+    private String ingUnit;
+
     @Column(name = "ing_date")
     private LocalDate ingDate;
 
     @Column(name = "ing_min_cost")
-    private Integer ingMinCost;
-
-    @Column(name = "ing_max_cost")
-    private Integer ingMaxCost;
+    private Double ingMinCost;
 
     @Column(name = "ing_avg_cost")
-    private Integer ingAvgCost;
+    private Double ingAvgCost;
+    @Column(name = "ing_max_cost")
+    private Double ingMaxCost;
+
 
 }
