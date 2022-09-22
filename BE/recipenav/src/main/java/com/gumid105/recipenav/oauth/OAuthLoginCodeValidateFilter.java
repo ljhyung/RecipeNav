@@ -103,7 +103,7 @@ public class OAuthLoginCodeValidateFilter extends GenericFilterBean {
         writer.append(objectMapper.writeValueAsString(responseMap));
         writer.flush();
 
-        return true;
+        return false;
 
     }
 
