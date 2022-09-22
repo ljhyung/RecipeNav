@@ -26,7 +26,7 @@ public class IngredientController {
 
     @GetMapping("/list")
     public ResponseEntity<?> searchIngredients(@RequestParam(required = false) String title, @RequestParam(required = false) Long minPrice,
-                                              @RequestParam(required = false) Long maxPrice, @RequestParam(required = false) List<String> category) {
+                                              @RequestParam(required = false) Long maxPrice, @RequestParam(required = false) String category) {
         return null;
     }
 
@@ -40,9 +40,9 @@ public class IngredientController {
         return ResponseEntity.ok(ingredientService.getRecipesByIngredient(ingredientsSeq));
     }
 
-    @GetMapping("/season-ingredients")
-    public ResponseEntity<?> getSeasonIngredients() {
-        return null;
+    @GetMapping("/season-ingredients/{month}")
+    public ResponseEntity<List<IngredientDto>> getSeasonIngredients(@PathVariable("month") Integer month) {
+        return ResponseEntity.ok(ingredientService.getSeasonIngredients(month));
     }
 
     @GetMapping("/topgainers")
