@@ -61,9 +61,10 @@ public class RecipeController {
         return response;
     }
 
-    @GetMapping("/season-recipes")
-    public ResponseEntity<?> getSeasonRecipes() {
-        return null;
+    @GetMapping("/season-recipes/{month}")
+    public ResponseEntity<List<RecipeDto>> getSeasonRecipes(@PathVariable("month") Integer month) {
+
+        return ResponseEntity.ok(recipeService.getSeasonRecipes(month));
     }
 
 
