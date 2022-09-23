@@ -1,4 +1,52 @@
-.Userinfo {
-    color : red;
+/* .Myinfos {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 100px;
+    
 
+} */
+
+.Navbar {
+    background-color : #40CA4E;
+    height : 80px;
+    font-size : 40px;
+
+}
+
+.Mypage {
+    height: 100%;
+    
+    background: linear-gradient(#42A54C 20%, #FFFF 10%)
+}
+
+.Myinfos {
+    display : inline;
+}
+
+.UserContents {
+    display : inline;
+}
+
+
+.Layout {
+    background-color: #FFFF;
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 50px;
+    padding-top: 30px;
+    padding-left: 100px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 70px;
+    line-height: 140%;
+    /* or 70px */
+
+   
+   
+
+    
 }

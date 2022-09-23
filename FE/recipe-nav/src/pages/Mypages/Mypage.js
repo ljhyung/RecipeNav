@@ -1,7 +1,37 @@
 import React, { useEffect } from 'react'; // eslint-disable-line no-unused-vars
 import { Routes, useNavigate, Link, Route, BrowserRouter as Router } from 'react-router-dom'; // eslint-disable-line no-unused-vars
 import axios from 'axios';
-import styles from './Mypage.module.css'; // eslint-disable-line no-unused-vars
+import style from './Mypage.module.css'; // eslint-disable-line no-unused-vars
+import { Button, Row, Image, Col, Divider, Card, Layout } from 'antd';
+import styled from "styled-components";
+import "antd/dist/antd.css";
+const { Meta } = Card;
+
+const { Content } = Layout;
+
+const SubmitButton = styled(Button)`
+text-align: center;
+width: auto;
+background: #9CD918;
+height: auto;
+
+color: #EAF2CE; 
+z-index: 1;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 900;
+font-size: 40px;
+
+box-shadow: 4px 6px 6px 2px rgba(0, 0, 0, 0.25);
+border-radius: 999px;
+border: #EAF2CE;
+:hover {
+    color: #42A54C;
+    background: #42A54C;
+    border: #42A54C;
+}
+`;
 
 const Mypage = () => {
   // 프로필 수정페이지로 이동
@@ -10,11 +40,6 @@ const Mypage = () => {
   const moveToProfileEdit =() => { 
     navigate('/profile-edit')
   };
-  
-  // 로그아웃
-  const logOut = () => {
-    
-  }
 
   //사용자 정보 받아오기
   async function getUserData() { 
@@ -104,92 +129,198 @@ const Mypage = () => {
   const user_name = '김싸피'
   const user_gender = '남'
   const user_age = '33'
-  const user_img = './assets/img/ing2'
-  const rec = ['./assets/img/ing1','감튀', '오이소박이', '라면']
-  const recentrec = ['치킨','함박', '카레라이스', '떡볶이']
-  const ing = ['닭가슴살', '소고기', '계란', '치즈' ]
-  const recenting = ['오이', '당근', '배추', '가래떡']
+  
     
   return (
     <>
-      <div className="Myinfos">
-        <div className={styles.Userinfo}>
-          <p>
-            <img className={styles.UserImage} src={user_img.default} alt='userimage'/>
-          </p>
-          <p className={styles.UserNickname}>
-            {user_name} 님 
-          </p>
-          <p className={styles.UserGender}>
-            성별 {user_gender}
-          </p>
-          <p className={styles.UserAge}>
-            나이 {user_age}
-          </p>
-          <div className="Logout">
-            <button onClick={logOut}>
-              로그아웃
-            </button>
-          </div>
-          <div className="ProfileEdit">
+      <div className={style.Mypage}>
+        <div className={style.Navbar}> 네브바 </div>
+        <div className={style.Background}> 
+          <div className={style.Layout}>
             
-              <button onClick={moveToProfileEdit}>
-                프로필 수정
-              </button>
-     
-          </div>
-        </div>
-        <div className="UserContents">
-          <div className="Recipes">
-            <div className="Myrecipes">
-              <p className={styles.MyrecipesTitle}>
-                즐겨찾는 레시피
-              </p>
-              <div className={styles.MyrecipesImage}>
-                즐겨찾는 레시피 사진들~
+              <div className={style.Myinfos}>
+                <Row>
+                  <Col className={style.Userinfo} span={11}>
+                    <div>
+                      <img className={style.UserImage} src="https://placeimg.com/200/100/any/grayscale" alt='userimage'/>
+                    </div>
+                    <div className={style.UserNickname}>
+                      {user_name}
+                    </div>
+                    <div className={style.UserGender}>
+                      {user_gender}
+                    </div>
+                    <div className={style.UserAge}>
+                      {user_age}
+                    </div>
+                    <div className="ProfileEdit">
+                        <SubmitButton onClick={moveToProfileEdit}>
+                          프로필 수정
+                        </SubmitButton>
+                    </div>
+                  </Col>
+            
+                  <Col className={style.UserContents} span={11} offset={2}>
+                    <span className="Recipes">
+                      <span className="Myrecipes">
+                        <span className={style.MyrecipesTitle}>
+                          즐겨찾는 레시피
+                        </span>
+                        <span className={style.MyrecipesImage}>
+                          <Col>
+                            <Card
+                              style={{
+                                  width: 240
+                              }}
+                              cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
+                              <Meta title="제육볶음" description="5000원" /></Card>
+                          </Col>
+                          <Col>
+                            <Card
+                              style={{
+                                  width: 240
+                              }}
+                              cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
+                              <Meta title="제육볶음" description="5000원" /></Card>
+                          </Col>
+                          <Col>
+                            <Card
+                              style={{
+                                  width: 240
+                              }}
+                              cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
+                              <Meta title="제육볶음" description="5000원" /></Card>
+                          </Col>
+                          <Col>
+                            <Card
+                              style={{
+                                  width: 240
+                              }}
+                              cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
+                              <Meta title="제육볶음" description="5000원" /></Card>
+                          </Col>      
+                        </span>
+                      </span>
+                      <Col className={style.RecentRecipe}>
+                        <span className={style.RecentRecipeTitle}>
+                          최근 조회 레시피
+                        </span>
+                        <Col>
+                            <Card
+                              style={{
+                                  width: 240
+                              }}
+                              cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
+                              <Meta title="제육볶음" description="5000원" /></Card>
+                        </Col>
+                        <Col>
+                            <Card
+                              style={{
+                                  width: 240
+                              }}
+                              cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
+                              <Meta title="제육볶음" description="5000원" /></Card>
+                        </Col>
+                        <Col>
+                            <Card
+                              style={{
+                                  width: 240
+                              }}
+                              cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
+                              <Meta title="제육볶음" description="5000원" /></Card>
+                          </Col>
+                          <Col>
+                            <Card
+                              style={{
+                                  width: 240
+                              }}
+                              cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
+                              <Meta title="제육볶음" description="5000원" /></Card>
+                          </Col> 
+                      </Col>
+                    </span>
+                    <Col className={style.Ingredient}>
+                      <Col className={style.Myingredient}>
+                        <span className={style.MyingredientTitle}>
+                          즐겨찾는 식재료
+                        </span>
+                          <Col>
+                              <Card
+                                style={{
+                                    width: 240
+                                }}
+                                cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
+                                <Meta title="제육볶음" description="5000원" /></Card>
+                          </Col>
+                          <Col>
+                              <Card
+                                style={{
+                                    width: 240
+                                }}
+                                cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
+                                <Meta title="제육볶음" description="5000원" /></Card>
+                          </Col>
+                          <Col>
+                            <Card
+                              style={{
+                                  width: 240
+                              }}
+                              cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
+                              <Meta title="제육볶음" description="5000원" /></Card>
+                          </Col>
+                          <Col>
+                            <Card
+                              style={{
+                                  width: 240
+                              }}
+                              cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
+                              <Meta title="제육볶음" description="5000원" /></Card>
+                          </Col>  
+                      </Col>
+                      <Col className={style.Rencentingredient}>
+                        <span className={style.RencentIngredientTitle}>
+                          최근 조회 식재료
+                        </span>
+                          <Col>
+                              <Card
+                                style={{
+                                    width: 240
+                                }}
+                                cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
+                                <Meta title="제육볶음" description="5000원" /></Card>
+                          </Col>
+                          <Col>
+                              <Card
+                                style={{
+                                    width: 240
+                                }}
+                                cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
+                                <Meta title="제육볶음" description="5000원" /></Card>
+                          </Col>
+                          <Col>
+                            <Card
+                              style={{
+                                  width: 240
+                              }}
+                              cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
+                              <Meta title="제육볶음" description="5000원" /></Card>
+                          </Col>
+                          <Col>
+                            <Card
+                              style={{
+                                  width: 240
+                              }}
+                              cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
+                              <Meta title="제육볶음" description="5000원" /></Card>
+                          </Col>  
+                      </Col>
+                    </Col>  
+                  </Col>
+                </Row>
               </div>
             </div>
-            <div className={styles.RecentRecipe}>
-              <p className={styles.RecentRecipeTitle}>
-                최근 조회 레시피
-              </p>
-                <div className={styles.RecentRecipeImage}>
-                  {recentrec.map((value, index) => (
-                    <span key={index}>
-                      {value}
-                    </span>
-                  ))}
-                </div>
-            </div>
           </div>
-          <div className={styles.Ingredient}>
-            <div className={styles.Myingredient}>
-              <p className={styles.MyingredientTitle}>
-                즐겨찾는 식재료
-              </p>
-                <div className={styles.MyingredientImage}>
-                  {ing.map((value, index) => (
-                    <span key={index}>
-                      {value}
-                    </span>
-                  ))}
-                </div>
-            </div>
-            <div className={styles.Rencentingredient}>
-              <p className={styles.RencentIngredientTitle}>
-                최근 조회 식재료
-              </p>
-                <div className={styles.RecentINGREDIENTImage}>
-                  {recenting.map((value, index) => (
-                    <span key={index}>
-                      {value}
-                    </span>
-                  ))}
-                </div>
-            </div>
-          </div>  
         </div>
-      </div>
     </>
   );
 };
