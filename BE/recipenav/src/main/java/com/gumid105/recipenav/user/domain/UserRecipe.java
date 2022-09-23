@@ -26,4 +26,14 @@ public class UserRecipe {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "rec_seq")
     private Recipe recipe;
+
+    public UserRecipe(User user, Recipe recipe) {
+        this.user = user;
+        this.recipe = recipe;
+    }
+
+    public Long getUserRecipeSeq() {
+        return userRecipeSeq;
+    }
+
 }
