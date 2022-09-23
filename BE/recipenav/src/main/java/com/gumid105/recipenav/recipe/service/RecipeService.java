@@ -3,18 +3,16 @@ package com.gumid105.recipenav.recipe.service;
 import com.gumid105.recipenav.ingredient.domain.Ingredient;
 import com.gumid105.recipenav.ingredient.repository.IngredientRepository;
 import com.gumid105.recipenav.recipe.domain.Recipe;
-import com.gumid105.recipenav.recipe.domain.RecipeProcess;
 import com.gumid105.recipenav.recipe.domain.Review;
 import com.gumid105.recipenav.recipe.dto.RecipeDto;
 import com.gumid105.recipenav.recipe.dto.ReqReviewDto;
 import com.gumid105.recipenav.recipe.dto.ReviewDto;
-import com.gumid105.recipenav.recipe.repository.RecipeProcessRepository;
 import com.gumid105.recipenav.recipe.repository.RecipeRepository;
 import com.gumid105.recipenav.recipe.repository.ReviewRepository;
+import com.gumid105.recipenav.user.dto.UserDto;
 import com.gumid105.recipenav.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -55,12 +53,13 @@ public class RecipeService {
     }
 
     public ReviewDto createReview(ReqReviewDto reqReviewDto, Long recSeq){
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        UserDto userDto = (UserDto) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Review review = Review.builder()
                 .recRevTitle(reqReviewDto.getRecRevTitle())
                 .recRevContent(reqReviewDto.getRecRevContent())
                 .recRevGrade(reqReviewDto.getRecRevGrade())
-//                .user(userRepository.findByUserId(auth.getPrincipal()));
+                .user(userRepository.findByUserId(userDto.getUserId()).get())
                 .recipe(recipeRepository.findById(recSeq).get())
                 .build();
 

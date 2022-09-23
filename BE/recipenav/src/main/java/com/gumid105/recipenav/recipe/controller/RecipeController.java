@@ -7,8 +7,6 @@ import com.gumid105.recipenav.recipe.service.RecipeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.print.attribute.standard.RequestingUserName;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
@@ -35,7 +33,6 @@ public class RecipeController {
 
     @GetMapping("/reviews/{recipe-id}")
     public ResponseEntity<List<ReviewDto>> getReviews(@PathVariable("recipe-id") Long recipeSeq) {
-
         return ResponseEntity.ok(recipeService.getReviews(recipeSeq));
     }
 

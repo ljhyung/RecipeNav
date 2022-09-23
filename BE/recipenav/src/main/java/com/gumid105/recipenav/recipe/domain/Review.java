@@ -3,6 +3,8 @@ package com.gumid105.recipenav.recipe.domain;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.gumid105.recipenav.user.domain.User;
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -13,6 +15,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Builder
+@DynamicInsert
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class)
@@ -32,6 +35,10 @@ public class Review {
 
     @Column(name = "rec_rev_grade")
     private Integer recRevGrade;
+
+    @CreatedBy
+    @Column(name = "rec_rev_reg_user")
+    private String recRevRegUser;
 
     @CreatedDate
     @Column(name = "rev_reg_date")
