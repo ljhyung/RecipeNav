@@ -1,22 +1,33 @@
 package com.gumid105.recipenav.user.service;
 
 import com.gumid105.recipenav.oauth.OAuthAttribute;
+import com.gumid105.recipenav.recipe.domain.Recipe;
+import com.gumid105.recipenav.recipe.repository.RecipeRepository;
 import com.gumid105.recipenav.user.domain.User;
+import com.gumid105.recipenav.user.domain.UserRecipe;
 import com.gumid105.recipenav.user.dto.UserDto;
+import com.gumid105.recipenav.user.dto.UserRecipeDto;
+import com.gumid105.recipenav.user.repository.UserRecipeRepository;
 import com.gumid105.recipenav.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepo;
-
+    private final UserRecipeRepository userRecipeRepository;
+    private final RecipeRepository recipeRepository;
     /**
      *
      * @param oAuthAttribute
@@ -56,5 +67,48 @@ public class UserServiceImpl implements UserService {
         return UserDto.of(user.get());
     }
 
+    public List<Recipe> getMyRecipes(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserDto user = (UserDto) auth.getPrincipal();
+        List<UserRecipeDto> userRecipeList = userRecipeRepository.findAllByUser_userSeq(user.getUserSeq());
+        List<Recipe> recipeList = new ArrayList<Recipe>();
+        for(UserRecipeDto ur : userRecipeList){
+            Optional<Recipe> rec = recipeRepository.findById(ur.getRec_seq());
 
+            if(rec.isPresent()){
+                Recipe recipe = rec.get();
+                recipeList.add(recipe);
+            }
+        }
+        System.out.println(recipeList.size());
+        return recipeList;
+    }
+
+    @Transactional
+    public UserRecipe addRecipeToUser(Recipe recipe){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserDto user = (UserDto) auth.getPrincipal();
+
+
+        User user1 = new User(user);
+        UserRecipe userRecipe = new UserRecipe(user1, recipe);
+        userRecipeRepository.save(userRecipe);
+        //중복으로 눌렀을 때 처리는 백? 프론트?
+        return userRecipe;
+    }
+
+    @Transactional
+    public int deleteRecipeFromUser(Long recipesSeq){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserDto user = (UserDto) auth.getPrincipal();
+        //Optional<UserRecipe> userRecipe = userRecipeRepository.findByUser_userSeqAndRecipe_recSeq(user.getUserSeq(), recipesSeq);
+        Optional<UserRecipeDto> userRecipe = userRecipeRepository.findByUser_userSeqAndRecipe_recSeq(user.getUserSeq(), recipesSeq);
+        if(userRecipe.isPresent()){
+            userRecipeRepository.deleteById(userRecipe.get().getUserRecipeSeq());
+            return 1;
+        }
+
+
+        return 0;
+    }
 }

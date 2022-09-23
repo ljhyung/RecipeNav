@@ -6,6 +6,7 @@ import com.gumid105.recipenav.oauth.OAuthAttribute;
 import com.gumid105.recipenav.recipe.domain.Review;
 import com.gumid105.recipenav.user.consant.Gender;
 import com.gumid105.recipenav.user.consant.UserRole;
+import com.gumid105.recipenav.user.dto.UserDto;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -78,5 +79,17 @@ public class User {
         temp.userAge = "0";
         temp.userRole = UserRole.ROLE_USER;
         return temp;
+    }
+    public User(UserDto userDto){
+        this.userId = userDto.getUserId();
+        this.userSeq = userDto.getUserSeq();
+        this.userName = userDto.getUserName();
+        this.userRole = userDto.getUserRole();
+        this.userEmail = userDto.getUserEmail();
+        this.userTel = userDto.getUserTel();
+        this.userAge = userDto.getUserAge();
+        this.userGender = userDto.getUserGender();
+        this.userImg = userDto.getUserImg();
+
     }
 }
