@@ -80,7 +80,8 @@ public class User {
         temp.userRole = UserRole.ROLE_USER;
         return temp;
     }
-    public User(UserDto userDto){
+
+    public User(UserDto userDto) {
         this.userId = userDto.getUserId();
         this.userSeq = userDto.getUserSeq();
         this.userName = userDto.getUserName();
@@ -90,6 +91,15 @@ public class User {
         this.userAge = userDto.getUserAge();
         this.userGender = userDto.getUserGender();
         this.userImg = userDto.getUserImg();
+    }
 
+
+    public void updateProfile (String userName, String userEmail, String userTel, String userAge, Gender userGender, String userImg){
+        this.userName = userName;
+        this.userEmail = userEmail;
+        this.userTel = userTel;
+        this.userAge = userAge;
+        this.userGender = userGender;
+        this.userImg = userImg;
     }
 }

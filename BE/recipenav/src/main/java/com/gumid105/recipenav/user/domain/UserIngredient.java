@@ -27,4 +27,10 @@ public class UserIngredient {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ing_seq")
     private Ingredient ingredient;
+
+
+    public UserIngredient(User user, Ingredient ingredient){
+        this.user = user;
+        this.ingredient = ingredient;
+    }
 }

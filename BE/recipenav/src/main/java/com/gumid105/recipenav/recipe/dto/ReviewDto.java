@@ -18,7 +18,7 @@ public class ReviewDto {
     private Integer recRevGrade;
     private LocalDateTime revRegDate;
     private LocalDateTime revModDate;
-    private User user;
+    private Long userSeq;
 
     public static ReviewDto of(Review review){
         ReviewDto reviewDto = new ReviewDto();
@@ -28,7 +28,7 @@ public class ReviewDto {
         reviewDto.recRevGrade = review.getRecRevGrade();
         reviewDto.revRegDate = review.getRevRegDate();
         reviewDto.revModDate = review.getRevModDate();
-        reviewDto.user = review.getUser();
+        reviewDto.userSeq = review.getUser().getUserSeq();
 
         return reviewDto;
     }
@@ -44,7 +44,7 @@ public class ReviewDto {
             reviewDto.recRevGrade = reviewList.get(i).getRecRevGrade();
             reviewDto.revRegDate = reviewList.get(i).getRevRegDate();
             reviewDto.revModDate = reviewList.get(i).getRevModDate();
-            reviewDto.user = reviewList.get(i).getUser();
+            reviewDto.userSeq = reviewList.get(i).getUser().getUserSeq();
 
             reviewDtoArrayList.add(reviewDto);
             i++;
