@@ -8,7 +8,7 @@ const Signin = (props) => {
 
   return (
     <>
-      {props.USA === "Main" ? <Main /> : null}
+      <Main />
       {props.USA === "FirstLogin" ? <Signup /> : null}
     </>
   );

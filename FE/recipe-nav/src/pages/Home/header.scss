@@ -1,79 +1,78 @@
-@import 'default.scss';
+@import "default.scss";
 $header-height: 80px;
 
 header {
-    position: absolute;
-    width: 100%;
-    z-index: 999;
-    background: #A68D60;
-    .nav {
-      border: 0;
-      float: right;
-      max-width: 424px;
-      text-align: center;
-      margin: auto;
-      &-title {
-        min-width: 80px;
-        display: block;
-        padding-top: 22px;
-        border-top: 2px solid transparent;
-        transition: border .3s ease-out;
-        color: #EAF2CE;
-        cursor: pointer;
-        &:hover {
-          color: #9CD918;
-          border-top-color: #9CD918;
-        }
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  background: #a68d60;
+  .nav {
+    border: 0;
+    float: right;
+    max-width: 424px;
+    text-align: center;
+    margin: auto;
+    &-title {
+      min-width: 80px;
+      display: block;
+      padding-top: 22px;
+      border-top: 2px solid transparent;
+      transition: border 0.3s ease-out;
+      color: #eaf2ce;
+      cursor: pointer;
+      &:hover {
+        color: #9cd918;
+        border-top-color: #9cd918;
       }
     }
   }
+}
 
-  .header-tip-wrap {
-    .ant-tooltip-arrow {
-      border-bottom-color: rgba(1, 24, 116, .96);
-    }
-    .ant-tooltip-inner {
-      background-color: rgba(1, 24, 116, .96);
-      box-shadow: 0 8px 16px #001b72;
-      padding: 0;
-      max-width: none;
-      overflow: hidden;
-      .tip-block {
-        display: flex;
-        align-items: center;
-        padding: 26px;
-        min-width: 296px;
-        transition: background .3s ease-in-out;
-        background: rgba(1, 24, 116, 0);
-        .tip-img {
-          display: inline-block;
+.header-tip-wrap {
+  .ant-tooltip-arrow {
+    border-bottom-color: rgba(1, 24, 116, 0.96);
+  }
+  .ant-tooltip-inner {
+    background-color: rgba(1, 24, 116, 0.96);
+    box-shadow: 0 8px 16px #001b72;
+    padding: 0;
+    max-width: none;
+    overflow: hidden;
+    .tip-block {
+      display: flex;
+      align-items: center;
+      padding: 26px;
+      min-width: 296px;
+      transition: background 0.3s ease-in-out;
+      background: rgba(1, 24, 116, 0);
+      .tip-img {
+        display: inline-block;
+      }
+      .tip-content {
+        display: inline-block;
+        color: #fff;
+        margin-left: 16px;
+        line-height: 22px;
+        > div {
+          opacity: 0.65;
+          font-size: 12px;
+          line-height: 20px;
         }
-        .tip-content {
-          display: inline-block;
-          color: #fff;
-          margin-left: 16px;
-          line-height: 22px;
-          >div {
-            opacity: 0.65;
-            font-size: 12px;
-            line-height: 20px;
-          }
-        }
-        &:hover{
-          background-color: rgb(1, 24, 116);
-        }
+      }
+      &:hover {
+        background-color: rgb(1, 24, 116);
       }
     }
   }
+}
 
-  .logo {
-    float: left;
-  }
-  
-  .logo img {
-    height: 100%;
-    width: 80px;
-    margin-right: 8px;
-    margin-top: 8px;
-  }
-  
+.logo {
+  float: left;
+}
+
+.logo img {
+  height: 100%;
+  width: 80px;
+  margin-right: 8px;
+  margin-top: 8px;
+}
