@@ -44,7 +44,6 @@ const Banner = () => {
     return (
         <div className="banner page-wrapper" >
         <div className="page">
-          <div className="logo" />
           <BannerAnim type="across" duration={550} ease="easeInOutQuint">
             {bannerChildren}
           </BannerAnim>
