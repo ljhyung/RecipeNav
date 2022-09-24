@@ -158,15 +158,16 @@ const Mypage = () => {
                           프로필 수정
                         </SubmitButton>
                     </div>
+                    
                   </Col>
-            
+                    
                   <Col className={style.UserContents} span={11} offset={2}>
                     <span className="Recipes">
                       <span className="Myrecipes">
                         <span className={style.MyrecipesTitle}>
-                          즐겨찾는 레시피
+                        즐겨찾는 레시피
                         </span>
-                        <span className={style.MyrecipesImage}>
+                        <Row className={style.MyrecipesImage}>
                           <Col>
                             <Card
                               style={{
@@ -199,120 +200,129 @@ const Mypage = () => {
                               cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
                               <Meta title="제육볶음" description="5000원" /></Card>
                           </Col>      
-                        </span>
+                        </Row>
                       </span>
+                      <Divider />
                       <Col className={style.RecentRecipe}>
                         <span className={style.RecentRecipeTitle}>
-                          최근 조회 레시피
+                        최근 조회 레시피
                         </span>
-                        <Col>
-                            <Card
-                              style={{
-                                  width: 240
-                              }}
-                              cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
-                              <Meta title="제육볶음" description="5000원" /></Card>
-                        </Col>
-                        <Col>
-                            <Card
-                              style={{
-                                  width: 240
-                              }}
-                              cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
-                              <Meta title="제육볶음" description="5000원" /></Card>
-                        </Col>
-                        <Col>
-                            <Card
-                              style={{
-                                  width: 240
-                              }}
-                              cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
-                              <Meta title="제육볶음" description="5000원" /></Card>
+                        <Row>
+                          <Col>
+                              <Card
+                                style={{
+                                    width: 240
+                                }}
+                                cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
+                                <Meta title="제육볶음" description="5000원" /></Card>
                           </Col>
                           <Col>
-                            <Card
-                              style={{
-                                  width: 240
-                              }}
-                              cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
-                              <Meta title="제육볶음" description="5000원" /></Card>
-                          </Col> 
+                              <Card
+                                style={{
+                                    width: 240
+                                }}
+                                cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
+                                <Meta title="제육볶음" description="5000원" /></Card>
+                          </Col>
+                          <Col>
+                              <Card
+                                style={{
+                                    width: 240
+                                }}
+                                cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
+                                <Meta title="제육볶음" description="5000원" /></Card>
+                            </Col>
+                            <Col>
+                              <Card
+                                style={{
+                                    width: 240
+                                }}
+                                cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
+                                <Meta title="제육볶음" description="5000원" /></Card>
+                            </Col> 
+                        </Row>
                       </Col>
                     </span>
+                    <Divider />
                     <Col className={style.Ingredient}>
                       <Col className={style.Myingredient}>
                         <span className={style.MyingredientTitle}>
-                          즐겨찾는 식재료
+                        즐겨찾는 식재료
                         </span>
-                          <Col>
+                          <Row>
+                            <Col>
+                                <Card
+                                  style={{
+                                      width: 240
+                                  }}
+                                  cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
+                                  <Meta title="제육볶음" description="5000원" /></Card>
+                            </Col>
+                            <Col>
+                                <Card
+                                  style={{
+                                      width: 240
+                                  }}
+                                  cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
+                                  <Meta title="제육볶음" description="5000원" /></Card>
+                            </Col>
+                            <Col>
                               <Card
                                 style={{
                                     width: 240
                                 }}
                                 cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
                                 <Meta title="제육볶음" description="5000원" /></Card>
-                          </Col>
-                          <Col>
+                            </Col>
+                            <Col>
                               <Card
                                 style={{
                                     width: 240
                                 }}
                                 cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
                                 <Meta title="제육볶음" description="5000원" /></Card>
-                          </Col>
-                          <Col>
-                            <Card
-                              style={{
-                                  width: 240
-                              }}
-                              cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
-                              <Meta title="제육볶음" description="5000원" /></Card>
-                          </Col>
-                          <Col>
-                            <Card
-                              style={{
-                                  width: 240
-                              }}
-                              cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
-                              <Meta title="제육볶음" description="5000원" /></Card>
-                          </Col>  
+                            </Col>
+                          </Row>  
                       </Col>
+                      <Divider />
                       <Col className={style.Rencentingredient}>
                         <span className={style.RencentIngredientTitle}>
                           최근 조회 식재료
                         </span>
-                          <Col>
+                          <Row>
+                            <Col>
+                                <Card
+                                  style={{
+                                      width: 240
+                                  }}
+                                  cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
+                                  <Meta title="제육볶음" description="5000원" /></Card>
+                            </Col>
+                            <Col>
+                                <Card
+                                  style={{
+                                      width: 240
+                                  }}
+                                  cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
+                                  <Meta title="제육볶음" description="5000원" /></Card>
+                            </Col>
+                            <Col>
                               <Card
                                 style={{
                                     width: 240
                                 }}
                                 cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
                                 <Meta title="제육볶음" description="5000원" /></Card>
-                          </Col>
-                          <Col>
+                            </Col>
+                            <Col>
                               <Card
                                 style={{
                                     width: 240
                                 }}
                                 cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
                                 <Meta title="제육볶음" description="5000원" /></Card>
-                          </Col>
-                          <Col>
-                            <Card
-                              style={{
-                                  width: 240
-                              }}
-                              cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
-                              <Meta title="제육볶음" description="5000원" /></Card>
-                          </Col>
-                          <Col>
-                            <Card
-                              style={{
-                                  width: 240
-                              }}
-                              cover={<img alt="exapmle" src="https://placeimg.com/200/100/any/grayscale" />}>
-                              <Meta title="제육볶음" description="5000원" /></Card>
-                          </Col>  
+                            </Col>
+                          </Row>  
                       </Col>
                     </Col>  
                   </Col>
