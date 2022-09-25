@@ -1,3 +1,0 @@
-REACT_APP_NAVER_CLIENT_ID=myHwxRjxWCDFTNG6amzZ
-REACT_APP_NAVER_AUTH_URL=https://nid.naver.com/oauth2.0/authorize
-REACT_APP_NAVER_REDIRECT_URL=http://localhost:3000/oauth/naver
