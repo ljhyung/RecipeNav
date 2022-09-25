@@ -1,0 +1,9 @@
+.revice-input {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+}
+
+.text-input {
+  height: 100px;
+  resize: none;
+}

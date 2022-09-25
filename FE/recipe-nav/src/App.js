@@ -8,6 +8,8 @@ import ProfileEdit from "./pages/ProfileEdits/ProfileEdit";
 import Home from "./pages/Home";
 import Nav from "./pages/Nav";
 import Signin from "./pages/Signin/Signin";
+import RecipeSearch from "./pages/Recipe/RecipeSearch";
+import RecipeDetail from "./pages/Recipe/RecipeDetail";
 //https://hururuek-chapchap.tistory.com/212
 //최상단 컴포넌트 , 라우터 관리
 
@@ -30,6 +32,10 @@ function App() {
 
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/profile-edit" element={<ProfileEdit />} />
+        <Route path="/recipe">
+          <Route index element={<RecipeSearch />} />
+          <Route path=":recSeq" element={<RecipeDetail />} />
+        </Route>
       </Route>
 
       <Route path="/login" element={<Signin />} />

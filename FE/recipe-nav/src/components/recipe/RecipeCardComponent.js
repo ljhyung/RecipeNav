@@ -11,7 +11,12 @@ const RecipeCardComponent = (props) => {
           <Image src={recipe.recImg} style={{ borderRadius: "5px" }} />
         </div>
         <div className={style.body}>
-          <div className={style["recipe-card-title"]}>{recipe.recName}</div>
+          <div
+            className={style["recipe-card-title"]}
+            onClick={() => props.recipeClickHandle(recipe.recSeq)}
+          >
+            {recipe.recName}
+          </div>
           <div className={style["line"]} />
           <div>
             {recipe.cateFrac} {recipe.foodFrac}
