@@ -1,18 +1,24 @@
 import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axiosClient from "../../api";
+import {
+  setAthenticated,
+  setToken,
+  setUser,
+} from "../../store/slices/authSlice";
+import { useDispatch } from "react-redux";
 
 const NaverOauth = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  console.log(location.search);
-
-  const code = location.search.split("&")[0].split("=")[1];
+  const code = location.search.split("=")[1].split("&")[0];
   const state = location.search.split("=")[2];
 
   console.log(code);
   console.log(state);
+
   useEffect(() => {
     axiosClient
       .post(`/oauth/authentication/naver`, {
@@ -23,23 +29,53 @@ const NaverOauth = () => {
         console.log("응답값");
         console.log(response);
 
+        if (response.data === "") {
+          console.log("로그인 요청 후 받은 값이 없습니다.");
+          navigate("/login");
+          return;
+        }
+        let Authorization = response.data.data.accessToken;
+        let isSuccess = response.data.isSuccess;
+
+        if (Authorization === "" || isSuccess !== 1) {
+          console.log("로그인 실패");
+          return;
+          //받아온 토큰값이 없으면 중단
+        }
+
+        dispatch(setToken({ accessToken: Authorization }));
+        dispatch(setAthenticated(true));
+
         axiosClient
-          .get("/my-infos")
+          .get("/my-infos", {
+            headers: {
+              Authorization,
+            },
+          })
           .then((res) => {
             console.log(res);
+            if (res.data === null || res.data === "") {
+              console.log("받다온 사용자 정보의 데이터가 없습니다.");
+              navigate("/home");
+              return;
+            }
+            dispatch(setUser());
+            navigate("/home");
           })
           .catch((error) => {
             console.log(error);
+            navigate("/");
           });
       })
       .catch((error) => {
+        navigate("/");
         console.log(error);
       });
-  }, [code, state]);
+  }, []);
 
   return (
     <>
-      <h1>ㅎㅎㅎ</h1>
+      <h1>로그인 중</h1>
     </>
   );
 };
