@@ -155,7 +155,7 @@ export const page1 = {
   title: "自然好用的设计",
   children: [
     {
-      title: "삼겹살",
+      title: "设计价值观",
       content: "Design Values",
       src: "https://gw.alipayobjects.com/zos/rmsportal/KtRzkMmxBuWCVjPbBgRY.svg",
       color: "#EB2F96",
@@ -163,7 +163,7 @@ export const page1 = {
       link: "https://ant.design/docs/spec/values-cn",
     },
     {
-      title: "가브리살",
+      title: "视觉",
       content: "Visual",
       src: "https://gw.alipayobjects.com/zos/rmsportal/qIcZMXoztWjrnxzCNTHv.svg",
       color: "#1890FF",
@@ -171,7 +171,7 @@ export const page1 = {
       link: "https://ant.design/docs/spec/colors-cn",
     },
     {
-      title: "항정살",
+      title: "可视化",
       content: "Visualisation",
       src: "https://gw.alipayobjects.com/zos/rmsportal/eLtHtrKjXfabZfRchvVT.svg",
       color: "#AB33F7",
