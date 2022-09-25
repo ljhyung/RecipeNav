@@ -6,6 +6,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Mypage from "./pages/Mypages/Mypage";
 import ProfileEdit from "./pages/ProfileEdits/ProfileEdit";
 import Home from "./pages/Home";
+import Nav from "./pages/Nav";
 import Signin from "./pages/Signin/Signin";
 import RecipeSearch from "./pages/Recipe/RecipeSearch";
 import RecipeDetail from "./pages/Recipe/RecipeDetail";
@@ -25,9 +26,10 @@ function App() {
     <Routes>
       <Route
         path="/"
-        element={authenticated ? <Home /> : <Navigate to="/login" replace />}
+        element={authenticated ? <Nav /> : <Navigate to="/login" replace />}
       >
-        <Route index element={<h1>홈의 메인</h1>} />
+        <Route path="/" element={<Home />}/>
+
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/profile-edit" element={<ProfileEdit />} />
         <Route path="/recipe">
