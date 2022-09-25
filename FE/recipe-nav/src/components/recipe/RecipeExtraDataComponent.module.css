@@ -1,0 +1,17 @@
+.recipe-extra-data-component {
+  display: flex;
+  flex-direction: row;
+}
+.recipe-extra-data-component > div {
+  flex-grow: 1;
+}
+.icon {
+  text-align: center;
+  font-size: 350%;
+  margin: 0px 30px;
+  color: #53a62d;
+}
+
+.value {
+  text-align: center;
+}

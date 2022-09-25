@@ -1678,12 +1678,190 @@ const initialState = {
       ],
     },
   ],
+  selectedRecipe: {
+    recSeq: 1,
+    recName: "콩비지동그랑땡",
+    recStep: null,
+    recCost: null,
+    recCode: "195453",
+    recSummary: "두부대신 콩비지를 넣어 만든 동그랑땡 맛도 좋아요!",
+    cateCode: "3020001",
+    cateFrac: "한식",
+    foodCode: "3010018",
+    foodFrac: "부침",
+    cookingTime: "30분",
+    recCalorie: "0Kcal",
+    recAmount: "3인분",
+    recLevel: "보통",
+    recIngFrac: " ",
+    recPrice: 1000,
+    recImg: "http://file.okdab.com/recipe/148299577268400131.jpg",
+    reviews: [],
+    recipeIngredientList: [
+      {
+        recIngSeq: 5327,
+        recName: "콩비지동그랑땡",
+        ingName: "계란",
+        ingAmount: "5개",
+        ingType: "주재료",
+      },
+      {
+        recIngSeq: 5328,
+        recName: "콩비지동그랑땡",
+        ingName: "다진마늘",
+        ingAmount: "1T",
+        ingType: "주재료",
+      },
+      {
+        recIngSeq: 5329,
+        recName: "콩비지동그랑땡",
+        ingName: "다짐육",
+        ingAmount: "200g",
+        ingType: "주재료",
+      },
+      {
+        recIngSeq: 5330,
+        recName: "콩비지동그랑땡",
+        ingName: "대파",
+        ingAmount: "1대",
+        ingType: "주재료",
+      },
+      {
+        recIngSeq: 5331,
+        recName: "콩비지동그랑땡",
+        ingName: "밀가루",
+        ingAmount: "2CUP",
+        ingType: "주재료",
+      },
+      {
+        recIngSeq: 5332,
+        recName: "콩비지동그랑땡",
+        ingName: "배추",
+        ingAmount: "2잎",
+        ingType: "주재료",
+      },
+      {
+        recIngSeq: 5333,
+        recName: "콩비지동그랑땡",
+        ingName: "부침가루",
+        ingAmount: "1/2T",
+        ingType: "주재료",
+      },
+      {
+        recIngSeq: 5334,
+        recName: "콩비지동그랑땡",
+        ingName: "소금",
+        ingAmount: "2t",
+        ingType: "주재료",
+      },
+      {
+        recIngSeq: 5335,
+        recName: "콩비지동그랑땡",
+        ingName: "전분",
+        ingAmount: "1/2T",
+        ingType: "주재료",
+      },
+      {
+        recIngSeq: 5336,
+        recName: "콩비지동그랑땡",
+        ingName: "참기름",
+        ingAmount: "1T",
+        ingType: "주재료",
+      },
+      {
+        recIngSeq: 5337,
+        recName: "콩비지동그랑땡",
+        ingName: "콩비지",
+        ingAmount: "300g",
+        ingType: "주재료",
+      },
+      {
+        recIngSeq: 5338,
+        recName: "콩비지동그랑땡",
+        ingName: "호박",
+        ingAmount: "1/2개",
+        ingType: "주재료",
+      },
+      {
+        recIngSeq: 5339,
+        recName: "콩비지동그랑땡",
+        ingName: "후추",
+        ingAmount: "1/2t",
+        ingType: "주재료",
+      },
+    ],
+    recipeProcessList: [
+      {
+        recProSeq: 1,
+        recCode: "195453",
+        recOrder: "5",
+        recDes:
+          "모양을 낸 반죽에 밀가루를 묻히고, 계란을 푼 계란물을 묻혀준다.",
+        proUrl: "http://file.okdab.com/recipe/148299577271000135.jpg",
+        proTip: " ",
+      },
+      {
+        recProSeq: 2,
+        recCode: "195453",
+        recOrder: "4",
+        recDes: "동그랑땡 반죽을 동글납작하게 모양을 잡아준다.",
+        proUrl: "http://file.okdab.com/recipe/148299577270600134.jpg",
+        proTip: " ",
+      },
+      {
+        recProSeq: 3,
+        recCode: "195453",
+        recOrder: "3",
+        recDes: "부침가루와 전분을 넣고 계란 1개를 넣어 반죽하듯 잘 섞어준다.",
+        proUrl: "http://file.okdab.com/recipe/148299577270200133.jpg",
+        proTip: " ",
+      },
+      {
+        recProSeq: 4,
+        recCode: "195453",
+        recOrder: "2",
+        recDes:
+          "볼에 콩비지와 고기, 다진 채소, 다진마늘, 후추, 소금, 참기름을 넣어준다.",
+        proUrl: "http://file.okdab.com/recipe/148299577269600132.jpg",
+        proTip: " ",
+      },
+      {
+        recProSeq: 5,
+        recCode: "195453",
+        recOrder: "1",
+        recDes: "대파, 호박, 배추는 작게 다져준다.",
+        proUrl: " ",
+        proTip: " ",
+      },
+      {
+        recProSeq: 6,
+        recCode: "195453",
+        recOrder: "6",
+        recDes:
+          "달궈진 팬에 기름을 두르고 옷을 계란물옷을 입힌 동그랑땡을 노릇하게 익혀준다.",
+        proUrl: "http://file.okdab.com/recipe/148299577271500136.jpg",
+        proTip: " ",
+      },
+    ],
+  },
 };
 
 const recipeSlice = createSlice({
   name: "recipe",
   initialState,
-  reducers: {},
+  reducers: {
+    setRecipes(state, action) {
+      console.log(action.payload);
+      state.recipes = action.payload;
+    },
+    setSelectedRecipe(state, action) {
+      for (let i = 0; i < state.recipes.length; i++) {
+        if (state.recipes[i].recSeq == action.payload) {
+          state.selectedRecipe = state.recipes[i];
+        }
+      }
+    },
+  },
 });
-
+export const { setRecipes, setSelectedRecipe } = recipeSlice.actions;
 export default recipeSlice.reducer;

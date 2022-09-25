@@ -1,0 +1,22 @@
+.phase-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 10px;
+  box-shadow: 0px 0px 1px rgb(167, 167, 167);
+
+  margin-bottom: 40px;
+}
+.imgage-box {
+  margin-right: 40px;
+}
+.desc-box {
+  flex-grow: 7;
+}
+
+.split-line {
+  height: 1px;
+
+  background-color: black;
+}

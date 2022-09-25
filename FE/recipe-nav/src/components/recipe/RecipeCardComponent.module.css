@@ -12,6 +12,11 @@
   font-weight: bold;
   font-size: larger;
 }
+
+.recipe-card-title:hover {
+  cursor: pointer;
+  color: #a68d60;
+}
 .body {
 }
 .line {

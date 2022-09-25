@@ -12,8 +12,6 @@ const Home = () => {
     //<Banner key="banner" />,
     //<Graph key="graph" />,
     //<Footer key="footer" />,
-
-    <Link to={"/mypage"}>테스트</Link>,
     <Outlet></Outlet>,
   ];
 };
