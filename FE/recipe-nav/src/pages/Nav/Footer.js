@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col } from 'antd';
 import { footer } from './data';
 
-import './Footer.scss'
+import './footer.scss'
 
 const Footer = () => {
 

@@ -1,0 +1,60 @@
+/**/
+.recipe-detail-container {
+  width: 90%;
+  margin: 20px auto;
+  padding: 20px;
+  box-shadow: 0px 0px 5px #8d9081;
+}
+/*contain(레시피 설명 ... )*/
+.recipe-detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+/*레시피 설명 왼쪽*/
+.recipe-detail-head-post {
+  flex-grow: 5;
+}
+/*레시피 설명*/
+.recipe-detail-desc {
+  flex-grow: 5;
+  width: 350px;
+}
+.recipe-detail-desc > p {
+  margin-top: 20px;
+}
+/*레시피 과정 박스*/
+.recipe-detail-phase-container {
+}
+
+.category-text {
+  font-weight: bold;
+  font-size: xx-large;
+  color: #a68d60;
+}
+.phase-text-bar {
+  font-weight: bold;
+  font-size: xx-large;
+  padding: 5px;
+  margin-top: 50px;
+  color: rgb(245, 245, 245);
+  background-color: #53a62d;
+}
+.ingredient-bar {
+  margin-top: 20px;
+  color: white;
+  border: 1px 1px #7e6d4e;
+  background-color: #a68d60;
+}
+
+.recipe-review-container {
+}
+.review-text-bar {
+  margin-top: 20px;
+  color: white;
+  font-weight: bold;
+  font-size: xx-large;
+  padding: 5px;
+  border: 1px 1px #7e6d4e;
+  background-color: #b0a926;
+}

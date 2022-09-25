@@ -64,14 +64,8 @@ const Graph = () => {
     };
 
     return (
-        <div className='graph page-wrapper'>
-            <div className='page'>
-                <div className='title'>
-                    그래프입니다!
-                </div>
                 <Line className='graph-bg' {...config}/>
-            </div>
-        </div>
+
 
     );
 };

@@ -1,0 +1,25 @@
+.review-box {
+  margin-bottom: 10px;
+}
+
+.review-head {
+  background-color: #eaf2ce;
+  display: flex;
+}
+
+.review-body {
+  background-color: #f2f2f2;
+}
+.review-title {
+  font-weight: bold;
+  font-size: large;
+}
+.review-content {
+  font-size: medium;
+}
+.review-name {
+}
+.review-date {
+}
+.review-grade {
+}
