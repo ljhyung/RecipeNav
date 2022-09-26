@@ -12,6 +12,8 @@ import java.util.List;
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     List<Recipe> findRecipesByRecPriceIsBetween(Integer minPrice, Integer maxPrice);
 
+    List<Recipe> findRecipesByRecNameContaining(String recipeName);
+
 
     @Query("select ri.recipe from Ingredient i inner join RecipeIngredient ri on i.ingName=ri.ingName")
     List<Recipe> findRecipesByIngredientName(String ingName);
