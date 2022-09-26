@@ -9,14 +9,17 @@ import RecipeExtraDataComponent from "../../components/recipe/RecipeExtraDataCom
 import RecipePhaseComponent from "../../components/recipe/RecipePhaseComponent";
 import RecipeReviewComponent from "../../components/recipe/RecipeReviewComponent";
 import RecipeReviewInput from "../../components/recipe/RecipeReviewInput";
-
+import { proxyImageURL } from "../../api";
 const comparator = function (a, b) {
   return a.recOrder - b.recOrder;
 };
 
 const RecipeDetail = (props) => {
+
   const params = useParams();
+
   console.log(params);
+
   const selectedRecipe = useSelector((state) => state.recipe.selectedRecipe);
 
   const onReviewEditHandle = (e) => {
@@ -28,7 +31,7 @@ const RecipeDetail = (props) => {
         <h2 className={style["category-text"]}>{selectedRecipe.recName}</h2>
         <div className={style["recipe-detail-meta"]}>
           <div className={style["recipe-detail-head-post"]}>
-            <Image src={selectedRecipe.recImg} fluid={true} />
+            <Image src={proxyImageURL+selectedRecipe.recImg} fluid={true} />
           </div>
 
           <div className={style["recipe-detail-desc"]}>

@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import apiClient from "../../api";
 import { useNavigate } from "react-router-dom";
 import { setRecipes, setSelectedRecipe } from "../../store/slices/recipeSlice";
-
+import { proxyImageURL } from "../../api";
 const CustomInput = styled(Input)`
   height: 50px;
   border-radius: 5px 0px 0px 5px;
@@ -58,7 +58,7 @@ const RecipeSearch = () => {
       })
       .then((response) => {
         console.log(response);
-        dispatch(setRecipes(response.data));
+        dispatch(setRecipes(response.data.content));
       })
       .catch((error) => {
         console.log("요청 에러");
@@ -112,7 +112,7 @@ const RecipeSearch = () => {
           </div>
 
           <div className={style["recipe-container"]}>
-            {recipes.map((recipe, i) => {
+            {recipes.length > 0 && recipes.map((recipe, i) => {
               return (
                 <RecipeCardComponent
                   key={recipe.recSeq}
@@ -121,6 +121,10 @@ const RecipeSearch = () => {
                 ></RecipeCardComponent>
               );
             })}
+            {
+              recipes.length == 0 &&
+              <h1>비어있다.</h1>
+            }
           </div>
         </Col>
       </div>{" "}
