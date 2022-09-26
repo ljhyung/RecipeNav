@@ -4,6 +4,7 @@ import com.gumid105.recipenav.ingredient.domain.Ingredient;
 import com.gumid105.recipenav.ingredient.dto.IngredientDto;
 import com.gumid105.recipenav.ingredient.service.IngredientService;
 import com.gumid105.recipenav.recipe.dto.RecipeDto;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ public class IngredientController {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<IngredientDto>> getIngredients(@RequestParam Integer page, @RequestParam Integer size) {
+    public ResponseEntity<Page<Ingredient>> getIngredients(@RequestParam Integer page, @RequestParam Integer size) {
         return ResponseEntity.ok(ingredientService.getAllIngredient(page-1, size));
     }
 
