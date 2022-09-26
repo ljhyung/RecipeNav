@@ -1,8 +1,7 @@
-import { Route, Routes, Redirect, Navigate } from "react-router-dom";
+import { Route, Routes,  Navigate } from "react-router-dom";
 import "./App.css";
 import NaverOauth from "./pages/oauth/NaverOauth";
 import { useSelector } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
 import Mypage from "./pages/Mypages/Mypage";
 import ProfileEdit from "./pages/ProfileEdits/ProfileEdit";
 import Home from "./pages/Home";
