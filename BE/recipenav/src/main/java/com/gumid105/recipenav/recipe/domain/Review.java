@@ -36,9 +36,6 @@ public class Review {
     @Column(name = "rec_rev_grade")
     private Integer recRevGrade;
 
-    @CreatedBy
-    @Column(name = "rec_rev_reg_user")
-    private String recRevRegUser;
 
     @CreatedDate
     @Column(name = "rev_reg_date")

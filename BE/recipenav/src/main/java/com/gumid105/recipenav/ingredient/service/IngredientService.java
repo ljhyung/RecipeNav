@@ -7,6 +7,7 @@ import com.gumid105.recipenav.recipe.domain.Recipe;
 import com.gumid105.recipenav.recipe.dto.RecipeDto;
 import com.gumid105.recipenav.recipe.repository.RecipeRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,10 +22,11 @@ public class IngredientService {
     private final IngredientRepository ingredientRepository;
     private final RecipeRepository recipeRepository;
 
-    public List<IngredientDto> getAllIngredient(Integer page, Integer size){
+    public Page<Ingredient> getAllIngredient(Integer page, Integer size){
         PageRequest pageRequest = PageRequest.of(page,size);
-        List<Ingredient> ingredientList = ingredientRepository.findAll(pageRequest).getContent();
-        return IngredientDto.ofList(ingredientList);
+        Page<Ingredient> ingredientPage = ingredientRepository.findAll(pageRequest);
+//        List<Ingredient> ingredientList = ingredientRepository.findAll(pageRequest).getContent();
+        return ingredientPage;
     }
 
     public IngredientDto getIngredientDetail(Long seq){

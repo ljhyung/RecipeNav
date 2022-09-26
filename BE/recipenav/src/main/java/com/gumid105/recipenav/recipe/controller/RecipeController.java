@@ -1,10 +1,12 @@
 package com.gumid105.recipenav.recipe.controller;
 
+import com.gumid105.recipenav.recipe.domain.Recipe;
 import com.gumid105.recipenav.recipe.dto.RecipeDto;
 import com.gumid105.recipenav.recipe.dto.ReqReviewDto;
 import com.gumid105.recipenav.recipe.dto.ReviewDto;
 import com.gumid105.recipenav.recipe.service.RecipeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
@@ -21,9 +23,14 @@ public class RecipeController {
 
 
     @GetMapping("/all")
-    public ResponseEntity<List<RecipeDto>> getRecipes(@RequestParam Integer page, @RequestParam Integer size) {
+    public ResponseEntity<Page<Recipe>> getRecipes(@RequestParam Integer page, @RequestParam Integer size) {
 
         return ResponseEntity.ok(recipeService.getRecipes(page-1, size));
+    }
+
+    @GetMapping("")
+    public ResponseEntity<List<RecipeDto>> getRecipesByName(@RequestParam String recipeName) {
+        return ResponseEntity.ok(recipeService.getRecipesByName(recipeName));
     }
 
     @GetMapping("/{recipe-id}")

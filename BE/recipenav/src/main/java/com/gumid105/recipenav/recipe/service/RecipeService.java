@@ -12,6 +12,7 @@ import com.gumid105.recipenav.recipe.repository.ReviewRepository;
 import com.gumid105.recipenav.user.dto.UserDto;
 import com.gumid105.recipenav.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -30,9 +31,15 @@ public class RecipeService {
     private final UserRepository userRepository;
     private final IngredientRepository ingredientRepository;
 
-    public List<RecipeDto> getRecipes(Integer page, Integer size){
+    public Page<Recipe> getRecipes(Integer page, Integer size){
         PageRequest pageRequest = PageRequest.of(page,size);
-        List<Recipe> recipeList = recipeRepository.findAll(pageRequest).getContent();
+        Page<Recipe> recipePage = recipeRepository.findAll(pageRequest);
+//        List<Recipe> recipeList = recipePage.getContent();
+        return recipePage;
+    }
+
+    public List<RecipeDto> getRecipesByName(String recipeName){
+        List<Recipe> recipeList = recipeRepository.findRecipesByRecNameContaining(recipeName);
         return RecipeDto.ofList(recipeList);
     }
 
