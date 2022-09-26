@@ -1,7 +1,6 @@
-import { Button, Card, Carousel, Input } from "antd";
+import {  Carousel, Input } from "antd";
 import Col from "antd/es/grid/col";
-import Search from "antd/lib/input/Search";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import style from "./Recipe.module.css";
 import PizzaImg from "../../assets/pizza_img.jpg";
@@ -10,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import apiClient from "../../api";
 import { useNavigate } from "react-router-dom";
 import { setRecipes, setSelectedRecipe } from "../../store/slices/recipeSlice";
+
 const CustomInput = styled(Input)`
   height: 50px;
   border-radius: 5px 0px 0px 5px;
@@ -37,10 +37,13 @@ const RecipeSearch = () => {
   const accessToken = useSelector((state) => state.auth.accessToken);
 
   const [searchString, setSearchString] = useState("");
+  const [tempString,setTempString] = useState("");
+  
   const [page, setPage] = useState(1);
   const [size, setSize] = useState(10);
 
-  const onSearchHandle = (e) => {
+  
+  useEffect(()=>{
     console.log(searchString);
 
     apiClient
@@ -61,11 +64,15 @@ const RecipeSearch = () => {
         console.log("요청 에러");
         console.log(error);
       });
+  },[page,size,searchString])
+
+  const onSearchHandle = (e) => {
+    setSearchString(tempString);
   };
 
   const onSearchChangeHadle = (e) => {
     //입력 박스에 입력하였을 때, 검색어 업데이트를 위하여
-    setSearchString(e.target.value);
+    setTempString(e.target.value);
   };
 
   const recipeClickHandle = (recSeq) => {

@@ -71,7 +71,7 @@ const NaverOauth = () => {
         navigate("/");
         console.log(error);
       });
-  }, []);
+  });
 
   return (
     <>
