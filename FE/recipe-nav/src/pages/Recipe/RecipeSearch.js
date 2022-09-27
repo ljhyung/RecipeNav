@@ -1,4 +1,4 @@
-import {  Carousel, Input } from "antd";
+import { Carousel, Input, Pagination } from "antd";
 import Col from "antd/es/grid/col";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
@@ -8,8 +8,16 @@ import RecipeCardComponent from "../../components/recipe/RecipeCardComponent";
 import { useDispatch, useSelector } from "react-redux";
 import apiClient from "../../api";
 import { useNavigate } from "react-router-dom";
-import { setRecipes, setSelectedRecipe } from "../../store/slices/recipeSlice";
+import {
+  setRecipes,
+  setSelectedRecipe,
+  setPage,
+  setSize,
+  setTotalItem,
+  setSearchString,
+} from "../../store/slices/recipeSlice";
 import { proxyImageURL } from "../../api";
+
 const CustomInput = styled(Input)`
   height: 50px;
   border-radius: 5px 0px 0px 5px;
@@ -33,41 +41,81 @@ const contentStyle = {
 const RecipeSearch = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const recipes = useSelector((state) => state.recipe.recipes);
   const accessToken = useSelector((state) => state.auth.accessToken);
+  const searchString = useSelector((state) => state.recipe.searchString);
 
-  const [searchString, setSearchString] = useState("");
-  const [tempString,setTempString] = useState("");
-  
-  const [page, setPage] = useState(1);
-  const [size, setSize] = useState(10);
+  const page = useSelector((state) => state.recipe.page);
+  const size = useSelector((state) => state.recipe.size);
+  const totalItem = useSelector((state) => state.recipe.totalItem);
 
-  
-  useEffect(()=>{
+  const [tempString, setTempString] = useState("");
+
+  const pageChageHadle = (chagePage, chagePageSize) => {
+    console.log("페이지 체인지");
+    console.log(chagePage, chagePageSize);
+    dispatch(setPage(chagePage));
+  };
+
+  const onShowSizeChange = (current, pageSize) => {
+    console.log("페이지 사이즈 체인지");
+    console.log(current, pageSize);
+    dispatch(setSize(pageSize));
+  };
+
+  useEffect(() => {
     console.log(searchString);
-
-    apiClient
-      .get("/recipes/all", {
-        headers: {
-          Authorization: accessToken,
-        },
-        params: {
-          page,
-          size,
-        },
-      })
-      .then((response) => {
-        console.log(response);
-        dispatch(setRecipes(response.data.content));
-      })
-      .catch((error) => {
-        console.log("요청 에러");
-        console.log(error);
-      });
-  },[page,size,searchString])
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (searchString == "" || searchString == null) {
+      apiClient
+        .get("/recipes/all", {
+          headers: {
+            Authorization: accessToken,
+          },
+          params: {
+            page,
+            size,
+          },
+        })
+        .then((response) => {
+          console.log("레시피 요청");
+          console.log(response);
+          console.log(response.data.totalPages);
+          dispatch(setRecipes(response.data.content));
+          dispatch(setTotalItem(response.data.totalElements));
+        })
+        .catch((error) => {
+          console.log("요청 에러");
+          console.log(error);
+        });
+    } else {
+      console.log(searchString);
+      apiClient
+        .get("/recipes", {
+          headers: {
+            Authorization: accessToken,
+          },
+          params: {
+            recipeName: searchString,
+          },
+        })
+        .then((response) => {
+          console.log("레시피 요청");
+          console.log(response);
+          dispatch(setRecipes(response.data));
+          let totalItem = response.data.length;
+          let totalPage = parseInt(totalItem / size) + 1;
+          dispatch(setPage(1));
+          dispatch(setTotalItem(totalItem));
+        })
+        .catch((error) => {});
+    }
+  }, [page, size, searchString]);
 
   const onSearchHandle = (e) => {
-    setSearchString(tempString);
+    console.log("레시피 이름 검색");
+    dispatch(setSearchString(tempString));
   };
 
   const onSearchChangeHadle = (e) => {
@@ -112,22 +160,31 @@ const RecipeSearch = () => {
           </div>
 
           <div className={style["recipe-container"]}>
-            {recipes.length > 0 && recipes.map((recipe, i) => {
-              return (
-                <RecipeCardComponent
-                  key={recipe.recSeq}
-                  recipe={recipe}
-                  recipeClickHandle={recipeClickHandle}
-                ></RecipeCardComponent>
-              );
-            })}
-            {
-              recipes.length == 0 &&
-              <h1>비어있다.</h1>
-            }
+            {recipes.length > 0 &&
+              recipes.map((recipe, i) => {
+                return (
+                  <RecipeCardComponent
+                    key={recipe.recSeq}
+                    recipe={recipe}
+                    recipeClickHandle={recipeClickHandle}
+                  ></RecipeCardComponent>
+                );
+              })}
+            {recipes.length == 0 && <h1>비어있다.</h1>}
+          </div>
+          <div className={style["page-container"]}>
+            <Pagination
+              total={totalItem}
+              showSizeChanger
+              showQuickJumper
+              current={page}
+              defaultPageSize={50}
+              onChange={pageChageHadle}
+              onShowSizeChange={onShowSizeChange}
+            />
           </div>
         </Col>
-      </div>{" "}
+      </div>
     </>
   );
 };
