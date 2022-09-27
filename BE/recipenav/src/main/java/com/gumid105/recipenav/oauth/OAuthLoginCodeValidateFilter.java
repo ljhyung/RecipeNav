@@ -46,8 +46,6 @@ public class OAuthLoginCodeValidateFilter extends GenericFilterBean {
             if (result ) {
                 //저 위의 메소드에서 서버가 요청자에게 이미 전송을 하였다면 더는 전송 할 수 없음으로 요청프로세스를 중단시킨다.
                 return;
-            }else {
-                chain.doFilter(request, response);
             }
         } catch (Exception e) {
             Map<String,Object> responseMap = new HashMap();
@@ -56,7 +54,7 @@ public class OAuthLoginCodeValidateFilter extends GenericFilterBean {
             responseMap.put("data","");
             return;
         }
-
+        chain.doFilter(request, response);
 
     }
 

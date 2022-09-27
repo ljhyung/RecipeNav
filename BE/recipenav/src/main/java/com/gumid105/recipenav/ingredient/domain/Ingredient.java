@@ -44,6 +44,12 @@ public class Ingredient {
     @Column(name = "ing_img")
     private String ingImg;
 
+    @Column(name = "ing_pcode")
+    private String ingPCode;
+
+    @Column(name = "ing_pscode")
+    private String ingPSCode;
+
     @JsonManagedReference
     @OneToOne(mappedBy = "ingredient")
     private IngredientPrice ingredientPrice;

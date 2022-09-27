@@ -26,9 +26,10 @@ public class IngredientController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<?> searchIngredients(@RequestParam(required = false) String title, @RequestParam(required = false) Long minPrice,
-                                              @RequestParam(required = false) Long maxPrice, @RequestParam(required = false) String category) {
-        return null;
+    public ResponseEntity<?> searchIngredients(@RequestParam(required = false, defaultValue = "") String title, @RequestParam(required = false, defaultValue = "1") Integer minPrice,
+                                              @RequestParam(required = false, defaultValue = "1000000") Integer maxPrice, @RequestParam(required = false, defaultValue = "") String category,
+                                               @RequestParam(required = false, defaultValue = "") String season) {
+        return ResponseEntity.ok(ingredientService.searchIngredients(title, minPrice, maxPrice, category, season));
     }
 
     @GetMapping("/{ingredients-id}")
