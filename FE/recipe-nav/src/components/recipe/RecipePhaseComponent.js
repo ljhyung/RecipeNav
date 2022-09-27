@@ -1,5 +1,6 @@
 import { Image } from "antd";
 import style from "./RecipePhaseComponent.module.css";
+import { proxyImageURL } from "../../api";
 /*
   recProSeq: 1,
           recCode: "195453",
@@ -17,7 +18,7 @@ const RecipePhaseComponent = (props) => {
       <div className={style["phase-container"]}>
         {phase.proUrl.trim() !== "" && phase.proUrl !== null && (
           <div className={style["imgage-box"]}>
-            <Image width={400} src={phase.proUrl}></Image>
+            <Image width={400} src={proxyImageURL+phase.proUrl}></Image>
           </div>
         )}
         <div className={style["desc-box"]}>
