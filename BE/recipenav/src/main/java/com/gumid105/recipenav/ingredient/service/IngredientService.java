@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
@@ -46,6 +47,12 @@ public class IngredientService {
         List<Ingredient> ingredientList = ingredientRepository.findIngredientsByIngSeasonContaining(month);
         return IngredientDto.ofList(ingredientList);
     }
+
+    public List<IngredientDto> searchIngredients(String title, Integer minPrice, Integer maxPrice, String category, String season){
+        List<Ingredient> ingredientList = ingredientRepository.findIngredientsByOptions(title, minPrice, maxPrice, category, season);
+        return IngredientDto.ofList(ingredientList);
+    }
+
 
 
 
