@@ -1,7 +1,10 @@
 package com.gumid105.recipenav.ingredient.service;
 
 import com.gumid105.recipenav.ingredient.domain.Ingredient;
+import com.gumid105.recipenav.ingredient.domain.IngredientPriceLog;
 import com.gumid105.recipenav.ingredient.dto.IngredientDto;
+import com.gumid105.recipenav.ingredient.dto.IngredientPriceLogDto;
+import com.gumid105.recipenav.ingredient.repository.IngredientPriceLogRepository;
 import com.gumid105.recipenav.ingredient.repository.IngredientRepository;
 import com.gumid105.recipenav.recipe.domain.Recipe;
 import com.gumid105.recipenav.recipe.dto.RecipeDto;
@@ -22,6 +25,7 @@ import java.util.Optional;
 public class IngredientService {
     private final IngredientRepository ingredientRepository;
     private final RecipeRepository recipeRepository;
+    private final IngredientPriceLogRepository ingredientPriceLogRepository;
 
     public Page<Ingredient> getAllIngredient(Integer page, Integer size){
         PageRequest pageRequest = PageRequest.of(page,size);
@@ -53,6 +57,10 @@ public class IngredientService {
         return IngredientDto.ofList(ingredientList);
     }
 
+    public List<IngredientPriceLogDto> getIngredientPriceLog(Long ingredientSeq){
+        List<IngredientPriceLog> ingredientPriceLogList = ingredientPriceLogRepository.findIngredientPriceLogsByIngredient_IngSeqOrderByIngDate(ingredientSeq);
+        return IngredientPriceLogDto.ofList(ingredientPriceLogList);
+    }
 
 
 
