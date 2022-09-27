@@ -1,7 +1,10 @@
 package com.gumid105.recipenav.ingredient.service;
 
 import com.gumid105.recipenav.ingredient.domain.Ingredient;
+import com.gumid105.recipenav.ingredient.domain.IngredientPriceLog;
 import com.gumid105.recipenav.ingredient.dto.IngredientDto;
+import com.gumid105.recipenav.ingredient.dto.IngredientPriceLogDto;
+import com.gumid105.recipenav.ingredient.repository.IngredientPriceLogRepository;
 import com.gumid105.recipenav.ingredient.repository.IngredientRepository;
 import com.gumid105.recipenav.recipe.domain.Recipe;
 import com.gumid105.recipenav.recipe.dto.RecipeDto;
@@ -11,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +25,7 @@ import java.util.Optional;
 public class IngredientService {
     private final IngredientRepository ingredientRepository;
     private final RecipeRepository recipeRepository;
+    private final IngredientPriceLogRepository ingredientPriceLogRepository;
 
     public Page<Ingredient> getAllIngredient(Integer page, Integer size){
         PageRequest pageRequest = PageRequest.of(page,size);
@@ -45,6 +50,16 @@ public class IngredientService {
     public List<IngredientDto> getSeasonIngredients(Integer month){
         List<Ingredient> ingredientList = ingredientRepository.findIngredientsByIngSeasonContaining(month);
         return IngredientDto.ofList(ingredientList);
+    }
+
+    public List<IngredientDto> searchIngredients(String title, Integer minPrice, Integer maxPrice, String category, String season){
+        List<Ingredient> ingredientList = ingredientRepository.findIngredientsByOptions(title, minPrice, maxPrice, category, season);
+        return IngredientDto.ofList(ingredientList);
+    }
+
+    public List<IngredientPriceLogDto> getIngredientPriceLog(Long ingredientSeq){
+        List<IngredientPriceLog> ingredientPriceLogList = ingredientPriceLogRepository.findIngredientPriceLogsByIngredient_IngSeqOrderByIngDate(ingredientSeq);
+        return IngredientPriceLogDto.ofList(ingredientPriceLogList);
     }
 
 

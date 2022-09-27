@@ -2,6 +2,7 @@ package com.gumid105.recipenav.ingredient.controller;
 
 import com.gumid105.recipenav.ingredient.domain.Ingredient;
 import com.gumid105.recipenav.ingredient.dto.IngredientDto;
+import com.gumid105.recipenav.ingredient.dto.IngredientPriceLogDto;
 import com.gumid105.recipenav.ingredient.service.IngredientService;
 import com.gumid105.recipenav.recipe.dto.RecipeDto;
 import org.springframework.data.domain.Page;
@@ -26,9 +27,10 @@ public class IngredientController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<?> searchIngredients(@RequestParam(required = false) String title, @RequestParam(required = false) Long minPrice,
-                                              @RequestParam(required = false) Long maxPrice, @RequestParam(required = false) String category) {
-        return null;
+    public ResponseEntity<?> searchIngredients(@RequestParam(required = false, defaultValue = "") String title, @RequestParam(required = false, defaultValue = "1") Integer minPrice,
+                                              @RequestParam(required = false, defaultValue = "1000000") Integer maxPrice, @RequestParam(required = false, defaultValue = "") String category,
+                                               @RequestParam(required = false, defaultValue = "") String season) {
+        return ResponseEntity.ok(ingredientService.searchIngredients(title, minPrice, maxPrice, category, season));
     }
 
     @GetMapping("/{ingredients-id}")
@@ -56,5 +58,8 @@ public class IngredientController {
         return null;
     }
 
-
+    @GetMapping("/price-log/{ingredient-seq}")
+    public ResponseEntity<List<IngredientPriceLogDto>> getIngredientPriceLog(@PathVariable("ingredient-seq") Long ingredientSeq) {
+        return ResponseEntity.ok(ingredientService.getIngredientPriceLog(ingredientSeq));
+    }
 }
