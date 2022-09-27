@@ -43,6 +43,12 @@ public class RecipeService {
         return RecipeDto.ofList(recipeList);
     }
 
+
+    public List<RecipeDto> getSimilarRecipes(Long recipeSeq){
+        List<Recipe> recipeList = recipeRepository.findRecipesBySimilarity(recipeSeq);
+        return RecipeDto.ofList(recipeList);
+    }
+
     public RecipeDto getRecipeDetail(Long seq){
         Optional<Recipe> recipeOptional = recipeRepository.findById(seq);
         Recipe recipe = recipeOptional.get();
