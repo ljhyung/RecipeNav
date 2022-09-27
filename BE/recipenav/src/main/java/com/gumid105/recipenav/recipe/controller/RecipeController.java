@@ -78,4 +78,9 @@ public class RecipeController {
     public ResponseEntity<List<RecipeDto>> getRecipeByPrice(@RequestParam(required = true, defaultValue = "1") Integer minPrice, @RequestParam(required = true, defaultValue = "1") Integer maxPrice) {
         return ResponseEntity.ok(recipeService.getRecipeByPrice(minPrice, maxPrice));
     }
+
+    @GetMapping("recipe/similar/{recipe-seq}")
+    public ResponseEntity<List<RecipeDto>> getSimilarRecipes(@PathVariable("recipe-seq") Long recipeSeq) {
+        return ResponseEntity.ok(recipeService.getSimilarRecipes(recipeSeq));
+    }
 }
