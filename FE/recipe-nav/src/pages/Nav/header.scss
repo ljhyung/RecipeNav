@@ -33,8 +33,9 @@ header {
     border-bottom-color: rgba(1, 24, 116, 0.96);
   }
   .ant-tooltip-inner {
-    background-color: rgba(1, 24, 116, 0.96);
-    box-shadow: 0 8px 16px #001b72;
+    // background-color: rgba(1, 24, 116, 0.96);
+    background: rgba(166, 141, 96, 0.6);
+    box-shadow: 0 8px 16px #a68d60;
     padding: 0;
     max-width: none;
     overflow: hidden;
@@ -44,7 +45,7 @@ header {
       padding: 26px;
       min-width: 296px;
       transition: background 0.3s ease-in-out;
-      background: rgba(1, 24, 116, 0);
+      background: rgba(166, 141, 96, 0.5);
       .tip-img {
         display: inline-block;
       }
@@ -60,7 +61,7 @@ header {
         }
       }
       &:hover {
-        background-color: rgb(1, 24, 116);
+        background: rgba(166, 141, 96);
       }
     }
   }

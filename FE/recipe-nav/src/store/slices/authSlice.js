@@ -8,8 +8,11 @@ const initialState = {
     age: "",
   },
   accessToken:
-    "eyJraWQiOiJrZXkzIiwidHlwZSI6IkpXVCIsImFsZyI6IkhTMjU2In0.eyJpc3MiOiJyZWNpcGVuYXYiLCJhdWQiOiJST0xFX1VTRVIiLCJpYXQiOjE2NjM4MjEzNTMsInN1YiI6InVzZXIiLCJpc05ld1VzZXIiOjAsInVzZXJJZCI6IlVMYmw2bjNFSGc2c2FCNXUwY2I0ODJmUGc2VS1wN0dGSVoxdERtUTZqU00iLCJ1c2VyU2VxIjoyfQ.1jeJEqkfmiaWLd29wHAzWJ7hPPd1FtZ9DTNzek2Qfc0",
+  "eyJraWQiOiJrZXkyIiwidHlwZSI6IkpXVCIsImFsZyI6IkhTMjU2In0.eyJpc3MiOiJyZWNpcGVuYXYiLCJhdWQiOiJST0xFX1VTRVIiLCJpYXQiOjE2NjQyNjg0ODIsInN1YiI6InVzZXIiLCJpc05ld1VzZXIiOjAsInVzZXJJZCI6IlVMYmw2bjNFSGc2c2FCNXUwY2I0ODJmUGc2VS1wN0dGSVoxdERtUTZqU00iLCJ1c2VyU2VxIjoyfQ.gx_ALFzSFqHtLl7tWYyH-ZpLIDW7Q6IFsrljNuoTX1Y",
   refreshToken: "",
+  myIngredients: [
+
+  ],
 };
 
 const authSlice = createSlice({
@@ -26,6 +29,10 @@ const authSlice = createSlice({
     },
     setToken: (state, action) => {
       state.accessToken = action.payload.accessToken;
+    },
+    // 관심식자재 전체 조회
+    setMyIngredients: (state, action) => {
+      state.myIngredients = action.payload.myIngredients;
     },
   },
 });

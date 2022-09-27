@@ -1,8 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import ReactDOM from 'react-dom';
 import {Line} from '@ant-design/plots';
 
 import {uniq, findIndex} from '@antv/util';
+
+////////////////////////////////////
+import {chartData} from './data';
+////////////////////////////////////
+
 
 const Graph = () => {
     const [data, setData] = useState([]);
@@ -22,6 +26,7 @@ const Graph = () => {
                 console.log('fetch data failed', error);
             });
     };
+
     const COLOR_PLATE_10 = [
         '#5B8FF9',
         '#5AD8A6',
@@ -36,7 +41,7 @@ const Graph = () => {
     ];
     const container = document.getElementById('container');
     const config = {
-        data,
+        data: chartData,
         xField: 'year',
         yField: 'value',
         seriesField: 'category',
@@ -57,17 +62,13 @@ const Graph = () => {
                 return {
                     r: Number(year) % 4
                         ? 0
-                        : 3, // 4 个数据示一个点标记
+                        : 3,
                 };
             }
         }
     };
 
-    return (
-                <Line className='graph-bg' {...config}/>
-
-
-    );
+    return (<Line className='graph-bg' {...config}/>);
 };
 
 export default Graph;

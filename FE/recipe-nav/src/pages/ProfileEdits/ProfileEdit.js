@@ -11,7 +11,9 @@ import {
     Row,
     Col
 } from 'antd';
+import apiClient from "../../api";
 import styled from "styled-components";
+import { useSelector } from 'react-redux';
 
 const SubmitButton = styled(Button)`
 text-align: center;
@@ -46,19 +48,46 @@ width: 400px;
 const ProfileEdit = () => {
     const [userstate, setUserstate] = useState(0);
 
+
+    const accessToken = useSelector((state) => state.auth.accessToken);
+
+    const [page, setPage] = useState(1);
+    const [size, setSize] = useState(10);
+
+
     const onFinish = (values) => {
-        console.log('Received values of form: ', values);
-        setUserstate(1)
-    }; // 닉네임 성별 연령 보내기 -> 식자재 고르기 페이지로 이동
+        console.log('Received values of form: ', values.username);
+
+        apiClient
+        .put("/my-infos", {
+            userName: values.username,
+            userAge: values.slider,
+            userGender: values.gender,
+        },
+        {
+            headers: {
+                Authorization: accessToken,
+              },
+        }
+        )
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log("요청 에러");
+          console.log(error);
+        });
+    }; 
+    // 닉네임 성별 연령 보내기 -> 식자재 고르기 페이지로 이동
 
     
         return (
 
             <Row className={style.container}>
-                <Col flex="auto" className={style.sideImg}>
+                <Col flex="auto" md={24} xs={0} className={style.sideImg}>
                     안녕하세요!
                 </Col>
-                <Col flex="500px" className={style.main}>
+                <Col flex="500px" md={24} xs={24} className={style.main}>
 
                     <Row justify='center'>
 
