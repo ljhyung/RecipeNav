@@ -19,7 +19,7 @@ public class OAuthAttribute {
         if ("naver".compareTo(provider) == 0) {
 
             OAuthAttribute temp = new OAuthAttribute();
-            temp.id = map.get("id");
+            temp.id = map.get("id")+"/naver";
             temp.name = map.get("name");
             temp.email = map.get("email");
             temp.mobile = map.get("mobile");
