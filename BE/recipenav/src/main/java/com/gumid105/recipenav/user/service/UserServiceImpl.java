@@ -127,10 +127,14 @@ public class UserServiceImpl implements UserService {
     }
 
     public UserDto updateProfile(ReqUserDto reqUserDto){
+
         UserDto userDto = (UserDto) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userRepo.findById(userDto.getUserSeq()).get();
+
         user.updateProfile(reqUserDto.getUserName(), reqUserDto.getUserEmail(), reqUserDto.getUserTel(), reqUserDto.getUserAge(), reqUserDto.getUserGender(), reqUserDto.getUserImg());
+
         return UserDto.of(user);
+
     }
 
     public List<IngredientDto> getMyIngredients(){

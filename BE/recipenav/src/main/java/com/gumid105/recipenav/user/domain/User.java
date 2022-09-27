@@ -96,10 +96,7 @@ public class User {
 
     public void updateProfile (String userName, String userEmail, String userTel, String userAge, Gender userGender, String userImg){
         this.userName = userName;
-        this.userEmail = userEmail;
-        this.userTel = userTel;
         this.userAge = userAge;
         this.userGender = userGender;
-        this.userImg = userImg;
     }
 }
