@@ -2,7 +2,7 @@ package com.gumid105.recipenav.ingredient.service;
 
 import com.gumid105.recipenav.ingredient.domain.Ingredient;
 import com.gumid105.recipenav.ingredient.domain.IngredientPriceLog;
-import com.gumid105.recipenav.ingredient.dto.ChangeRate;
+//import com.gumid105.recipenav.ingredient.dto.ChangeRate;
 import com.gumid105.recipenav.ingredient.dto.IngredientDto;
 import com.gumid105.recipenav.ingredient.dto.IngredientPriceLogDto;
 import com.gumid105.recipenav.ingredient.dto.IngredientPriceLogSeparateDto;
