@@ -7,13 +7,14 @@
 }
 /*contain(레시피 설명 ... )*/
 .recipe-detail-meta {
+  clear: left;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 /*레시피 설명 왼쪽*/
 .recipe-detail-head-post {
-  flex-grow: 5;
+  flex-grow: 1;
 }
 /*레시피 설명*/
 .recipe-detail-desc {
@@ -74,4 +75,8 @@
 .back-page:hover {
   cursor: pointer;
   background-color: #c0c6aa;
+}
+
+.recipe-detail-head > *{
+  float: left;
 }

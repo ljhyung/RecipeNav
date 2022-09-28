@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./RecipeDetail.module.css";
-import { Collapse, Image, message } from "antd";
+import {  Collapse, Image, message } from "antd";
 import apiClient from "../../api";
 import RecipeIngredientListComponent from "../../components/recipe/RecipeIngredientListComponent";
 
@@ -13,6 +13,9 @@ import RecipeReviewInput from "../../components/recipe/RecipeReviewInput";
 import axiosClient, { proxyImageURL } from "../../api";
 import { setSelectedRecipeReview } from "../../store/slices/recipeSlice";
 import { RollbackOutlined } from "@ant-design/icons";
+import RecipeMetaDataExposeComponent from "../../components/recipe/RecipeMetaDataExposeComponent";
+import RecipeScrapButtonCopmonent from "../../components/recipe/RecipeScrapButtonCopmonent";
+import RecipeSimilarComponent from "../../components/recipe/RecipeSimilarComponent";
 const comparator = function (a, b) {
   return a.recOrder - b.recOrder;
 };
@@ -67,7 +70,12 @@ const RecipeDetail = (props) => {
         <RollbackOutlined />
       </div>
       <div className={style["recipe-detail-container"]}>
-        <h2 className={style["category-text"]}>{selectedRecipe.recName}</h2>
+        <div className={style["recipe-detail-head"]}>
+          <h2 className={style["category-text"]}>{selectedRecipe.recName}</h2>
+          <RecipeScrapButtonCopmonent recipeRec ={selectedRecipe.recSeq} />
+        </div>
+        
+        
         <div className={style["recipe-detail-meta"]}>
           <div className={style["recipe-detail-head-post"]}>
             <Image src={proxyImageURL + selectedRecipe.recImg} fluid="true" />
@@ -81,7 +89,8 @@ const RecipeDetail = (props) => {
                 recLevel={selectedRecipe.recLevel}
               />
             </div>
-            <p>{selectedRecipe.recSummary}</p>
+            <RecipeMetaDataExposeComponent selectedRecipe={selectedRecipe}/>
+            
           </div>
           <div>
             <h3
@@ -120,8 +129,11 @@ const RecipeDetail = (props) => {
             onClickHandle={onReviewEditHandle}
           ></RecipeReviewInput>
         </div>
-        <div className={style["footer"]}></div>
+        <div className={style["footer"]}>
+        <RecipeSimilarComponent/>
+        </div>
       </div>
+
     </>
   );
 };
