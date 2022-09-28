@@ -112,13 +112,14 @@ public class UserServiceImpl implements UserService {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDto user = (UserDto) auth.getPrincipal();
         //Optional<UserRecipe> userRecipe = userRecipeRepository.findByUser_userSeqAndRecipe_recSeq(user.getUserSeq(), recipesSeq);
-        Optional<UserRecipeDto> userRecipe = userRecipeRepository.findByUser_userSeqAndRecipe_recSeq(user.getUserSeq(), recipesSeq);
+//        Optional<UserRecipeDto> userRecipe = userRecipeRepository.findByUser_userSeqAndRecipe_recSeq(user.getUserSeq(), recipesSeq);
+        int result = userRecipeRepository.deleteUsersByUser(user.getUserSeq(), recipesSeq);
 
-        if (userRecipe.isPresent()) {
-            userRecipeRepository.deleteById(userRecipe.get().getUserRecipeSeq());
-            return 1;
-        }
-        return 0;
+//        if (userRecipe.isPresent()) {
+//            userRecipeRepository.deleteById(userRecipe.get().getUserRecipeSeq());
+//            return 1;
+//        }
+        return result;
     }
 
 
