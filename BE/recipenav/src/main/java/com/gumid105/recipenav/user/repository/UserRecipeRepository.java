@@ -3,6 +3,8 @@ package com.gumid105.recipenav.user.repository;
 import com.gumid105.recipenav.user.domain.UserRecipe;
 import com.gumid105.recipenav.user.dto.UserRecipeDto;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,5 +14,9 @@ public interface UserRecipeRepository extends JpaRepository<UserRecipe,Long> {
    Optional<UserRecipeDto> findByUser_userSeqAndRecipe_recSeq(Long user_seq, Long recipe_seq);
    List<UserRecipeDto> findAllByUser_userSeq(Long user_seq);
     //Optional<UserRecipe> findByUserIdAndRecipeId(Long userId, Long recipeId);
+
+   @Modifying
+   @Query("delete from UserRecipe ur  WHERE ur.user.userSeq=:user_seq AND ur.recipe.recSeq=:recipe_seq")
+   int deleteUsersByUser(Long user_seq, Long recipe_seq);
 
 }

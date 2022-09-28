@@ -3,6 +3,7 @@ package com.gumid105.recipenav.ingredient.controller;
 import com.gumid105.recipenav.ingredient.domain.Ingredient;
 import com.gumid105.recipenav.ingredient.dto.IngredientDto;
 import com.gumid105.recipenav.ingredient.dto.IngredientPriceLogDto;
+import com.gumid105.recipenav.ingredient.dto.IngredientPriceLogSeparateDto;
 import com.gumid105.recipenav.ingredient.service.IngredientService;
 import com.gumid105.recipenav.recipe.dto.RecipeDto;
 import org.springframework.data.domain.Page;
@@ -62,4 +63,10 @@ public class IngredientController {
     public ResponseEntity<List<IngredientPriceLogDto>> getIngredientPriceLog(@PathVariable("ingredient-seq") Long ingredientSeq) {
         return ResponseEntity.ok(ingredientService.getIngredientPriceLog(ingredientSeq));
     }
+
+    @GetMapping("/price-log/separate/{ingredient-seq}")
+    public ResponseEntity<List<IngredientPriceLogSeparateDto>> getIngredientMinPriceLog(@PathVariable("ingredient-seq") Long ingredientSeq) {
+        return ResponseEntity.ok(ingredientService.getIngredientPriceLogSeparate(ingredientSeq));
+    }
+
 }
