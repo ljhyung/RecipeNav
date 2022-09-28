@@ -3,6 +3,7 @@ package com.gumid105.recipenav.user.controller;
 
 import com.gumid105.recipenav.exception.CustomErrorException;
 import com.gumid105.recipenav.recipe.domain.Recipe;
+import com.gumid105.recipenav.recipe.dto.RecipeDto;
 import com.gumid105.recipenav.recipe.repository.RecipeRepository;
 import com.gumid105.recipenav.user.domain.UserRecipe;
 import com.gumid105.recipenav.user.dto.UserDto;
@@ -70,9 +71,8 @@ public class UserController {
     }
 
     @GetMapping("/recipes")
-    public ResponseEntity<List<Recipe>> getMyRecipes() {
-        List<Recipe> recipeList = userServiceImpl.getMyRecipes();
-        return ResponseEntity.ok(recipeList);
+    public ResponseEntity<List<RecipeDto>> getMyRecipes() {
+        return ResponseEntity.ok(userServiceImpl.getMyRecipes());
     }
 
     @PostMapping("/recipes/{recipes-id}")
