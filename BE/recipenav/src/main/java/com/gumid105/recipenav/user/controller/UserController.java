@@ -89,7 +89,9 @@ public class UserController {
     @DeleteMapping("/recipes/{recipes-id}")
     public Map<String, Object> deleteMyRecipe(@PathVariable("recipes-id") Long recipesSeq) {
         Map<String, Object> response = new HashMap<>();
-        if(userServiceImpl.deleteRecipeFromUser(recipesSeq) >0){
+        int result = userServiceImpl.deleteRecipeFromUser(recipesSeq);
+        if( result>0){
+            response.put("삭제한 레시피 수", result);
             response.put("result", "SUCCESS");
         }else{
             response.put("result", "FAIL");
