@@ -4,6 +4,7 @@ import com.gumid105.recipenav.ingredient.domain.Ingredient;
 import com.gumid105.recipenav.ingredient.domain.IngredientPriceLog;
 import com.gumid105.recipenav.ingredient.dto.IngredientDto;
 import com.gumid105.recipenav.ingredient.dto.IngredientPriceLogDto;
+import com.gumid105.recipenav.ingredient.dto.IngredientPriceLogSeparateDto;
 import com.gumid105.recipenav.ingredient.repository.IngredientPriceLogRepository;
 import com.gumid105.recipenav.ingredient.repository.IngredientRepository;
 import com.gumid105.recipenav.recipe.domain.Recipe;
@@ -62,6 +63,10 @@ public class IngredientService {
         return IngredientPriceLogDto.ofList(ingredientPriceLogList);
     }
 
+    public List<IngredientPriceLogSeparateDto> getIngredientPriceLogSeparate(Long ingredientSeq){
+        List<IngredientPriceLog> ingredientPriceLogList = ingredientPriceLogRepository.findIngredientPriceLogsByIngredient_IngSeqOrderByIngDate(ingredientSeq);
+        return IngredientPriceLogSeparateDto.ofList(ingredientPriceLogList);
+    }
 
 
 }

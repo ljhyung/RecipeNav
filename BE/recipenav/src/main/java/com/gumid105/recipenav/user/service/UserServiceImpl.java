@@ -113,6 +113,7 @@ public class UserServiceImpl implements UserService {
         UserDto user = (UserDto) auth.getPrincipal();
         //Optional<UserRecipe> userRecipe = userRecipeRepository.findByUser_userSeqAndRecipe_recSeq(user.getUserSeq(), recipesSeq);
         Optional<UserRecipeDto> userRecipe = userRecipeRepository.findByUser_userSeqAndRecipe_recSeq(user.getUserSeq(), recipesSeq);
+
         if (userRecipe.isPresent()) {
             userRecipeRepository.deleteById(userRecipe.get().getUserRecipeSeq());
             return 1;
