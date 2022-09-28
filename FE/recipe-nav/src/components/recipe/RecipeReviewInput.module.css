@@ -6,4 +6,47 @@
 .text-input {
   height: 100px;
   resize: none;
+  width: 100%;
+  border: 1px solid #e7e7e7;
+  outline: none;
+}
+
+.text-input:focus {
+  border: 2px solid #d48600;
+}
+.text-title {
+  width: 75%;
+  border: 1px solid #e7e7e7;
+  border-radius: 2px;
+  margin: 0;
+  height: 30px;
+}
+.text-title:focus {
+  border: 2px solid #d48600;
+  outline: none;
+}
+.grade-select {
+  width: 25%;
+  color: rgb(215, 215, 1);
+}
+
+.button-input {
+  margin-bottom: 5px;
+  margin-left: 1px;
+  background-color: #f09a05;
+  border: 2px solid #c27b00;
+  border-radius: 5px;
+}
+.button-input:hover {
+  transition-property: background-color;
+  transition-duration: 1s;
+  background-color: #d48600;
+}
+.button-input:active {
+  background-color: #f09a05;
+}
+
+.icon {
+  color: white;
+  font-size: xx-large;
 }

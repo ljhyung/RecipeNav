@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 const initialState = {
   authenticated: true,
   user: {
@@ -8,7 +7,7 @@ const initialState = {
     age: "",
   },
   accessToken:
-  "eyJraWQiOiJrZXkyIiwidHlwZSI6IkpXVCIsImFsZyI6IkhTMjU2In0.eyJpc3MiOiJyZWNpcGVuYXYiLCJhdWQiOiJST0xFX1VTRVIiLCJpYXQiOjE2NjQyNjg0ODIsInN1YiI6InVzZXIiLCJpc05ld1VzZXIiOjAsInVzZXJJZCI6IlVMYmw2bjNFSGc2c2FCNXUwY2I0ODJmUGc2VS1wN0dGSVoxdERtUTZqU00iLCJ1c2VyU2VxIjoyfQ.gx_ALFzSFqHtLl7tWYyH-ZpLIDW7Q6IFsrljNuoTX1Y",
+  "eyJraWQiOiJrZXkyIiwidHlwZSI6IkpXVCIsImFsZyI6IkhTMjU2In0.eyJpc3MiOiJyZWNpcGVuYXYiLCJhdWQiOiJST0xFX1VTRVIiLCJpYXQiOjE2NjQzNDAzMjIsInN1YiI6InVzZXIiLCJpc05ld1VzZXIiOjAsInVzZXJJZCI6IlVMYmw2bjNFSGc2c2FCNXUwY2I0ODJmUGc2VS1wN0dGSVoxdERtUTZqU00vbmF2ZXIiLCJ1c2VyU2VxIjo2fQ.jNcXtydMgBqywoD-9xzEuAo5aNARTGu34TsSJiftZn0",
   refreshToken: "",
   myIngredients: [
 
