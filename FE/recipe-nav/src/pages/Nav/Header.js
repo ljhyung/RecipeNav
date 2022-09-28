@@ -16,6 +16,7 @@ const Header = (props) => {
         </div>
       </Link>
     ));
+
     return (
       <Col key={i.toString()} span={6}>
         <Tooltip
