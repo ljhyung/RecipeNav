@@ -22,9 +22,14 @@ public class IngredientController {
         this.ingredientService = ingredientService;
     }
 
-    @GetMapping("")
+    @GetMapping("/page")
     public ResponseEntity<Page<Ingredient>> getIngredients(@RequestParam Integer page, @RequestParam Integer size) {
-        return ResponseEntity.ok(ingredientService.getAllIngredient(page-1, size));
+        return ResponseEntity.ok(ingredientService.getAllIngredientByPage(page-1, size));
+    }
+
+    @GetMapping("")
+    public ResponseEntity<List<IngredientDto>> getIngredients() {
+        return ResponseEntity.ok(ingredientService.getAllIngredient());
     }
 
     @GetMapping("/list")
@@ -49,10 +54,11 @@ public class IngredientController {
         return ResponseEntity.ok(ingredientService.getSeasonIngredients(month));
     }
 
-    @GetMapping("/topgainers")
-    public ResponseEntity<?> getIngredientByTopGainers() {
-        return null;
-    }
+//    @GetMapping("/topgainers")
+//    public ResponseEntity<?> getIngredientByTopGainers() {
+//
+//        return ResponseEntity.ok(ingredientService.getIngredientByTopGainers());
+//    }
 
     @GetMapping("/toplosers")
     public ResponseEntity<?> getIngredientByTopLosers() {
