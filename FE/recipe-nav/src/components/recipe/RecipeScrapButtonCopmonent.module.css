@@ -1,0 +1,17 @@
+.recipe_scrap_btton{
+    background-color: white;
+    border: none;
+}
+
+.recipe_scrap_btton:hover{
+    cursor: pointer;
+    
+}
+
+.icon-box{
+    position: relative;
+    top: -5px;
+    left: 10px;
+    font-size: 40px;
+    
+}
