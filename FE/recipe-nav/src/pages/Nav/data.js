@@ -1,17 +1,25 @@
 export const header = [
   {
-    title: "로그아웃",
+    title: "레시피",
+    link: "/recipe",
+    // children: [
+    //   { title : , ,
+    // ],
   },
   {
-    title: "검색",
-  },
-  {
-    title: "추천",
+    title: "식자재",
+    link: "/recipe",
   },
   {
     title: "마이페이지",
+    link: "/recipe",
+  },
+  {
+    title: "로그아웃",
   },
 ];
+
+
 
 export const footer = [
   {
