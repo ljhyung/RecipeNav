@@ -5,6 +5,7 @@ import com.gumid105.recipenav.ingredient.dto.IngredientDto;
 import com.gumid105.recipenav.ingredient.repository.IngredientRepository;
 import com.gumid105.recipenav.oauth.OAuthAttribute;
 import com.gumid105.recipenav.recipe.domain.Recipe;
+import com.gumid105.recipenav.recipe.dto.RecipeDto;
 import com.gumid105.recipenav.recipe.repository.RecipeRepository;
 import com.gumid105.recipenav.user.domain.User;
 import com.gumid105.recipenav.user.domain.UserRecipe;
@@ -77,7 +78,7 @@ public class UserServiceImpl implements UserService {
         return UserDto.of(user.get());
     }
 
-    public List<Recipe> getMyRecipes(){
+    public List<RecipeDto> getMyRecipes(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDto user = (UserDto) auth.getPrincipal();
         List<UserRecipeDto> userRecipeList = userRecipeRepository.findAllByUser_userSeq(user.getUserSeq());
@@ -90,8 +91,7 @@ public class UserServiceImpl implements UserService {
                 recipeList.add(recipe);
             }
         }
-        System.out.println(recipeList.size());
-        return recipeList;
+        return RecipeDto.ofList(recipeList);
     }
 
     @Transactional
