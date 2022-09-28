@@ -39,7 +39,7 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     private UserRole userRole;
 
-    @Column(name = "user_email", nullable = false)
+    @Column(name = "user_email", nullable = true)
     private String userEmail;
 
     @Column(name = "user_tel")
