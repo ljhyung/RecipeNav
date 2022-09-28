@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import style from "./IngredientSearch.module.css";
 import IngredientImg from "../../assets/ingredient_image.png";
-import IngredientCardComponent from "../../components/recipe/RecipeCardComponent";
+import IngredientCardComponent from "../../components/ingredients/IngredientCardComponent";
 import { useDispatch, useSelector } from "react-redux";
 import apiClient from "../../api";
 import { useNavigate } from "react-router-dom";
@@ -44,7 +44,7 @@ const IngredientSearch = () => {
     console.log(searchString);
 
     apiClient
-      .get("/ingredients/all", {
+      .get("/ingredients", {
         headers: {
           Authorization: accessToken,
         },

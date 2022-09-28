@@ -1,8 +1,8 @@
 import React from "react";
-import style from "./IngredientCardComponent.module.css";
+import style from "./IngredietRecipeComponent.module.css";
 import { Image } from "antd";
 
-const IngredientCardComponent = (props) => {
+const IngredientRecipeComponent = (props) => {
   const ingredient = props.ingredient;
   return (
     <>
@@ -28,4 +28,4 @@ const IngredientCardComponent = (props) => {
   );
 };
 
-export default IngredientCardComponent;
+export default IngredientRecipeComponent;

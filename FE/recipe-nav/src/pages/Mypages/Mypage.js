@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react'; // eslint-disable-line no-unused-vars
+import { useDispatch, useSelector } from "react-redux"; 
 import { Routes, useNavigate, Link, Route, BrowserRouter as Router } from 'react-router-dom'; // eslint-disable-line no-unused-vars
-import axios from 'axios';
+import axiosClient from "../../api";
 import style from './Mypage.module.css'; // eslint-disable-line no-unused-vars
 import { Button, Row, Image, Col, Divider, Card, Layout } from 'antd';
 import styled from "styled-components";
 import "antd/dist/antd.css";
+
+
 const { Meta } = Card;
 
 const { Content } = Layout;
@@ -56,7 +59,64 @@ font-size: 40px;
 
 
 
-const Mypage = () => {
+const Mypage = (props) => {
+
+  const accessToken = useSelector((state) => state.auth.accessToken);
+
+  // 나의 정보 조회
+  axiosClient
+    .get('/my-infos', {
+      headers: {
+        Authorization: accessToken,
+      },
+    })
+    .then((response) => {
+      console.log(response);
+      const myinformation = response
+      console.log(myinformation)
+    })
+    .catch((error) => {
+      console.log("에러");
+      console.log(error);
+    });
+
+    // 즐겨찾기 한 식자재 리스트 조회
+    axiosClient
+    .get('/my-infos/ingredients', {
+      headers: {
+        Authorization: accessToken,
+      },
+    })
+    .then((response) => {
+      console.log(response);
+      const myingredients = response
+      console.log(myingredients)
+    })
+    .catch((error) => {
+      console.log("에러");
+      console.log(error);
+    });
+
+    // 즐겨찾기 한 레시피 리스트 조회
+    axiosClient
+    .get('/my-infos/recipes', {
+      headers: {
+        Authorization: accessToken,
+      },
+    })
+    .then((response) => {
+      console.log(response);
+      const myingredients = response
+      console.log(myingredients)
+    })
+    .catch((error) => {
+      console.log("에러");
+      console.log(error);
+    });
+  
+  
+  
+  
   // 프로필 수정페이지로 이동
   const navigate = useNavigate();
 
@@ -65,10 +125,10 @@ const Mypage = () => {
   };
 
   
-  const user_name = '김싸피'
-  const user_gender = '남'
-  const user_age = '33'
-  
+  const user_Name = '김싸피'
+  const user_Gender = '남'
+  const user_Age = '33'
+  const myinformation = myinformation
     
   return (
     <>
@@ -84,16 +144,16 @@ const Mypage = () => {
                     </InfoTitelCard>
                   
                       <div>
-                        <img className={style.UserImage} src="https://placeimg.com/200/100/any/grayscale" alt='userimage'/>
+                        <img className={style.UserImage} alt='userimage'/>
                       </div>
                       <div className={style.UserName}>
-                        {user_name}
+                        {this.myinformation.data.userName}
                       </div>
                       <div className={style.UserGender}>
-                        {user_gender}
+                        {user_Gender}
                       </div>
                       <div className={style.UserAge}>
-                        {user_age}
+                        {user_Age}
                       </div>
                     
                       <div className="ProfileEdit">
