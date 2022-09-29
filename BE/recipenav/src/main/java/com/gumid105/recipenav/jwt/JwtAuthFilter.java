@@ -59,6 +59,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             //컨텍스트 홀더에 어텐티케이션 토큰 등록하면 다른 필터들은 무사히 지나간다.
 
         }catch (Exception e){
+//            e.printStackTrace();
             log.info("jwt 파싱 에러 발생 :: 요청자 {}",request.getRemoteHost());
             //이 경우는 그냥 넘어가게 하여 필터 뒷단의 판단에 맡긴다.
         }

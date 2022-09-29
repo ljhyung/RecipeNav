@@ -38,10 +38,15 @@ public class ImageProxyController {
 
         if(imageByte == null){
             log.info("이미지 직접 요청 : {}",imgUrl);
-            imageByte =  WebClient.create(imgUrl).get().retrieve().bodyToMono(byte[].class).block();
-            valueOperations.set(RedisConfig.IMAGE+imgUrl,imageByte, Duration.ofHours(1));
+
+            imageByte =  WebClient.builder().baseUrl(imgUrl).build().get().retrieve().bodyToMono(byte[].class).block();
+            try {
+                valueOperations.set(RedisConfig.IMAGE+imgUrl,imageByte, Duration.ofHours(1));
+            }catch (Exception e){
+                log.info("Redis 데이터 저장 오류 ; {}", e);
+            }
         }else {
-            log.info("이미지 레시드 캐싱 : {}",imgUrl);
+            log.info("이미지 레디스 캐싱 : {}",imgUrl);
         }
         //stream.doOnNext(dataBuffer -> System.out.println(dataBuffer.read()));
 
