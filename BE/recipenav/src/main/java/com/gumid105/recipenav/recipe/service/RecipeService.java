@@ -111,4 +111,11 @@ public class RecipeService {
 
         return RecipeDto.ofList(recipeList);
     }
+
+
+    public List<RecipeDto> getDailyRecipes(){
+        List<Recipe> recipeList = recipeRepository.findRecipesByRandom();
+        return RecipeDto.ofList(recipeList);
+    }
+
 }
