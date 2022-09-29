@@ -9,6 +9,7 @@ import Nav from "./pages/Nav";
 import Signin from "./pages/Signin/Signin";
 import RecipeSearch from "./pages/Recipe/RecipeSearch";
 import RecipeDetail from "./pages/Recipe/RecipeDetail";
+import BudgetSearch from "./pages/budget/BudgetSearch";
 //https://hururuek-chapchap.tistory.com/212
 //최상단 컴포넌트 , 라우터 관리
 
@@ -35,6 +36,8 @@ function App() {
           <Route index element={<RecipeSearch />} />
           <Route path=":recSeq" element={<RecipeDetail />} />
         </Route>
+        
+        <Route path="/budget" element={<BudgetSearch/>}></Route>
       </Route>
 
       <Route path="/login" element={<Signin />} />

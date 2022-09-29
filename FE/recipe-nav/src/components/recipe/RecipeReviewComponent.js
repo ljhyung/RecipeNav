@@ -1,7 +1,11 @@
+import { timeFormatChange } from "../../api/TimeFormatUtil";
+import RecipeGradeComponet from "./RecipeGradeComponet";
 import style from "./RecipeReviewComponent.module.css";
 const RecipeReviewComponent = (props) => {
   const reviews = props.reviews;
   console.log(reviews);
+
+  let gradeArr = new Array(reviews.recRevGrade);
   return (
     <>
       <div>
@@ -14,9 +18,11 @@ const RecipeReviewComponent = (props) => {
                     ? "무명"
                     : "review.recRevRegUser"}
                 </div>
-                <div className={style["review-date"]}>{review.revModDate}</div>
+                <div className={style["review-date"]}>
+                  {timeFormatChange(review.revModDate)}
+                </div>
                 <div className={style["review-grade"]}>
-                  {review.recRevGrade}
+                  <RecipeGradeComponet grade={review.recRevGrade} />
                 </div>
               </div>
               <div className={style["review-body"]}>

@@ -2,13 +2,14 @@ import React from "react";
 import style from "./RecipeCardComponent.module.css";
 import { Image } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
+import { proxyImageURL } from "../../api";
 const RecipeCardComponent = (props) => {
   const recipe = props.recipe;
   return (
     <>
       <div className={style["card-frame"]}>
         <div className={style.head}>
-          <Image src={recipe.recImg} style={{ borderRadius: "5px" }} />
+          <Image src={proxyImageURL+recipe.recImg} style={{ borderRadius: "5px" }} />
         </div>
         <div className={style.body}>
           <div

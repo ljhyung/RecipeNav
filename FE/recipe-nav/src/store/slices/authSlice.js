@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 const initialState = {
   authenticated: true,
   user: {
@@ -8,8 +7,11 @@ const initialState = {
     age: "",
   },
   accessToken:
-    "eyJraWQiOiJrZXkzIiwidHlwZSI6IkpXVCIsImFsZyI6IkhTMjU2In0.eyJpc3MiOiJyZWNpcGVuYXYiLCJhdWQiOiJST0xFX1VTRVIiLCJpYXQiOjE2NjM4MjEzNTMsInN1YiI6InVzZXIiLCJpc05ld1VzZXIiOjAsInVzZXJJZCI6IlVMYmw2bjNFSGc2c2FCNXUwY2I0ODJmUGc2VS1wN0dGSVoxdERtUTZqU00iLCJ1c2VyU2VxIjoyfQ.1jeJEqkfmiaWLd29wHAzWJ7hPPd1FtZ9DTNzek2Qfc0",
+  "eyJraWQiOiJrZXkyIiwidHlwZSI6IkpXVCIsImFsZyI6IkhTMjU2In0.eyJpc3MiOiJyZWNpcGVuYXYiLCJhdWQiOiJST0xFX1VTRVIiLCJpYXQiOjE2NjQzNDAzMjIsInN1YiI6InVzZXIiLCJpc05ld1VzZXIiOjAsInVzZXJJZCI6IlVMYmw2bjNFSGc2c2FCNXUwY2I0ODJmUGc2VS1wN0dGSVoxdERtUTZqU00vbmF2ZXIiLCJ1c2VyU2VxIjo2fQ.jNcXtydMgBqywoD-9xzEuAo5aNARTGu34TsSJiftZn0",
   refreshToken: "",
+  myIngredients: [
+
+  ],
 };
 
 const authSlice = createSlice({
@@ -26,6 +28,10 @@ const authSlice = createSlice({
     },
     setToken: (state, action) => {
       state.accessToken = action.payload.accessToken;
+    },
+    // 관심식자재 전체 조회
+    setMyIngredients: (state, action) => {
+      state.myIngredients = action.payload.myIngredients;
     },
   },
 });
