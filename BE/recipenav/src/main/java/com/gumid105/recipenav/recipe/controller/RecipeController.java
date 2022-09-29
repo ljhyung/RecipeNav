@@ -79,8 +79,13 @@ public class RecipeController {
         return ResponseEntity.ok(recipeService.getRecipeByPrice(minPrice, maxPrice));
     }
 
-    @GetMapping("recipe/similar/{recipe-seq}")
+    @GetMapping("/similar/{recipe-seq}")
     public ResponseEntity<List<RecipeDto>> getSimilarRecipes(@PathVariable("recipe-seq") Long recipeSeq) {
         return ResponseEntity.ok(recipeService.getSimilarRecipes(recipeSeq));
+    }
+
+    @GetMapping("/daily")
+    public ResponseEntity<List<RecipeDto>> getDailyRecipes() {
+        return ResponseEntity.ok(recipeService.getDailyRecipes());
     }
 }

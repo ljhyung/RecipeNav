@@ -19,4 +19,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
     @Query("select r2 from Recipe r2 where r2.recSeq in (select rs.recipeSeqSecond from RecipeSimil rs inner Join Recipe r on rs.recipeSeqFirst=r.recSeq and r.recSeq=:recipeSeq)")
     List<Recipe> findRecipesBySimilarity(Long recipeSeq);
+
+    @Query(value = "select * from t_recipe order by RAND() limit 5", nativeQuery = true)
+    List<Recipe> findRecipesByRandom();
 }
