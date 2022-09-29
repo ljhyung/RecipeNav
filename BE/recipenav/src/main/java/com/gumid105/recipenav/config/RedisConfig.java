@@ -11,6 +11,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 public class RedisConfig {
 
     public static String IMAGE = "proxy-img:";
+    public static String TOPGAINER = "top-gainer";
+    public static String TOPLOSER = "top-loser";
     @Bean
     public LettuceConnectionFactory redisConnectionFactory() {
         return new LettuceConnectionFactory("j7d105.p.ssafy.io", 6379);

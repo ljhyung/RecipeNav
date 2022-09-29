@@ -54,15 +54,16 @@ public class IngredientController {
         return ResponseEntity.ok(ingredientService.getSeasonIngredients(month));
     }
 
-//    @GetMapping("/topgainers")
-//    public ResponseEntity<?> getIngredientByTopGainers() {
-//
-//        return ResponseEntity.ok(ingredientService.getIngredientByTopGainers());
-//    }
+    @GetMapping("/topgainers")
+    public ResponseEntity<?> getIngredientByTopGainers() {
+
+        return ResponseEntity.ok(ingredientService.getIngredientByTopGainers());
+    }
 
     @GetMapping("/toplosers")
     public ResponseEntity<?> getIngredientByTopLosers() {
-        return null;
+
+        return ResponseEntity.ok(ingredientService.getIngredientByTopLosers());
     }
 
     @GetMapping("/price-log/{ingredient-seq}")
