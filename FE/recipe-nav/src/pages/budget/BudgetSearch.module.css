@@ -1,12 +1,33 @@
 .budget-input-panel {
   width: 60vw;
-  margin: 0 auto;
+  margin: 100px auto 0;
 }
-.budget-input-container {
+.graph-contaner {
+  width: 80vw;
+  margin: 100px auto 0;
 }
-.min-input-box {
+.result-print-panel {
+  display: grid;
+  width: 80vw;
+  margin: 50px auto 50px;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }
-.max-input-box {
-}
-.slide-input-box {
+
+@media (max-width: 800px) {
+  .budget-input-panel {
+    width: 90vw;
+    margin: 50px auto 0;
+  }
+
+  .result-print-panel {
+    margin: 50px;
+  }
+
+  .result-print-panel {
+    display: grid;
+    width: 90vw;
+    margin: 50px auto 50px;
+    grid-template-columns: 1fr;
+  }
 }

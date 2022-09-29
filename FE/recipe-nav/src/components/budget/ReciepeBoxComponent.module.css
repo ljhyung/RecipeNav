@@ -1,0 +1,52 @@
+.card-frame {
+  box-shadow: 0px 0px 3px #53a62d;
+  padding: 30px;
+  border-radius: 10px;
+  position: relative;
+}
+.recipe-detail-meta {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+.recipe-detail-head-post {
+  min-height: 300px;
+}
+.category-text {
+  font-weight: bold;
+  font-size: 30px;
+}
+.recipe-detail-desc {
+  margin-left: 20px;
+}
+@media (max-width: 800px) {
+  .recipe-detail-meta {
+    flex-direction: column;
+    width: 80vw;
+    margin: 0 auto;
+  }
+  .recipe-detail-desc {
+    margin-left: -10px;
+  }
+}
+.recipe-scrap-button {
+  width: 80%;
+  color: white;
+  background-color: #9cd918;
+  position: absolute;
+  box-shadow: 1px 0px 2px #53a62d;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 20px;
+  bottom: 20px;
+  left: calc(10%);
+  height: 50px;
+}
+
+.recipe-scrap-button:hover {
+  background-color: #53a62d;
+}
+.recipe-scrap-button:active {
+  background-color: #9cd918;
+}
