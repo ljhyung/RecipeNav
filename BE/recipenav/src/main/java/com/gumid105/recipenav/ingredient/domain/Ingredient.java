@@ -6,6 +6,7 @@ import com.gumid105.recipenav.user.domain.UserIngredient;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @Entity
 @Getter
+@DynamicUpdate
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "t_ingredient", schema = "recipenav")
 public class Ingredient {
@@ -50,6 +52,9 @@ public class Ingredient {
     @Column(name = "ing_pscode")
     private String ingPSCode;
 
+    @Column(name = "ing_price_rate")
+    private Double ingPriceRate;
+
     @JsonManagedReference
     @OneToOne(mappedBy = "ingredient")
     private IngredientPrice ingredientPrice;
@@ -65,4 +70,10 @@ public class Ingredient {
     @JsonManagedReference
     @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserIngredient> userIngredients = new ArrayList<>();
+
+
+
+    public void updateRate (Double rate){
+        this.ingPriceRate = rate;
+    }
 }

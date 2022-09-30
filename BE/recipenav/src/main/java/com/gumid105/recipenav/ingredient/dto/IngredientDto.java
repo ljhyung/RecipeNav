@@ -19,6 +19,8 @@ public class IngredientDto {
     private String ingSeason;
     private String ingCategory;
     private String ingImg;
+
+    private Double ingPriceRate;
     private List<UserIngredient> userIngredients;
 
     public static IngredientDto of(Ingredient ingredient){
@@ -31,6 +33,7 @@ public class IngredientDto {
         ingredientDto.ingSeason = ingredient.getIngSeason();
         ingredientDto.ingCategory = ingredient.getIngCategory();
         ingredientDto.ingImg = ingredient.getIngImg();
+        ingredientDto.ingPriceRate = ingredient.getIngPriceRate();
         ingredientDto.userIngredients = ingredient.getUserIngredients();
 
         return ingredientDto;
@@ -49,6 +52,7 @@ public class IngredientDto {
             ingredientDto.ingSeason = ingredientList.get(i).getIngSeason();
             ingredientDto.ingCategory = ingredientList.get(i).getIngCategory();
             ingredientDto.ingImg = ingredientList.get(i).getIngImg();
+            ingredientDto.ingPriceRate = ingredientList.get(i).getIngPriceRate();
             ingredientDto.userIngredients = ingredientList.get(i).getUserIngredients();
 
             listIngredientDto.add(ingredientDto);

@@ -44,6 +44,8 @@ spring:
         show_sql: false  # sql 쿼리를 보여줍니다.
         format_sql: false  # sql query formatting
         use_sql_comments: false  # sql 쿼리의 추가정보를 보여줍니다.
+        order_by:
+          default_null_ordering: last
 
 jwt:
   key:

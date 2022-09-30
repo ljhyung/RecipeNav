@@ -10,7 +10,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -39,6 +41,11 @@ public class IngredientController {
         return ResponseEntity.ok(ingredientService.searchIngredients(title, minPrice, maxPrice, category, season));
     }
 
+    @GetMapping("/list/name")
+    public ResponseEntity<?> searchIngredientsByName(@RequestParam String ingName) {
+        return ResponseEntity.ok(ingredientService.searchIngredientsByName(ingName));
+    }
+
     @GetMapping("/{ingredients-id}")
     public ResponseEntity<IngredientDto> getIngredientDetail(@PathVariable("ingredients-id") Long ingredientsSeq) {
         return ResponseEntity.ok(ingredientService.getIngredientDetail(ingredientsSeq));
@@ -64,6 +71,19 @@ public class IngredientController {
     public ResponseEntity<?> getIngredientByTopLosers() {
 
         return ResponseEntity.ok(ingredientService.getIngredientByTopLosers());
+    }
+
+
+    @PutMapping("/rate")
+    public Map<String, Object> updateRate() {
+        Map<String, Object> response = new HashMap<>();
+        if (ingredientService.updateRate()>0){
+            response.put("result", "SUCCESS");
+        }else {
+            response.put("result", "FAIL");
+            response.put("reason", "업데이트 실패.");
+        }
+        return response;
     }
 
     @GetMapping("/price-log/{ingredient-seq}")
