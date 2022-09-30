@@ -3,9 +3,38 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   myIngredients:[
     {
+        ingseq: "",
+        ingName: "",
+        ingDescription: "",
+        ingExDate: "",
+        ingCalorie: "",
+        ingSeason: "",
+        ingCategory: "",
+        ingImg: "",
+        userIngredients: [],
 
     }
-  ]
+  ],
+  ingredients: [],
+  selectedIngredient: {
+    ingSeq: "",
+    ingName: "",
+    ingDescription: "",
+    ingExDate: "",
+    ingCalorie: "",
+    ingSeason: "",
+    ingCategory: "",
+    ingImg: "",
+    userIngredients: [],
+
+
+
+  },
+  page: 1,
+  size: 50,
+  totalItem: 0,
+  searchString: "",
+
 
 };
 

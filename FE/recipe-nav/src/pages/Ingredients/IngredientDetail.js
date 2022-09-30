@@ -7,7 +7,7 @@ import { proxyImageURL } from "../../api";
 import { RollbackOutlined } from "@ant-design/icons";
 import IngredientExtraDataComponent from "../../components/ingredient/IngredientExtraDataComponent";
 import IngredientRecipeComponent from "../../components/ingredient/RecommendedRecipeComponent";
-import IngredientScrapButtonCopmonent from "../../components/ingredient/IngredientScrapButtonCopmonent";
+import IngredientScrapButtonComponent from "../../components/ingredient/IngredientScrapButtonComponent";
 import RecommendedRecipeComponent from "../../components/ingredient/RecommendedRecipeComponent";
 
 const comparator = function (a, b) {
@@ -22,6 +22,7 @@ const IngredientDetail = (props) => {
   const accessToken = useSelector((state) => state.auth.accessToken);
 
   console.log(params);
+
   const selectedIngredient = useSelector((state) => state.ingredient.selectedIngredient);
   
   const backPageClickHandle = () => {
@@ -36,7 +37,7 @@ const IngredientDetail = (props) => {
       <div className={style["ingredient-detail-container"]}>
         <div className={style["recipe-detail-head"]}>
           <h2 className={style["category-text"]}>{selectedIngredient.ingName}</h2>
-          <IngredientScrapButtonCopmonent ingredientRec ={selectedIngredient.ingSeq} />
+          <IngredientScrapButtonComponent ingredientIng ={selectedIngredient.ingSeq} />
         </div>
         
         

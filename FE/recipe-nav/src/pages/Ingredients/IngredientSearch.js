@@ -1,11 +1,11 @@
-import { Button, Card, Carousel, Input } from "antd";
+import { Button, Card, Carousel, Input, Pagination } from "antd";
 import Col from "antd/es/grid/col";
 import Search from "antd/lib/input/Search";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import style from "./IngredientSearch.module.css";
 import IngredientImg from "../../assets/ingredient_image.png";
-import IngredientCardComponent from "../../components/ingredients/IngredientCardComponent";
+import IngredientCardComponent from "../../components/ingredient/IngredientCardComponent";
 import { useDispatch, useSelector } from "react-redux";
 import apiClient from "../../api";
 import { useNavigate } from "react-router-dom";
@@ -45,7 +45,7 @@ const IngredientSearch = () => {
 
   const ingredients = useSelector((state) => state.ingredient.ingredients);
   const accessToken = useSelector((state) => state.auth.accessToken);
-  const searchString = useSelector((state) => state.recipe.searchString);
+  const searchString = useSelector((state) => state.ingredient.searchString);
 
   const page = useSelector((state) => state.ingredient.page);
   const size = useSelector((state) => state.ingredient.size);
@@ -69,7 +69,7 @@ const IngredientSearch = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
     if (searchString == "" || searchString == null) {
       apiClient
-        .get("/ingredient/all", {
+        .get("/ingredients/page", {
           headers: {
             Authorization: accessToken,
           },
@@ -92,12 +92,12 @@ const IngredientSearch = () => {
     } else {
       console.log(searchString);
       apiClient
-        .get("/ingredient", {
+        .get("/ingredients/list/name", {
           headers: {
             Authorization: accessToken,
           },
           params: {
-            recipeName: searchString,
+            ingName: searchString,
           },
         })
         .then((response) => {
@@ -163,18 +163,31 @@ const IngredientSearch = () => {
           </div>
 
           <div className={style["ingredient-container"]}>
-            {ingredients.map((ingredient, i) => {
-              return (
-                <IngredientCardComponent
-                  key={ingredient.ingSeq}
-                  ingredient={ingredient}
-                  ingredientClickHandle={ingredientClickHandle}
-                ></IngredientCardComponent>
+            {ingredients.length > 0 &&
+              ingredients.map((ingredient, i) => {
+                return (
+                  <IngredientCardComponent
+                    key={ingredient.ingSeq}
+                    ingredient={ingredient}
+                    ingredientClickHandle={ingredientClickHandle}
+                  ></IngredientCardComponent>
               );
             })}
+          {ingredients.length == 0 && <h1>비어있다.</h1>}
+          </div>
+          <div className={style["page-container"]}>
+            <Pagination
+              total={totalItem}
+              showSizeChanger
+              showQuickJumper
+              current={page}
+              defaultPageSize={50}
+              onChange={pageChageHadle}
+              onShowSizeChange={onShowSizeChange}
+            />
           </div>
         </Col>
-      </div>{" "}
+      </div>
     </>
   );
 };

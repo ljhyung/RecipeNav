@@ -1,4 +1,4 @@
-import style from "./RecipeScrapButtonCopmonent.module.css"
+import style from "./IngredientScrapButtonComponent.module.css"
 import apiClient from "../../api/index";
 import { useEffect, useState } from "react";
 import { useSelector,useDispatch } from "react-redux/es/exports";
