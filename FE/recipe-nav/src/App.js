@@ -41,15 +41,15 @@ function App() {
           <Route index element={<RecipeSearch />} />
           <Route path=":recSeq" element={<RecipeDetail />} />
         </Route>
-<<<<<<< FE/recipe-nav/src/App.js
+
         <Route path="/ingredient">
           <Route index element={<IngredientSearch />} />
           <Route path=":ingSeq" element={<IngredientDetail />} />
         </Route>
-=======
+
         
         <Route path="/budget" element={<BudgetSearch/>}></Route>
->>>>>>> FE/recipe-nav/src/App.js
+
       </Route>
 
       <Route path="/login" element={<Signin />} />
