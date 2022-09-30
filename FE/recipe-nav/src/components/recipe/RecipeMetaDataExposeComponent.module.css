@@ -1,0 +1,33 @@
+.summary{
+
+    font-weight: 600;
+    color: rgb(70, 69, 69);
+    
+}
+.category1{
+    font-weight: 600;
+    font-size: large;
+    color: #53A62D;
+}
+.category2{
+    font-weight: 600;
+    font-size: large;
+    color: #53A62D;
+}
+.category3{
+    font-weight: 600;
+    font-size: large;
+    color: #53A62D;
+}
+.calorie{
+  
+}
+.price{
+    line-height: 30px;
+    font-size: large;
+    font-size: 30px;
+}
+.price-icon{
+    
+    color: #1ad392;
+}

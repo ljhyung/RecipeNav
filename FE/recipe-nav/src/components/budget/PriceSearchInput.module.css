@@ -1,0 +1,50 @@
+.budget-input-container {
+}
+.min-input-box,
+.max-input-box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.slide-input-box {
+}
+.input {
+  height: 50px;
+  font-size: 30px;
+  font-weight: 700;
+  width: 35%;
+}
+.input-print {
+  border: none;
+  width: 60%;
+  line-height: 50px;
+  font-size: 15px;
+  text-align: right;
+}
+.input-print:hover {
+  cursor: default;
+}
+.input-print:active {
+  border: none;
+}
+.button-box {
+  text-align: center;
+}
+.button {
+  width: 60%;
+  font-weight: 900;
+  font-size: 30px;
+  color: white;
+  background-color: #42a54c;
+  border-radius: 5px;
+  border: 1px solid #337f3b;
+}
+.button:hover {
+  background-color: #337f3b;
+}
+
+.button:active {
+  background-color: #42a54c;
+}

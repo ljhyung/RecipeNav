@@ -9,7 +9,7 @@ const Nav = () => {
     <Header key="header" />,
     // <Link to={"/mypage"}>테스트</Link>,
     <Outlet></Outlet>,
-    <Footer key='footer' />
+    <Footer key='footer' />,
   ];
 };
 export default Nav;

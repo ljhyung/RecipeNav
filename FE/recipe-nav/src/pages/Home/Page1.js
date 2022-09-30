@@ -2,14 +2,6 @@ import {Col, Row} from "antd";
 import axios from "axios";
 import Graph from "./Graph"
 
-const getMyinfosRecipes = async () => {
-    const url = "https://j7d105.p.ssafy.io/api/my-infos/ingredients"
-
-    var newData = []
-
-    return newData;
-}
-
 const Page1 = () => {
 
     const Test = () => {
@@ -33,6 +25,7 @@ const Page1 = () => {
             </Col>
         );
     }
+    
     const Test2 = () => {
         return (
             <Col md={12} xs={24} className="page1-item">

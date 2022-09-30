@@ -6,6 +6,7 @@ import {
   setToken,
   setUser,
 } from "../../store/slices/authSlice";
+import { setMyRecipes } from "../../store/slices/recipeSlice";
 import { useDispatch } from "react-redux";
 
 const NaverOauth = () => {
@@ -56,22 +57,42 @@ const NaverOauth = () => {
             console.log(res);
             if (res.data === null || res.data === "") {
               console.log("받다온 사용자 정보의 데이터가 없습니다.");
-              navigate("/home");
+              navigate("/login");
               return;
             }
-            dispatch(setUser());
-            navigate("/home");
+            dispatch(setUser({nickName:res.data.userName,
+              gender:res.data.userGender,
+              age:res.data.userAge
+            }));
+            navigate("/");
           })
           .catch((error) => {
             console.log(error);
-            navigate("/");
+            navigate("/login");
           });
+
+          axiosClient.get("/my-infos/recipes",{
+            headers: {
+              Authorization,
+            },
+          })
+          .then(response=>{
+            console.log(response);
+            let myRecipes = response.data;
+            dispatch(setMyRecipes(myRecipes));
+          }).catch((erorr)=>{
+            console.log("나의 선호 레시피를 불러오던 중 에러");
+          })
+
+
       })
       .catch((error) => {
         navigate("/");
         console.log(error);
       });
-  }, []);
+
+
+  });
 
   return (
     <>
