@@ -58,10 +58,10 @@ const Signup = () => {
         return (
 
             <Row className={style.container}>
-                <Col flex="auto" className={style.sideImg}>
+                <Col md={12} xs={0} flex="auto" className={style.sideImg}>
                     안녕하세요!
                 </Col>
-                <Col flex="500px" className={style.main}>
+                <Col md={12} xs={24} flex="500px" className={style.main}>
 
                     <Row justify='center'>
 

@@ -8,50 +8,83 @@ import {chartData} from './data';
 import {importantIngredients} from './data';
 import CountUp from 'react-countup'
 import {Line} from '@ant-design/plots';
-
+import {useState} from 'react';
+import apiClient from "../../api";
+import {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+import {
+    setRecipes,
+    setSelectedRecipe,
+    setPage,
+    setSize,
+    setTotalItem,
+    setSearchString,
+  } from "../../store/slices/recipeSlice";
 // import './Banner.scss';
 
 const {Element} = BannerAnim;
 const {BgElement} = Element;
 
 const Banner = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+  
+    const accessToken = useSelector((state) => state.auth.accessToken);
+    const [todayRec, setTodayRec] = useState([]);
 
-    const bannerChildren = banner.map((item, i) => {
-        const children = item
-            .children
-            .map((child, ii) => {
-                const tag = child.tag === 'button'
-                    ? 'div'
-                    : child.tag || 'p';
-                const childrenToRender = child.tag === 'button'
-                    ? <Button>
-                            <a href={child.link} target="_blank">{child.children}</a>
-                        </Button>
-                    : child.children;
-                return React.createElement(tag, {
-                    key: ii.toString(),
-                    className: child.className,
-                    style: child.style || {}
-                }, childrenToRender);
+
+    const recipeClickHandle = (recSeq) => {
+        //레시피 클릭했을 때,
+        console.log(recSeq);
+    
+        dispatch(setSelectedRecipe(recSeq));
+    
+        navigate("/recipe/" + recSeq);
+      };
+
+    useEffect(() => {
+        apiClient
+            .get("/recipes/daily", {
+                headers: {
+                    Authorization: accessToken
+                },
+                params: {}
+            })
+            .then((response) => {
+                console.log(response.data)
+                setTodayRec(response.data)
+            })
+            .catch((error) => {
+                console.log("요청 에러");
+                console.log(error);
             });
+    }, []);
+
+    const todayRecBanner = todayRec.map((item, i) => {
+
         return (
-            <Element key={i.toString()}>
+            <Element>
                 <BgElement
                     key="bg"
                     className="banner-bg"
                     style={{
-                        backgroundImage: `url(${item.img})`
+                        backgroundImage: `url(${item.recImg})`,
+                        backgroundSize: `contain`
                     }}/>
                 <QueueAnim
                     key="text"
-                    className={item.className}
-                    ease={['easeOutCubic', 'easeInQuad']}
-                    type={item.queueAnim || 'bottom'}>
-                    {children}
+                    className="seeconf-wrap"
+>
+                    <div className='seeconf-title'>{item.recName}</div>
+                    <Button 
+                    className='banner-button'
+                    onClick={() => recipeClickHandle(item.recSeq)}>바로가기</Button>
+                    <p className='seeconf-en-name'>{item.recSummary}</p>
                 </QueueAnim>
             </Element >
         );
-    });
+    })
 
     //그래프를 위한 config 설정 console.log(graph);
     const COLOR_PLATE_10 = [
@@ -73,11 +106,11 @@ const Banner = () => {
         seriesField: 'category',
         yAxis: {
             label: {
-                // 数值格式化为千分位
                 formatter: (v) => `${v}`.replace(/\d{1,3}(?=(\d{3})+$)/g, (s) => `${s},`)
             }
         },
         color: COLOR_PLATE_10,
+        width: 150,
         point: {
             shape: ({category}) => {
                 return category === 'Gas fuel'
@@ -97,7 +130,6 @@ const Banner = () => {
     //그래프를 위한 config 설정 끝.
 
     const chartChildren = importantIngredients.map((item, i) => {
-        const ingredient = item
         return (
             <Col md={12} xs={24} className="chart-element">
                 <Card
@@ -106,8 +138,8 @@ const Banner = () => {
                     bodyStyle={{
                         padding: 10
                     }}>
-                        
-                    <img src={item.imgUrl} />
+
+                    <img src={item.imgUrl}/>
 
                     <div className='content'>
                         <p className='title'>
@@ -122,9 +154,13 @@ const Banner = () => {
                                 useGrouping="useGrouping"
                                 separator=","/>
 
-                        <span className={item.priceDiff > 0 ? 'up':'down'}>
-                            &nbsp;{item.priceDiff} {Math.ceil(item.priceDiff / item.price * 100)}%
-                        </span>
+                            <span
+                                className={item.priceDiff > 0
+                                    ? 'up'
+                                    : 'down'}>
+                                &nbsp;{item.priceDiff}
+                                {Math.ceil(item.priceDiff / item.price * 100)}%
+                            </span>
                         </p>
                     </div>
                 </Card>
@@ -139,10 +175,10 @@ const Banner = () => {
                     <Col md={16} xs={24}>
                         <div className="content-wrap">
                             <h1>
-                                주요뉴스
+                                오늘의 레시피
                             </h1>
                             <BannerAnim type="across" duration={550} ease="easeInOutQuint">
-                                {bannerChildren}
+                                {todayRecBanner}
                             </BannerAnim>
                         </div>
                     </Col>
@@ -151,9 +187,10 @@ const Banner = () => {
                             <h1>
                                 주요지표
                             </h1>
-                            <Line {...config}/>
+                            <Line {...config} className="chart"/>
                             <Row>
-                                {chartChildren}
+                                {/* {chartChildren} */}
+                                {todayRecBanner}
                             </Row>
                         </div>
                     </Col>
