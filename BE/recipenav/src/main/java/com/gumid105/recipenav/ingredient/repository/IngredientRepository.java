@@ -14,4 +14,9 @@ public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
     @Query("select i from Ingredient i where i.ingName like %:title% and i.ingredientPrice.ingAvgCost>:minPrice and i.ingredientPrice.ingAvgCost<:maxPrice and i.ingCategory like %:category% and i.ingSeason like %:season%")
     List<Ingredient> findIngredientsByOptions(String title, Integer minPrice, Integer maxPrice, String category, String season);
 
+
+    List<Ingredient> findTop10ByOrderByIngPriceRateDesc();
+    List<Ingredient> findTop10ByOrderByIngPriceRate();
+    
+    List<Ingredient> findIngredientsByIngNameContaining(String ingName);
 }
