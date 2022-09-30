@@ -7,36 +7,52 @@
 
 } */
 
-.Navbar {
-    background-color : #40CA4E;
-    height : 80px;
-    font-size : 40px;
-
-}
 
 .Mypage {
     height: 100%;
     
-    background: linear-gradient(#42A54C 20%, #FFFF 10%)
+    background: linear-gradient(#a68d60 20%, #FFFF 10%)
 }
 
-.Myinfos {
+.Userinfo {
+    position: fixed;
     display : inline;
+    justify-content: center;
+
 }
 
 .UserContents {
     display : inline;
 }
 
+/* .UserImage {
+    margin-left: 30px;
+}
+.UserName {
+    font-size: 30px;
+    margin-left: 50px;
+}
+
+.UserGender {
+    font-size : 30px;
+    margin-left: 50px;
+}
+
+.UserAge {
+    font-size: 30px;
+    margin-left: 50px;
+} */
 
 .Layout {
     background-color: #FFFF;
-    margin-top: 50px;
+
+    align-items: center;
+    
     margin-left: 50px;
     margin-right: 50px;
     margin-bottom: 50px;
     padding-top: 30px;
-    padding-left: 100px;
+    padding-left: 20px;
 
     font-family: 'Inter';
     font-style: normal;
