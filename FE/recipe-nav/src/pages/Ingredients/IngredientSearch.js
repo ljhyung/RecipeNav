@@ -1,7 +1,7 @@
 import { Button, Card, Carousel, Input } from "antd";
 import Col from "antd/es/grid/col";
 import Search from "antd/lib/input/Search";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import style from "./IngredientSearch.module.css";
 import IngredientImg from "../../assets/ingredient_image.png";
@@ -9,7 +9,16 @@ import IngredientCardComponent from "../../components/ingredients/IngredientCard
 import { useDispatch, useSelector } from "react-redux";
 import apiClient from "../../api";
 import { useNavigate } from "react-router-dom";
-import { setIngredients, setSelectedIngredient } from "../../store/slices/ingredientSlice";
+import { 
+  setIngredients,
+  setSelectedIngredient,
+  setPage,
+  setSize,
+  setTotalItem,
+  setSearchString,
+} from "../../store/slices/ingredientSlice";
+import { proxyImageURL } from "../../api";
+
 const CustomInput = styled(Input)`
   height: 50px;
   border-radius: 5px 0px 0px 5px;
@@ -33,39 +42,85 @@ const contentStyle = {
 const IngredientSearch = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const ingredients = useSelector((state) => state.ingredient.ingredients);
   const accessToken = useSelector((state) => state.auth.accessToken);
+  const searchString = useSelector((state) => state.recipe.searchString);
 
-  const [searchString, setSearchString] = useState("");
-  const [page, setPage] = useState(1);
-  const [size, setSize] = useState(10);
+  const page = useSelector((state) => state.ingredient.page);
+  const size = useSelector((state) => state.ingredient.size);
+  const totalItem = useSelector((state) => state.ingredient.totalItem);
+
+  const [tempString, setTempString] = useState("");
+
+  const pageChageHadle = (chagePage, chagePageSize) => {
+    console.log("페이지 체인지");
+    console.log(chagePage, chagePageSize);
+    dispatch(setPage(chagePage));
+  };
+
+  const onShowSizeChange = (current, pageSize) => {
+    console.log("페이지 사이즈 체인지");
+    console.log(current, pageSize);
+    dispatch(setSize(pageSize));
+  };
+  useEffect(() => {
+    console.log(searchString);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (searchString == "" || searchString == null) {
+      apiClient
+        .get("/ingredient/all", {
+          headers: {
+            Authorization: accessToken,
+          },
+          params: {
+            page,
+            size,
+          },
+        })
+        .then((response) => {
+          console.log("식자재 요청");
+          console.log(response);
+          console.log(response.data.totalPages);
+          dispatch(setIngredients(response.data.content));
+          dispatch(setTotalItem(response.data.totalElements));
+        })
+        .catch((error) => {
+          console.log("요청 에러");
+          console.log(error);
+        });
+    } else {
+      console.log(searchString);
+      apiClient
+        .get("/ingredient", {
+          headers: {
+            Authorization: accessToken,
+          },
+          params: {
+            recipeName: searchString,
+          },
+        })
+        .then((response) => {
+          console.log("레시피 요청");
+          console.log(response);
+          dispatch(setIngredients(response.data));
+          let totalItem = response.data.length;
+          let totalPage = parseInt(totalItem / size) + 1;
+          dispatch(setPage(1));
+          dispatch(setTotalItem(totalItem));
+        })
+        .catch((error) => {});
+    }
+  }, [page, size, searchString]);
 
   const onSearchHandle = (e) => {
-    console.log(searchString);
-
-    apiClient
-      .get("/ingredients", {
-        headers: {
-          Authorization: accessToken,
-        },
-        params: {
-          page,
-          size,
-        },
-      })
-      .then((response) => {
-        console.log(response);
-        dispatch(setIngredients(response.data));
-      })
-      .catch((error) => {
-        console.log("요청 에러");
-        console.log(error);
-      });
+    console.log("식자재 이름 검색");
+    dispatch(setSearchString(tempString));
   };
 
   const onSearchChangeHandle = (e) => {
     //입력 박스에 입력하였을 때, 검색어 업데이트를 위하여
-    setSearchString(e.target.value);
+    setTempString(e.target.value);
   };
 
   const ingredientClickHandle = (ingSeq) => {
@@ -76,6 +131,9 @@ const IngredientSearch = () => {
 
     navigate("/ingredient/" + ingSeq);
   };
+
+
+
   return (
     <>
       <div className={style["search-container"]}>

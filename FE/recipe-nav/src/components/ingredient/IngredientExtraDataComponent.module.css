@@ -1,8 +1,8 @@
-.recipe-extra-data-component {
+.ingredient-extra-data-component {
     display: flex;
     flex-direction: row;
   }
-  .recipe-extra-data-component > div {
+  .ingredient-extra-data-component > div {
     flex-grow: 1;
   }
   .icon {
