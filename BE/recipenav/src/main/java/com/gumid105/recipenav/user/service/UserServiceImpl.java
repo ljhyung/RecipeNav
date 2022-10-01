@@ -9,11 +9,14 @@ import com.gumid105.recipenav.recipe.dto.RecipeDto;
 import com.gumid105.recipenav.recipe.repository.RecipeRepository;
 import com.gumid105.recipenav.user.domain.User;
 import com.gumid105.recipenav.user.domain.UserRecipe;
+import com.gumid105.recipenav.user.domain.UserRecipeSimil;
 import com.gumid105.recipenav.user.dto.UserDto;
 import com.gumid105.recipenav.user.dto.UserRecipeDto;
 import com.gumid105.recipenav.user.repository.UserRecipeRepository;
+import com.gumid105.recipenav.user.repository.UserRecipeSimilRepository;
 import com.gumid105.recipenav.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.Authentication;
 import com.gumid105.recipenav.user.domain.UserIngredient;
 import com.gumid105.recipenav.user.dto.ReqUserDto;
@@ -23,10 +26,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -38,7 +39,7 @@ public class UserServiceImpl implements UserService {
     private final RecipeRepository recipeRepository;
     private final UserIngredientRepository userIngredientRepository;
     private final IngredientRepository ingredientRepository;
-
+    private final UserRecipeSimilRepository userRecipeSimilRepository;
     /**
      *
      * @param oAuthAttribute
@@ -174,5 +175,31 @@ public class UserServiceImpl implements UserService {
         }
 
         return 0;
+    }
+
+    public List<RecipeDto> getSimilarRecipeByUserLike(Long userSeq) {
+        List<UserRecipeSimil> userRecipeSimils =  userRecipeSimilRepository.findByFirstId(userSeq);
+        //유사 유저 가져오기, 자신은 포함되어 있지 않다.
+        List<Long> otherUserSeqs = new ArrayList<Long>();
+        for(UserRecipeSimil item:userRecipeSimils){
+            otherUserSeqs.add(item.getPk().getSecondUser());
+        }
+
+        List<Map<String, Object>> list =  userRecipeRepository.findLikeRecipeInSimilarUser(otherUserSeqs,userSeq,PageRequest.of(0,10));
+
+        List<Recipe> recipes =  list.stream().map(stringObjectMap -> ((Recipe)stringObjectMap.get("recipe")) ).collect(Collectors.toList());
+
+        if(recipes.size() < 10) {
+            while (recipes.size() < 10) {
+                List<Recipe> tempRecipe = recipeRepository.findRecipesByRandom();
+                for(int i = 0 ; i < tempRecipe.size() && recipes.size() < 10 ; i++){
+                    if(!recipes.contains(tempRecipe)){ //같은 객체라면 퍼시스턴스에 의해 객체의 주소가 같다.
+                        recipes.add(tempRecipe.get(i));
+                    }
+                }
+            }
+        }
+
+    return RecipeDto.ofList(recipes);
     }
 }

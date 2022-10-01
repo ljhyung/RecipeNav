@@ -2,18 +2,18 @@ package com.gumid105.recipenav.user.controller;
 
 
 import com.gumid105.recipenav.exception.CustomErrorException;
+import com.gumid105.recipenav.ingredient.dto.IngredientDto;
 import com.gumid105.recipenav.recipe.domain.Recipe;
 import com.gumid105.recipenav.recipe.dto.RecipeDto;
 import com.gumid105.recipenav.recipe.repository.RecipeRepository;
 import com.gumid105.recipenav.user.domain.UserRecipe;
-import com.gumid105.recipenav.user.dto.UserDto;
-import com.gumid105.recipenav.ingredient.dto.IngredientDto;
 import com.gumid105.recipenav.user.dto.ReqUserDto;
-
-
+import com.gumid105.recipenav.user.dto.UserDto;
 import com.gumid105.recipenav.user.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -99,5 +99,18 @@ public class UserController {
         return response;
     }
 
+    @GetMapping("/recipes/similar")
+    public ResponseEntity<?> getRecipeBySimilarUser(){
 
+        Map<String, Object> response = new HashMap<>();
+        UserDto userDto = (UserDto) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        List<RecipeDto> recipes = userServiceImpl.getSimilarRecipeByUserLike(userDto.getUserSeq());
+
+        response.put("recipes",recipes);
+        response.put("count",recipes.size());
+        response.put("msg","사용자 기반으로 추천된 레시피를 반환합니다.");
+
+        return new ResponseEntity<Map<String,Object>>(response, HttpStatus.OK);
+    }
 }
