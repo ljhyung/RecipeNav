@@ -1,5 +1,5 @@
 .body {
-    background-color: black;
+    background-color: #EAF2CE;
 }
 
 .page {
@@ -40,12 +40,13 @@
     padding: 12px;
     overflow: hidden;
     background-size: contain;
-
+    
     .page {
-        h1 {
+        h2 {
             text-align: left;
             margin-left: 12px;
-
+            font-size: 1.75rem;
+            font-weight: 700;
         }
     }
 
@@ -64,6 +65,12 @@
                 font-size: 50px;
             }
         }
+        .card-item-title {
+            font-size: large;
+            font-weight: 700;
+            color: black;
+            text-align: center;
+        }
     }
 }
 
@@ -75,10 +82,5 @@
     background-size: contain;
 
     .page {
-        h1 {
-            text-align: left;
-            margin-left: 12px;
-
-        }
     }
 }

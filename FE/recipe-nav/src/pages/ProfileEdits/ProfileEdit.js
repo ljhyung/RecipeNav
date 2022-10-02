@@ -14,6 +14,7 @@ import {
 import apiClient from "../../api";
 import styled from "styled-components";
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const SubmitButton = styled(Button)`
 text-align: center;
@@ -46,14 +47,11 @@ width: 400px;
 
 //로그인 버튼
 const ProfileEdit = () => {
-    const [userstate, setUserstate] = useState(0);
+    const navigate = useNavigate();
+
 
 
     const accessToken = useSelector((state) => state.auth.accessToken);
-
-    const [page, setPage] = useState(1);
-    const [size, setSize] = useState(10);
-
 
     const onFinish = (values) => {
         console.log('Received values of form: ', values.username);
@@ -72,6 +70,7 @@ const ProfileEdit = () => {
         )
         .then((response) => {
           console.log(response);
+          navigate('/mypage');
         })
         .catch((error) => {
           console.log("요청 에러");
@@ -85,7 +84,6 @@ const ProfileEdit = () => {
 
             <Row className={style.container}>
                 <Col flex="auto" md={24} xs={0} className={style.sideImg}>
-                    안녕하세요!
                 </Col>
                 <Col flex="500px" md={24} xs={24} className={style.main}>
 
@@ -146,7 +144,7 @@ const ProfileEdit = () => {
                                     }} />
                             </Form.Item>
 
-                            <SubmitButton htmlType="submit">
+                            <SubmitButton htmlType="submit" >
                                 변경사항 저장하기
                             </SubmitButton>
 

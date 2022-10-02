@@ -4,8 +4,12 @@ import axiosClient from "../../api";
 import { Button, Row, Col, Statistic } from "antd";
 import styled from "styled-components";
 import "antd/dist/antd.css";
+import { useNavigate } from 'react-router-dom';
 
 const Myinfo = () => {
+    const navigate = useNavigate();
+
+
     const NaverButton = styled(Button)`
     margin-top: 10px;
     background-color: #A68D60;
@@ -14,7 +18,7 @@ const Myinfo = () => {
     width: 70%;
     height: 60px;
     border: #A68D60;
-    margin: 60px;
+    margin-bottom: 10px;
     font-weight: 700;
     font-size: 20px;
     line-height: 16px;
@@ -28,6 +32,11 @@ const Myinfo = () => {
     const accessToken = useSelector((state) => state.auth.accessToken);
     const [myinfo, setMyinfo] = useState();
     const [loading, setLoading] = useState(false);
+
+    const moveToProfileEdit = () => {
+        navigate('/profile-edit')
+      };
+    
 
     const MyinfoHandle = ((e) => {
         setMyinfo(e);
@@ -53,7 +62,7 @@ const Myinfo = () => {
     return (
         <div className="page-wrapper myinfo">
             <div className="page">
-
+            <h2>프로필</h2>
                 {
                     loading
                         ? <Row className='contents-wrap'>
@@ -90,7 +99,7 @@ const Myinfo = () => {
                                 </Row>
                             </Col>
                             <Col span={24}>
-                                <NaverButton>프로필 수정</NaverButton>
+                                <NaverButton onClick={moveToProfileEdit}>프로필 수정</NaverButton>
                             </Col>
                         </Row>
                         : <Row></Row>

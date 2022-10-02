@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from "react-redux";
+import React, {useEffect, useState} from 'react';
+import {useSelector} from "react-redux";
 import axiosClient from "../../api";
-import { Button, Row, Col, Statistic } from "antd";
+import {Button, Row, Col, Statistic} from "antd";
 import styled from "styled-components";
 import "antd/dist/antd.css";
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 const Myingredients = () => {
     const navigate = useNavigate();
@@ -21,7 +21,7 @@ const Myingredients = () => {
     const recipeClickHandle = (recSeq) => {
         //레시피 클릭했을 때,
         console.log(recSeq);
-        navigate("/ingredients/" + recSeq);
+        navigate("/ingredient/" + recSeq);
     };
 
     useEffect(() => {
@@ -51,11 +51,10 @@ const Myingredients = () => {
                             width: 120,
                             height: 120,
                             background: `url("${item.ingImg}")`,
-                            borderRadius: `100%`,
                             backgroundSize: `contain`,
                             backgroundRepeat: `no-repeat`,
                             backgroundPosition: `center`
-                        }} />
+                        }}/>
                     <div className="card-item-title">{item.ingName}</div>
                 </div>
             </Col>
@@ -65,11 +64,13 @@ const Myingredients = () => {
     return (
         <div className="page-wrapper myinfo">
             <div className="page">
+                <h2>나의 식자재</h2>
                 {
                     loading
-                        ? <Row className='contents-wrap'>
-                            {myIngredientsCard}
-                        </Row>
+                        ? <Row justify="center"  gutter={[4,4]} className='contents-wrap' >
+
+                                {myIngredientsCard}
+                            </Row>
                         : <Row></Row>
                 }
 
