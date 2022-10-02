@@ -29,7 +29,7 @@ public class RedisConfig {
         redisClusterConfiguration.clusterNode("j7d105.p.ssafy.io",7003);
         redisClusterConfiguration.clusterNode("j7d105.p.ssafy.io",7004);
 
-        return new LettuceConnectionFactory("j7d105.p.ssafy.io", 6379);
+        return new LettuceConnectionFactory(redisClusterConfiguration);
     }
     @Bean
     public RedisTemplate<?, ?> redisTemplate() {
