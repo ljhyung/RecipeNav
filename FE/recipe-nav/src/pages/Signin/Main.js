@@ -9,7 +9,7 @@ const GoogleButton = styled(Button)`
   background-color: #eeeeee;
   border-radius: 999px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  width: 400px;
+  width: 80%;
   height: 60px;
   border: #eeeeee;
 
@@ -29,7 +29,7 @@ const NaverButton = styled(Button)`
   background-color: rgba(3, 199, 90, 1);
   border-radius: 999px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  width: 400px;
+  width: 80%;
   height: 60px;
   border: rgba(3, 199, 90, 1);
 
@@ -60,11 +60,11 @@ const Main = () => {
     //requestUrl
 
     return (
-        <Row className={style.container}>
+        <Row className={style.container} >
             <Col md={16} xs={0} flex="auto" className={style.sideImg}/>
 
             <Col md={8} xs={24} className={style.main}>
-                <Row>
+                <Row justify="center">
                     <Col span={24} className={style.Signin}></Col>
                     <Col span={24}>
                         <img width={200} src="/Logo.png" alt="logo"/>
@@ -78,7 +78,7 @@ const Main = () => {
                         <a href={requestUrl}>
                             <NaverButton>Naver 계정으로 로그인</NaverButton>
                         </a>
-                        <GoogleButton>Google 계정으로 로그인</GoogleButton>
+                        {/* <GoogleButton>Google 계정으로 로그인</GoogleButton> */}
 
                         <div className={style.Copyright}>RecipeNav ©2022 Created by bb</div>
 

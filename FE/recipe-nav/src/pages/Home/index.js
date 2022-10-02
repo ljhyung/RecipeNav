@@ -1,5 +1,5 @@
 import "./home.scss";
-import { Link, Outlet } from "react-router-dom";
+import {Link, Outlet} from "react-router-dom";
 
 import Banner from "./Banner";
 import Graph from "./Graph";
@@ -10,14 +10,18 @@ import RealTimeTopGainers from "./RealTimeTopGainers";
 // import MyIngredients from "./MyIngredients";
 
 const Home = () => {
-  return [
+    return (
 
-    <Banner key="banner" />,
-    <Page2 key="page2" />,
-    <RealTimeTopGainers key="RealTimeTopGainers" />,
-    <RealTimeTopLosers key="RealTimeTopLosers" />,
-    // <MyIngredients key="myingredients" />,
-    <Outlet></Outlet>,
-  ];
+        <div className="body">
+
+            <Banner key="banner"/>
+            <Page2 key="page2"/>
+            <RealTimeTopGainers key="RealTimeTopGainers"/>
+            <RealTimeTopLosers key="RealTimeTopLosers"/>
+            {/* <MyIngredients key="myingredients"/> */}
+            <Outlet></Outlet>
+        </div>
+
+    );
 };
 export default Home;
