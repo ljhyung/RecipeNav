@@ -180,14 +180,21 @@ public class UserServiceImpl implements UserService {
     public List<RecipeDto> getSimilarRecipeByUserLike(Long userSeq) {
         List<UserRecipeSimil> userRecipeSimils =  userRecipeSimilRepository.findByFirstId(userSeq);
         //유사 유저 가져오기, 자신은 포함되어 있지 않다.
-        List<Long> otherUserSeqs = new ArrayList<Long>();
-        for(UserRecipeSimil item:userRecipeSimils){
-            otherUserSeqs.add(item.getPk().getSecondUser());
+
+        List<Recipe> recipes = null;
+
+        if(userRecipeSimils != null && userRecipeSimils.size() > 0){
+            List<Long> otherUserSeqs = new ArrayList<Long>();
+            for(UserRecipeSimil item:userRecipeSimils){
+                otherUserSeqs.add(item.getPk().getSecondUser());
+            }
+            List<Map<String, Object>> list =  userRecipeRepository.findLikeRecipeInSimilarUser(otherUserSeqs,userSeq,PageRequest.of(0,10));
+            recipes =  list.stream().map(stringObjectMap -> ((Recipe)stringObjectMap.get("recipe")) ).collect(Collectors.toList());
         }
 
-        List<Map<String, Object>> list =  userRecipeRepository.findLikeRecipeInSimilarUser(otherUserSeqs,userSeq,PageRequest.of(0,10));
-
-        List<Recipe> recipes =  list.stream().map(stringObjectMap -> ((Recipe)stringObjectMap.get("recipe")) ).collect(Collectors.toList());
+        if(recipes == null){
+            recipes = new ArrayList<>();
+        }
 
         if(recipes.size() < 10) {
             while (recipes.size() < 10) {
