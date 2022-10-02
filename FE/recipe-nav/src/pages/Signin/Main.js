@@ -60,11 +60,11 @@ const Main = () => {
     //requestUrl
 
     return (
-        <Row className={style.container}>
+        <Row className={style.container} >
             <Col md={16} xs={0} flex="auto" className={style.sideImg}/>
 
             <Col md={8} xs={24} className={style.main}>
-                <Row>
+                <Row justify="center">
                     <Col span={24} className={style.Signin}></Col>
                     <Col span={24}>
                         <img width={200} src="/Logo.png" alt="logo"/>

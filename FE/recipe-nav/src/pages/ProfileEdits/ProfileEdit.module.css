@@ -1,6 +1,9 @@
 .container {
-    background: rgba(166, 141, 96, 1);
     height: 100vh;
+    width: 100vw;
+    background: rgba(166, 141, 96, 1);
+    text-align: center;
+    min-width: 500px;
 }
 
 .Copyright {
@@ -9,7 +12,7 @@
 }
 
 .sideImg {
-    background-image: url("https://placeimg.com/200/100/any");
+    background-image: url("https://placeimg.com/600/300/any");
     background-size: cover;
     height: 100%;
 }
@@ -17,6 +20,8 @@
 .main {
     background: rgba(166, 141, 96, 1);
     height: 100%;
+    width: 100vw;
+    text-align: center;
 }
 
 h1 {
