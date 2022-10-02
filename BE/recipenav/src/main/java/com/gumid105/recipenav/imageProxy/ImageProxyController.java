@@ -22,6 +22,7 @@ import java.time.Duration;
 @RequiredArgsConstructor
 public class ImageProxyController {
 
+    private  final WebClient.Builder builder;
     private final RedisTemplate<String,byte[]> redisTemplate;
 
     @GetMapping(value = "/img",produces = {MediaType.IMAGE_JPEG_VALUE,MediaType.IMAGE_PNG_VALUE})
@@ -39,7 +40,8 @@ public class ImageProxyController {
         if(imageByte == null){
             log.info("이미지 직접 요청 : {}",imgUrl);
 
-            imageByte =  WebClient.builder().baseUrl(imgUrl).build().get().retrieve().bodyToMono(byte[].class).block();
+            imageByte =  builder.baseUrl(imgUrl).build().get().retrieve().bodyToMono(byte[].class).block();
+
             try {
                 valueOperations.set(RedisConfig.IMAGE+imgUrl,imageByte, Duration.ofHours(1));
             }catch (Exception e){
