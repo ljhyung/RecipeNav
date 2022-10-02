@@ -1,8 +1,8 @@
-import { Route, Routes,  Navigate } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import NaverOauth from "./pages/oauth/NaverOauth";
 import { useSelector } from "react-redux";
-import Mypage from "./pages/Mypages/Mypage";
+import Mypage from "./pages/Mypage";
 import ProfileEdit from "./pages/ProfileEdits/ProfileEdit";
 import Home from "./pages/Home";
 import Nav from "./pages/Nav";
@@ -33,7 +33,7 @@ function App() {
         path="/"
         element={authenticated ? <Nav /> : <Navigate to="/login" replace />}
       >
-        <Route path="/" element={<Home />}/>
+        <Route path="/" element={<Home />} />
 
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/profile-edit" element={<ProfileEdit />} />
@@ -47,8 +47,8 @@ function App() {
           <Route path=":ingSeq" element={<IngredientDetail />} />
         </Route>
 
-        
-        <Route path="/budget" element={<BudgetSearch/>}></Route>
+
+        <Route path="/budget" element={<BudgetSearch />}></Route>
 
       </Route>
 

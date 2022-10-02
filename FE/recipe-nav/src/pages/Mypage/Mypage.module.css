@@ -1,0 +1,68 @@
+/* .Myinfos {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 100px;
+    
+
+} */
+
+
+.Mypage {
+    height: 100%;
+    
+    background: linear-gradient(#a68d60 20%, #FFFF 10%)
+}
+
+.Userinfo {
+    position: fixed;
+    display : inline;
+    justify-content: center;
+
+}
+
+.UserContents {
+    display : inline;
+}
+
+/* .UserImage {
+    margin-left: 30px;
+}
+.UserName {
+    font-size: 30px;
+    margin-left: 50px;
+}
+
+.UserGender {
+    font-size : 30px;
+    margin-left: 50px;
+}
+
+.UserAge {
+    font-size: 30px;
+    margin-left: 50px;
+} */
+
+.Layout {
+    background-color: #FFFF;
+
+    align-items: center;
+    
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 50px;
+    padding-top: 30px;
+    padding-left: 20px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 70px;
+    line-height: 140%;
+    /* or 70px */
+
+   
+   
+
+    
+}
