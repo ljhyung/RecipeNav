@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./RecipeDetail.module.css";
-import {  Collapse, Image, message } from "antd";
+import { Collapse, Image, message } from "antd";
 import apiClient from "../../api";
 import RecipeIngredientListComponent from "../../components/recipe/RecipeIngredientListComponent";
 
@@ -31,7 +31,7 @@ const RecipeDetail = (props) => {
   const selectedRecipe = useSelector((state) => state.recipe.selectedRecipe);
 
   const backPageClickHandle = () => {
-    navigate("/recipe");
+    navigate(-1);
   };
   const onReviewEditHandle = (param) => {
     console.log(param);
@@ -72,10 +72,9 @@ const RecipeDetail = (props) => {
       <div className={style["recipe-detail-container"]}>
         <div className={style["recipe-detail-head"]}>
           <h2 className={style["category-text"]}>{selectedRecipe.recName}</h2>
-          <RecipeScrapButtonCopmonent recipeRec ={selectedRecipe.recSeq} />
+          <RecipeScrapButtonCopmonent recipeRec={selectedRecipe.recSeq} />
         </div>
-        
-        
+
         <div className={style["recipe-detail-meta"]}>
           <div className={style["recipe-detail-head-post"]}>
             <Image src={proxyImageURL + selectedRecipe.recImg} fluid="true" />
@@ -89,8 +88,7 @@ const RecipeDetail = (props) => {
                 recLevel={selectedRecipe.recLevel}
               />
             </div>
-            <RecipeMetaDataExposeComponent selectedRecipe={selectedRecipe}/>
-            
+            <RecipeMetaDataExposeComponent selectedRecipe={selectedRecipe} />
           </div>
           <div>
             <h3
@@ -130,10 +128,9 @@ const RecipeDetail = (props) => {
           ></RecipeReviewInput>
         </div>
         <div className={style["footer"]}>
-        <RecipeSimilarComponent/>
+          <RecipeSimilarComponent />
         </div>
       </div>
-
     </>
   );
 };

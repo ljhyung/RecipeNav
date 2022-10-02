@@ -1,5 +1,5 @@
-import {Row, Col, Tooltip} from "antd";
-import {header} from "./data";
+import { Row, Col, Tooltip } from "antd";
+import { header } from "./data";
 import "./header.scss";
 import LogoMain from "../../assets/LogoMain.png";
 import {Link, Outlet} from "react-router-dom";

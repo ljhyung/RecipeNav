@@ -9,7 +9,6 @@ import RealTimeTopLosers from "./RealTimeTopLosers";
 import RealTimeTopGainers from "./RealTimeTopGainers";
 // import MyIngredients from "./MyIngredients";
 
-
 const Home = () => {
   return [
 

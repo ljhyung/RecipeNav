@@ -1,0 +1,35 @@
+/**/
+.ingredient-detail-container {
+    width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0px 0px 5px #8d9081;
+  }
+  /*contain(식자재 설명 ... )*/
+  .ingredient-detail-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  /*식자재 설명 왼쪽*/
+  .ingredient-detail-head-post {
+    flex-grow: 5;
+  }
+  /*식자재 설명*/
+  .ingredient-detail-desc {
+    flex-grow: 5;
+    width: 350px;
+  }
+  .ingredient-detail-desc > p {
+    margin-top: 20px;
+  }
+
+  .category-text {
+    font-weight: bold;
+    font-size: xx-large;
+    color: #a68d60;
+  }
+ 
+
+  
+ 

@@ -12,36 +12,34 @@ import {useState} from 'react';
 import apiClient from "../../api";
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import {Link, Navigate, useNavigate} from 'react-router-dom';
 import {
     setRecipes,
     setSelectedRecipe,
     setPage,
     setSize,
     setTotalItem,
-    setSearchString,
-  } from "../../store/slices/recipeSlice";
+    setSearchString
+} from "../../store/slices/recipeSlice";
 // import './Banner.scss';
-
 const {Element} = BannerAnim;
 const {BgElement} = Element;
 
 const Banner = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-  
+
     const accessToken = useSelector((state) => state.auth.accessToken);
     const [todayRec, setTodayRec] = useState([]);
-
 
     const recipeClickHandle = (recSeq) => {
         //레시피 클릭했을 때,
         console.log(recSeq);
-    
+
         dispatch(setSelectedRecipe(recSeq));
-    
+
         navigate("/recipe/" + recSeq);
-      };
+    };
 
     useEffect(() => {
         apiClient
@@ -72,62 +70,16 @@ const Banner = () => {
                         backgroundImage: `url(${item.recImg})`,
                         backgroundSize: `contain`
                     }}/>
-                <QueueAnim
-                    key="text"
-                    className="seeconf-wrap"
->
+                <QueueAnim key="text" className="seeconf-wrap">
                     <div className='seeconf-title'>{item.recName}</div>
-                    <Button 
-                    className='banner-button'
-                    onClick={() => recipeClickHandle(item.recSeq)}>바로가기</Button>
+                    <Button
+                        className='banner-button'
+                        onClick={() => recipeClickHandle(item.recSeq)}>바로가기</Button>
                     <p className='seeconf-en-name'>{item.recSummary}</p>
                 </QueueAnim>
             </Element >
         );
     })
-
-    //그래프를 위한 config 설정 console.log(graph);
-    const COLOR_PLATE_10 = [
-        '#5B8FF9',
-        '#5AD8A6',
-        '#5D7092',
-        '#F6BD16',
-        '#E8684A',
-        '#6DC8EC',
-        '#9270CA',
-        '#FF9D4D',
-        '#269A99',
-        '#FF99C3'
-    ];
-    const config = {
-        data: chartData,
-        xField: 'year',
-        yField: 'value',
-        seriesField: 'category',
-        yAxis: {
-            label: {
-                formatter: (v) => `${v}`.replace(/\d{1,3}(?=(\d{3})+$)/g, (s) => `${s},`)
-            }
-        },
-        color: COLOR_PLATE_10,
-        width: 150,
-        point: {
-            shape: ({category}) => {
-                return category === 'Gas fuel'
-                    ? 'square'
-                    : 'circle';
-            },
-            style: ({year}) => {
-                return {
-                    r: Number(year) % 4
-                        ? 0
-                        : 3
-                };
-            }
-        }
-    };
-
-    //그래프를 위한 config 설정 끝.
 
     const chartChildren = importantIngredients.map((item, i) => {
         return (
@@ -187,7 +139,6 @@ const Banner = () => {
                             <h1>
                                 주요지표
                             </h1>
-                            <Line {...config} className="chart"/>
                             <Row>
                                 {/* {chartChildren} */}
                                 {todayRecBanner}
