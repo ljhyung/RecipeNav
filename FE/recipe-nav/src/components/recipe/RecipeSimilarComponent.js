@@ -22,7 +22,7 @@ const RecipeSimilarComponent = (props) => {
 
   useEffect(() => {
     apiClient
-      .get(`/recipes/recipe/similar/${recipeRec}`, {
+      .get(`/recipes/similar/${recipeRec}`, {
         headers: {
           Authorization: accessToken,
         },
