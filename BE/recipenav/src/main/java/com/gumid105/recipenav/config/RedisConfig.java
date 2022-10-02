@@ -19,7 +19,7 @@ public class RedisConfig {
     @Bean
     public LettuceConnectionFactory redisConnectionFactory() {
         LettuceClientConfiguration clientConfiguration = LettuceClientConfiguration.builder().
-                readFrom(ReadFrom.REPLICA_PREFERRED).build();
+                readFrom(ReadFrom.REPLICA_PREFERRED ).build();
 
         RedisClusterConfiguration redisClusterConfiguration = new RedisClusterConfiguration();
         redisClusterConfiguration.clusterNode("j7d105.p.ssafy.io",6379);
@@ -29,12 +29,15 @@ public class RedisConfig {
         redisClusterConfiguration.clusterNode("j7d105.p.ssafy.io",7003);
         redisClusterConfiguration.clusterNode("j7d105.p.ssafy.io",7004);
 
-        return new LettuceConnectionFactory(redisClusterConfiguration);
+        LettuceConnectionFactory lf = new LettuceConnectionFactory(redisClusterConfiguration,clientConfiguration);
+        lf.afterPropertiesSet();
+        return  lf;
     }
     @Bean
     public RedisTemplate<?, ?> redisTemplate() {
         RedisTemplate<String, byte[]> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory());
+
         return redisTemplate;
     }
 }
