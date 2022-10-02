@@ -13,7 +13,7 @@
     margin: auto;
     overflow: hidden;
 
-    > h1 {
+    >h1 {
         margin: 144px auto 32px;
         font-size: 38px;
         line-height: 46px;
@@ -22,7 +22,7 @@
         text-align: center;
     }
 
-    > i {
+    >i {
         width: 64px;
         margin: auto;
         height: 2px;
@@ -52,51 +52,61 @@
     font-family: PingFang SC, Helvetica Neue For Number, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
     padding: 12px;
 
-    .chartCard {   
-      
-        .img-wrap {
-          width: 90px;
-          height: auto;
-          float: top;
-        }
-      
-        .content {
-          width: 100%;
-          font-size: 18px;
-          text-align: right;
-          .title {
-            display: block;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+    .chart {
+        height: 300px;
 
-            padding-top: 11px;
-            line-height: 32px;
-            font-size: 2rem;
-            margin-bottom: 8px;
+        min-height: 275px;
+        max-height: 275px;
+    }
+
+    .chartCard {
+
+        .img-wrap {
+            width: 90px;
             height: auto;
-          }
-          .up {
-            color: red;
-            
-          }
-          .down {
-            color: blue;
-            
-          }
-          .number {
-            line-height: 32px;
-            font-size: 24px;
-            height: 32px;
-            margin-bottom: 0;
-          }
+            float: top;
+        }
+
+        .content {
+            width: 100%;
+            font-size: 18px;
+            text-align: right;
+
+            .title {
+                display: block;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+                padding-top: 11px;
+                line-height: 32px;
+                font-size: 2rem;
+                margin-bottom: 8px;
+                height: auto;
+            }
+
+            .up {
+                color: red;
+
+            }
+
+            .down {
+                color: blue;
+
+            }
+
+            .number {
+                line-height: 32px;
+                font-size: 24px;
+                height: 32px;
+                margin-bottom: 0;
+            }
         }
     }
 
-
-
     .page {
         max-width: 1248px;
+
         h1 {
             text-align: left;
             margin-left: 12px;
@@ -137,48 +147,37 @@
             color: banner-text-color;
 
             .banner-button {
-                margin: 64px 0 26px;
+                margin: 400px 0 26px;
+                height: 35px;
+                line-height: 35px;
+                border-radius: 35px;
+                background: #A68D60;
 
-                .ant-btn {
-                    height: 35px;
-                    line-height: 35px;
-                    border-radius: 35px;
-                    background: #2354eb;
-                    box-shadow: 0 7px 13px #91a5f2;
-                    padding: 0 28px;
-                    font-size: 12px;
-
-                    a {
-                        text-decoration: none;
-                    }
-                }
+                padding: 0 28px;
+                font-size: 12px;
+                color: white;
             }
         }
 
         &-en-name {
-            margin: 140px 0 0;
+            margin: 42px 0 0;
             font-size: 12px;
             line-height: 32px;
+            color: white;
+            background-color: #A68D60;
         }
 
         &-title {
-            margin: 16px 0 24px;
-            font-size: 56px;
+            font-size: 42px;
             line-height: 68px;
             text-indent: 2px;
             font-weight: 600;
-            color: #02063D;
+            color: #EAF2CE;
+            background-color: #A68D60;
         }
 
         &-cn-name {
             font-size: 18px;
-        }
-    }
-
-    &-button {
-        .ant-btn {
-            color: #fff;
-            border: none;
         }
     }
 }
@@ -219,6 +218,7 @@
     padding: 12px;
     overflow: hidden;
     background-size: contain;
+
     .page {
         h1 {
             text-align: left;
@@ -226,12 +226,42 @@
 
         }
     }
+
     .contents-wrap {
         box-shadow: 0 20px 32px rgba(1, 4, 8, .12);
         background: #fff;
         border-radius: 4px;
         height: auto;
         margin: 0 auto 64px;
+    }
+
+    .contents {
+        contents: 5px;
+    }
+
+    &-item {
+        &-title {
+            font-size: 20px;
+            color: #0D1A26;
+        }
+
+        &-contents {
+            height: auto;
+        }
+
+        &-content-wrapper {
+            height: 250px;
+        }
+
+        &-content {
+            box-shadow: 0 20px 32px rgba(1, 4, 8, .12);
+            background: blue;
+            height: 240px;
+            margin: 5px;
+            border-radius: 8px;
+            font-size: 40px;
+            color: wheat;
+        }
     }
 }
 
@@ -248,6 +278,7 @@
             margin-left: 12px;
         }
     }
+
     .contents-wrap {
         box-shadow: 0 20px 32px rgba(1, 4, 8, .12);
         background: #fff;
@@ -255,19 +286,56 @@
         height: auto;
         margin: 0 auto 64px;
     }
+
+
+
+    .box {
+        width: 100%;
+        height: 200px;
+        margin: 0 auto;
+
+
+
+        .contents {
+            white-space: nowrap;
+            overflow-x: auto;
+            text-align: center;
+
+            -ms-overflow-style: none;
+            /* 인터넷 익스플로러 */
+            scrollbar-width: none;
+            /* 파이어폭스 */
+
+            .card-item {
+                display: inline-block;
+                padding: 10px 20px;
+                margin-right: 10px;
+            }
+        }
+
+        .contentst::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
     &-item {
         display: flex;
 
         &-link {
-            display: block; 
+            display: block;
             width: 180px;
             margin: auto;
             height: auto;
             text-align: center;
         }
+
         &-img {
             width: 90px;
             height: 90px;
+
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
 
             display: flex;
             align-items: center;
@@ -277,11 +345,13 @@
             position: relative;
             z-index: 1;
         }
+
         &-title {
             margin-top: 12px;
             font-size: 20px;
             color: #0D1A26;
         }
+
         p {
             color: #697B8C;
             font-size: 10px;
@@ -291,46 +361,142 @@
 }
 
 .page3 {
-    min-height: 1080px;
+    background: #EAF2CE;
+    font-family: PingFang SC, Helvetica Neue For Number, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
+    padding: 12px;
+    overflow: hidden;
+    background-size: contain;
 
     .page {
-        .banner-wrapper {
-            margin-top: 88px;
+        h1 {
+            text-align: left;
+            margin-left: 12px;
+        }
+    }
+
+    .contents-wrap {
+        box-shadow: 0 20px 32px rgba(1, 4, 8, .12);
+        background: #fff;
+        border-radius: 4px;
+        height: auto;
+        margin: 0 auto 64px;
+    }
+
+    .other {
+        border: solid;
+        border-color: #EAF2CE;
+
+        &-title {
+            font-size: large;
+            font-weight: 700;
+            color: black;
+            text-align: right;
         }
 
-        .banner-anim {
-            height: 600px;
-
-            video {
-                height: 600px;
+        &-priceRate {
+            &-up {
+                font-size: small;
+                font-weight: 700;
+                color: red;
+                text-align: right;
             }
 
-            .rh5v-Fullscreen_icon,
-            .rh5v-Volume_icon {
-                padding: 0;
+            &-down {
+
+                font-size: small;
+                font-weight: 700;
+                color: blue;
+                text-align: right;
             }
         }
     }
-}
 
-.page4 {
-    min-height: 664px;
-    background: #f7f7f7;
+    .chart {
+        &-bg {
+            width: 90px;
+            height: 90px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
 
-    &-item {
-        &-wrapper {
-            margin-top: 96px;
+            border-radius: 100%;
+            z-index: 1;
         }
 
-        height: 68px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 68px;
+        &-title {
+            font-size: large;
+            font-weight: 700;
+            color: black;
+            text-align: right;
+        }
 
-        img {
-            max-width: 94%;
-            display: inline-block;
+        &-priceRate {
+            &-up {
+                font-size: small;
+                font-weight: 700;
+                color: red;
+                text-align: right;
+            }
+
+            &-down {
+
+                font-size: small;
+                font-weight: 700;
+                color: blue;
+                text-align: right;
+            }
+        }
+    }
+
+    &-item {
+        display: flex;
+
+        .banner-bg {
+            width: 90px;
+            height: 90px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+
+            border-radius: 100%;
+            z-index: 1;
+        }
+
+        &-link {
+            display: block;
+            width: 180px;
+            margin: auto;
+            height: auto;
+            text-align: center;
+        }
+
+        &-img {
+            width: 90px;
+            height: 90px;
+
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 100%;
+            background: #fff;
+            position: relative;
+            z-index: 1;
+        }
+
+        &-title {
+            margin-top: 12px;
+            font-size: 20px;
+            color: #0D1A26;
+        }
+
+        p {
+            color: #697B8C;
+            font-size: 10px;
+            margin-top: 8px;
         }
     }
 }

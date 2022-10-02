@@ -1,15 +1,22 @@
-import { Button, Col, Row } from "antd";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import apiClient from "../../api";
+import React, { useEffect, useState } from 'react';
+import { useSelector } from "react-redux";
+import axiosClient from "../../api";
+import { Button, Row, Col, Statistic } from "antd";
+import styled from "styled-components";
+import "antd/dist/antd.css";
+import { useNavigate } from 'react-router-dom';
 
-const Page2 = () => {
+const Myingredients = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-
-    const [data, setData] = useState([]);
     const accessToken = useSelector((state) => state.auth.accessToken);
+    const [myingredients, setMyingredients] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    const MyingredientsHandle = ((e) => {
+        setMyingredients(e);
+        setLoading(true);
+        console.log("핸들러 확인용")
+    })
 
     const recipeClickHandle = (recSeq) => {
         //레시피 클릭했을 때,
@@ -18,27 +25,25 @@ const Page2 = () => {
     };
 
     useEffect(() => {
-        apiClient
-            .get("/my-infos/ingredients", {
+        axiosClient
+            .get('/my-infos/ingredients', {
                 headers: {
                     Authorization: accessToken
-                },
-                params: {}
+                }
             })
             .then((response) => {
-                setData(response.data);
                 console.log(response.data);
-                //   dispatch(setRecipes(response.data.content));
+                MyingredientsHandle(response.data);
             })
             .catch((error) => {
-                console.log("요청 에러");
+                console.log("에러");
                 console.log(error);
             });
-    }, []);
+    }, [])
 
-    const myIngredientsCard = data.map((item, i) => {
+    const myIngredientsCard = myingredients.map((item, i) => {
         return (
-            <li className="card-item">
+            <Col className="card-item">
                 <div onClick={() => recipeClickHandle(item.ingSeq)} className="card-item-link">
                     <div
                         className="card-item-img"
@@ -53,26 +58,24 @@ const Page2 = () => {
                         }} />
                     <div className="card-item-title">{item.ingName}</div>
                 </div>
-            </li>
+            </Col>
         );
     })
 
     return (
-        <div className="page2 page-wrapper">
+        <div className="page-wrapper myinfo">
             <div className="page">
-                <div className="contents-wrap">
-                    <h1>
-                        내 관심 식자재
-                    </h1>
-                    <div className="box">
-                        <ul className="contents">
+                {
+                    loading
+                        ? <Row className='contents-wrap'>
                             {myIngredientsCard}
-                        </ul>
-                    </div>
-                </div>
+                        </Row>
+                        : <Row></Row>
+                }
 
             </div>
-        </div>
+        </div >
     );
-};
-export default Page2;
+}
+
+export default Myingredients;
