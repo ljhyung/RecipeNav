@@ -2,7 +2,6 @@
   padding: 10px;
   width: 200px;
   border: 1px solid white;
-  flex-grow: 1;
 }
 
 .card-frame:hover {
