@@ -11,7 +11,7 @@ const Myinfo = () => {
     background-color: #A68D60;
     border-radius: 999px;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    width: 400px;
+    width: 70%;
     height: 60px;
     border: #A68D60;
     margin: 60px;

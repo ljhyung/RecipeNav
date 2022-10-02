@@ -1,7 +1,7 @@
-import {Button, Col, Row} from "antd";
-import {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {Link, useNavigate} from "react-router-dom";
+import { Button, Col, Row } from "antd";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import apiClient from "../../api";
 
 const Page2 = () => {
@@ -38,10 +38,8 @@ const Page2 = () => {
 
     const myIngredientsCard = data.map((item, i) => {
         return (
-            <Col md={4} xs={12} className="card-item">
-                <div
-                    onClick={() => recipeClickHandle(item.ingSeq)}
-                    className="card-item-link">
+            <li className="card-item">
+                <div onClick={() => recipeClickHandle(item.ingSeq)} className="card-item-link">
                     <div
                         className="card-item-img"
                         style={{
@@ -52,10 +50,10 @@ const Page2 = () => {
                             backgroundSize: `contain`,
                             backgroundRepeat: `no-repeat`,
                             backgroundPosition: `center`
-                        }}/>
+                        }} />
                     <div className="card-item-title">{item.ingName}</div>
                 </div>
-            </Col>
+            </li>
         );
     })
 
@@ -66,9 +64,11 @@ const Page2 = () => {
                     <h1>
                         내 관심 식자재
                     </h1>
-                    <Row className="contents">
-                        {myIngredientsCard}
-                    </Row>
+                    <div className="box">
+                        <ul className="contents">
+                            {myIngredientsCard}
+                        </ul>
+                    </div>
                 </div>
 
             </div>

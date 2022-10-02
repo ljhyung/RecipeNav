@@ -4,45 +4,36 @@ import axiosClient from "../../api";
 import { Button, Row, Col, Statistic } from "antd";
 import styled from "styled-components";
 import "antd/dist/antd.css";
+import { useNavigate } from 'react-router-dom';
 
 const Myingredients = () => {
-    const NaverButton = styled(Button)`
-    margin-top: 10px;
-    background-color: #A68D60;
-    border-radius: 999px;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    width: 400px;
-    height: 60px;
-    border: #A68D60;
-    margin: 60px;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 16px;
-    color: #ffffff;
-  
-    :hover {
-      background: #A68D60;
-      color: #ffffff;
-    }
-  `;
+    const navigate = useNavigate();
     const accessToken = useSelector((state) => state.auth.accessToken);
-    const [myinfo, setMyinfo] = useState();
+    const [myingredients, setMyingredients] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    const MyinfoHandle = ((e) => {
-        setMyinfo(e);
+    const MyingredientsHandle = ((e) => {
+        setMyingredients(e);
         setLoading(true);
+        console.log("핸들러 확인용")
     })
+
+    const recipeClickHandle = (recSeq) => {
+        //레시피 클릭했을 때,
+        console.log(recSeq);
+        navigate("/ingredients/" + recSeq);
+    };
+
     useEffect(() => {
         axiosClient
-            .get('/my-infos', {
+            .get('/my-infos/ingredients', {
                 headers: {
                     Authorization: accessToken
                 }
             })
             .then((response) => {
                 console.log(response.data);
-                MyinfoHandle(response.data);
+                MyingredientsHandle(response.data);
             })
             .catch((error) => {
                 console.log("에러");
@@ -50,47 +41,34 @@ const Myingredients = () => {
             });
     }, [])
 
+    const myIngredientsCard = myingredients.map((item, i) => {
+        return (
+            <Col className="card-item">
+                <div onClick={() => recipeClickHandle(item.ingSeq)} className="card-item-link">
+                    <div
+                        className="card-item-img"
+                        style={{
+                            width: 120,
+                            height: 120,
+                            background: `url("${item.ingImg}")`,
+                            borderRadius: `100%`,
+                            backgroundSize: `contain`,
+                            backgroundRepeat: `no-repeat`,
+                            backgroundPosition: `center`
+                        }} />
+                    <div className="card-item-title">{item.ingName}</div>
+                </div>
+            </Col>
+        );
+    })
+
     return (
-        <div className="page-wrapper myingredient">
+        <div className="page-wrapper myinfo">
             <div className="page">
                 {
                     loading
                         ? <Row className='contents-wrap'>
-                            <Col span={24} className='content'>
-                                <div className='name'>
-                                    <span className='name-nickname'>
-                                        {myinfo.userName}
-                                    </span>
-                                    님
-                                </div>
-                            </Col>
-                            <Col span={24} className='content'>
-                                <Row className='name'>
-                                    <Col span={12}>
-                                        나이
-                                    </Col>
-                                    <Col span={12}>
-                                        {myinfo.userAge}
-                                    </Col>
-                                </Row>
-                            </Col>
-                            <Col span={24} className='content'>
-                                <Row className='name'>
-                                    <Col span={12}>
-                                        성별
-                                    </Col>
-                                    <Col span={12}>
-                                        {
-                                            myinfo.userGender === null
-                                                ? <span>몰라</span>
-                                                : <span>{myinfo.userGender}</span>
-                                        }
-                                    </Col>
-                                </Row>
-                            </Col>
-                            <Col span={24}>
-                                <NaverButton>프로필 수정</NaverButton>
-                            </Col>
+                            {myIngredientsCard}
                         </Row>
                         : <Row></Row>
                 }
