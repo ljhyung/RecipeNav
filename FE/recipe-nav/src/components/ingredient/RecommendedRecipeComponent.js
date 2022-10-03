@@ -14,6 +14,7 @@ const RecommendedRecipeComponent = (props) => {
     const accessToken = useSelector(state => state.auth.accessToken);
     const dispatch = useDispatch();
     const [recommendedRecipes, setRecommendedRecipes] = useState([]);
+    console.log(ingredientIng)
 
     const recipeClickHandle = (recSeq) => {
         //추천된 레시피 클릭했을 때,
@@ -25,18 +26,24 @@ const RecommendedRecipeComponent = (props) => {
 
     useEffect(() => {
 
-        apiClient.get(`/ingredients/${ingredientIng}/recipes`, {
-            headers: {
-                Authorization: accessToken,
-            }
-        }).then(response => {
-            console.log(response);
-            setRecommendedRecipes(response.data);
+        apiClient
+            .get(`/ingredients/${ingredientIng}/recipes`, {
+                headers: {
+                    Authorization: accessToken,
+                },
+                params: { 
+                    ingredientIng
+                }
+            }).then(response => {
+                console.log(response);
+                setRecommendedRecipes(response.data);
+                console.log(ingredientIng)
+                
 
-        }).catch(error => {
-            console.log(error);
-        })
-    }, [ingredientIng]);
+            }).catch(error => {
+                console.log(error);
+            })
+        }, [ingredientIng]);
 
     return <div className={style.panel}>
         <h2>만들어 보세요!</h2>

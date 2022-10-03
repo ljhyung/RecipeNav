@@ -29,6 +29,7 @@ const RecipeSimilarComponent = (props) => {
       })
       .then((response) => {
         console.log(response);
+        console.log(response);
         setSimilarRecipes(response.data);
       })
       .catch((error) => {
