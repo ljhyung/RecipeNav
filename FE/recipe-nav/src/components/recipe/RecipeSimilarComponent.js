@@ -3,9 +3,13 @@ import ReactMultiCarousel from "../common/ReactMultiCarousel";
 import RecipeCardComponent from "./RecipeCardComponent";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import apiClient from "../../api/index";
-import { setSelectedRecipe } from "../../store/slices/recipeSlice";
+import {
+  setSelectedRecipe,
+  setSelectedRecipeSimlar,
+} from "../../store/slices/recipeSlice";
 import { useDispatch } from "react-redux/es/hooks/useDispatch";
 import style from "./RecipeSimilarComponent.module.css";
+import { useNavigate } from "react-router-dom";
 
 const RecipeSimilarComponent = (props) => {
   const recipeRec = useSelector((state) => state.recipe.selectedRecipe.recSeq);
@@ -13,11 +17,20 @@ const RecipeSimilarComponent = (props) => {
   const dispatch = useDispatch();
   const [similarRecipes, setSimilarRecipes] = useState([]);
 
+  const navigate = useNavigate();
   const recipeClickHandle = (recSeq) => {
     //레시피 클릭했을 때,
     console.log(recSeq);
 
-    dispatch(setSelectedRecipe(recSeq));
+    for (let i = 0; i < setSimilarRecipes.length; i++) {
+      if (similarRecipes[i].recSeq == recSeq) {
+        dispatch(setSelectedRecipeSimlar(similarRecipes[i]));
+        break;
+      }
+    }
+    navigate(`/recipe/${recSeq}`);
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   useEffect(() => {
