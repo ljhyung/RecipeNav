@@ -5,8 +5,8 @@ import style from "./IngredientDetail.module.css";
 import { Collapse, Image } from "antd";
 import { proxyImageURL } from "../../api";
 import { RollbackOutlined } from "@ant-design/icons";
-import IngredientExtraDataComponent from "../../components/ingredient/IngredientExtraDataComponent";
-import IngredientRecipeComponent from "../../components/ingredient/RecommendedRecipeComponent";
+import IngredientGraphComponent from "../../components/ingredient/IngredientGraphComponent";
+
 import IngredientScrapButtonComponent from "../../components/ingredient/IngredientScrapButtonComponent";
 import RecommendedRecipeComponent from "../../components/ingredient/RecommendedRecipeComponent";
 
@@ -26,7 +26,7 @@ const IngredientDetail = (props) => {
   const selectedIngredient = useSelector((state) => state.ingredient.selectedIngredient);
   
   const backPageClickHandle = () => {
-    navigate("/ingredient");
+    navigate(-1);
   };
  
   return (
@@ -47,19 +47,10 @@ const IngredientDetail = (props) => {
           </div>
 
           <div className={style["ingredient-detail-desc"]}>
+            <div>평균가격</div>
             <div>
-              <IngredientExtraDataComponent
-                ingName={selectedIngredient.ingName}
-                ingCategory={selectedIngredient.ingCategory}
-                ingDescription={selectedIngredient.ingDescription}
-                ingCalorie={selectedIngredient.ingCalorie}
-              />
-            </div>
-            <div className={style["ingredient-recipe"]}>
-              <IngredientRecipeComponent/>
-
-            </div>
-            
+              <IngredientGraphComponent/>
+            </div>   
           </div>
         </div>
         <div className={style["footer"]}>

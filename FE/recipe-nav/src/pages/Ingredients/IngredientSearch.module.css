@@ -53,4 +53,10 @@
   .search-button:active {
     background-color: #53a62d;
   }
+
+  .page-container {
+    text-align: center;
+    margin: 30px 0;
+  }
+  
   
