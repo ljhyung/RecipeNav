@@ -51,7 +51,7 @@ const IngredientSearch = () => {
   const size = useSelector((state) => state.ingredient.size);
   const totalItem = useSelector((state) => state.ingredient.totalItem);
   const [isReady, setIsReady] = useState(false);
-  const [tempString, setTempString] = useState("");
+  const [tempString, setTempString] = useState(searchString);
 
   const pageChageHadle = (chagePage, chagePageSize) => {
     console.log("페이지 체인지");
@@ -154,6 +154,7 @@ const IngredientSearch = () => {
             </Carousel>
             <div className={style["input-frame"]}>
               <CustomInput
+                value={tempString}
                 placeholder="식자재 이름"
                 onChange={onSearchChangeHandle}
                 onKeyDown={KeyboardEvent.enter}
