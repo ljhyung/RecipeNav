@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Line } from "@ant-design/plots";
+import { Column } from "@ant-design/plots";
 
 const PriceBaseHistogram = (props) => {
   const [data, setData] = useState([]);
@@ -23,17 +23,20 @@ const PriceBaseHistogram = (props) => {
       return a.cost - b.cost;
     });
 
+  console.log(datas);
   let before = datas[0];
   let count = 1;
   for (let i = 1; i < datas.length; i++) {
     if (before.cost == datas[i].cost) {
       count++;
     } else {
-      arr.push({ ...before });
+      arr.push({ ...before, num: count });
       before = datas[i];
       count = 1;
     }
   }
+
+  arr.push({ ...before, num: count });
 
   const config = {
     data: arr,
@@ -45,9 +48,10 @@ const PriceBaseHistogram = (props) => {
       tickCount: 1000,
     },
     smooth: true,
+    color: "#a8ddb5",
   };
 
-  return <Line {...config} />;
+  return <Column {...config} />;
 };
 
 export default PriceBaseHistogram;

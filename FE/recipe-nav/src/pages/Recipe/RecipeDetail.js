@@ -31,7 +31,7 @@ const RecipeDetail = (props) => {
   const selectedRecipe = useSelector((state) => state.recipe.selectedRecipe);
 
   const backPageClickHandle = () => {
-    navigate(-1);
+    navigate("/recipe");
   };
   const onReviewEditHandle = (param) => {
     console.log(param);

@@ -16,7 +16,7 @@ import {
   setTotalItem,
   setSearchString,
 } from "../../store/slices/recipeSlice";
-import { proxyImageURL } from "../../api";
+import EmptySearchPage from "../../components/common/EmptySearchPage";
 
 const CustomInput = styled(Input)`
   height: 50px;
@@ -170,7 +170,7 @@ const RecipeSearch = () => {
                   ></RecipeCardComponent>
                 );
               })}
-            {recipes.length == 0 && <h1>비어있다.</h1>}
+            {recipes.length == 0 && <EmptySearchPage></EmptySearchPage>}
           </div>
           <div className={style["page-container"]}>
             <Pagination
