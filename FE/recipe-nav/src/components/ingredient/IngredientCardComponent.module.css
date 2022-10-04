@@ -1,25 +1,46 @@
 .card-frame {
-    padding: 10px;
-    width: 200px;
-    border: 1px solid white;
+  padding: 10px;
+  height: 300px;
+  border: 1px solid white;
+}
+.head {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 10px;
+}
+.card-frame:hover {
+  border: 1px solid #eaf2ce;
+}
+
+.ingredient-card-title {
+  font-weight: bold;
+  font-size: larger;
+}
+.graph {
+  height: 200px;
+  width: 100%;
+  text-align: right;
+}
+@media (max-width: 800px) {
+  .head {
+    flex-direction: column;
+    grid-template-columns: 100%;
   }
-  
-  .card-frame:hover {
-    border: 1px solid #eaf2ce;
+  .card-frame {
+    height: auto;
   }
-  
-  .ingredient-card-title {
-    font-weight: bold;
-    font-size: larger;
-  }
-  
-  .ingredient-card-title:hover {
-    cursor: pointer;
-    color: #a68d60;
-  }
-  .body {
-  }
-  .line {
-    height: 1px;
-    box-shadow: #a68d60 0px 1px 1px;
-  }
+}
+.ingredient-card-title:hover {
+  cursor: pointer;
+  color: #a68d60;
+}
+.body {
+}
+.line {
+  height: 1px;
+  box-shadow: #a68d60 0px 1px 1px;
+}
+.boxbox {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}

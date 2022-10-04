@@ -14,7 +14,7 @@ const Page2 = () => {
     const recipeClickHandle = (recSeq) => {
         //레시피 클릭했을 때,
         console.log(recSeq);
-        navigate("/ingredients/" + recSeq);
+        navigate("/ingredient/" + recSeq);
     };
 
     useEffect(() => {

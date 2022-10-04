@@ -1,19 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  myIngredients:[
+  myIngredients: [
     {
-        ingseq: "",
-        ingName: "",
-        ingDescription: "",
-        ingExDate: "",
-        ingCalorie: "",
-        ingSeason: "",
-        ingCategory: "",
-        ingImg: "",
-        userIngredients: [],
-
-    }
+      ingseq: "",
+      ingName: "",
+      ingDescription: "",
+      ingExDate: "",
+      ingCalorie: "",
+      ingSeason: "",
+      ingCategory: "",
+      ingImg: "",
+      userIngredients: [],
+    },
   ],
   ingredients: [],
   selectedIngredient: {
@@ -26,16 +25,11 @@ const initialState = {
     ingCategory: "",
     ingImg: "",
     userIngredients: [],
-
-
-
   },
   page: 1,
-  size: 50,
+  size: 20,
   totalItem: 0,
   searchString: "",
-
-
 };
 
 const ingredientSlice = createSlice({
@@ -65,12 +59,12 @@ const ingredientSlice = createSlice({
     setSearchString(state, action) {
       state.searchString = action.payload;
     },
-    setMyIngredients(state,action){
+    setMyIngredients(state, action) {
       state.myIngredients = action.payload;
     },
-    setRecommendedRecipes(state,action){
-        state.recommendedRecipes = action.payload;
-      },
+    setRecommendedRecipes(state, action) {
+      state.recommendedRecipes = action.payload;
+    },
   },
 });
 export const {
@@ -81,7 +75,6 @@ export const {
   setTotalItem,
   setSearchString,
   setMyIngredients,
-  setRecommendedRecipes
+  setRecommendedRecipes,
 } = ingredientSlice.actions;
 export default ingredientSlice.reducer;
-

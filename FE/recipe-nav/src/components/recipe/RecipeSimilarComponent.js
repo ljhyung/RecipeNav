@@ -10,6 +10,7 @@ import {
 import { useDispatch } from "react-redux/es/hooks/useDispatch";
 import style from "./RecipeSimilarComponent.module.css";
 import { useNavigate } from "react-router-dom";
+import RecipeSimilarCardComponent from "./RecipeSimilarCardComponent";
 
 const RecipeSimilarComponent = (props) => {
   const recipeRec = useSelector((state) => state.recipe.selectedRecipe.recSeq);
@@ -57,7 +58,7 @@ const RecipeSimilarComponent = (props) => {
         {similarRecipes.map((recipe) => {
           return (
             <div className={style["container"]} key={recipe.recSeq}>
-              <RecipeCardComponent
+              <RecipeSimilarCardComponent
                 recipe={recipe}
                 recipeClickHandle={recipeClickHandle}
               />
