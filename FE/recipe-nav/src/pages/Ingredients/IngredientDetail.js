@@ -15,7 +15,6 @@ const comparator = function (a, b) {
 };
 
 const IngredientDetail = (props) => {
-  
   const params = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -23,12 +22,14 @@ const IngredientDetail = (props) => {
 
   console.log(params);
 
-  const selectedIngredient = useSelector((state) => state.ingredient.selectedIngredient);
-  
+  const selectedIngredient = useSelector(
+    (state) => state.ingredient.selectedIngredient,
+  );
+
   const backPageClickHandle = () => {
     navigate(-1);
   };
- 
+
   return (
     <>
       <div className={style["back-page"]} onClick={backPageClickHandle}>
@@ -36,25 +37,31 @@ const IngredientDetail = (props) => {
       </div>
       <div className={style["ingredient-detail-container"]}>
         <div className={style["recipe-detail-head"]}>
-          <h2 className={style["category-text"]}>{selectedIngredient.ingName}</h2>
-          <IngredientScrapButtonComponent ingredientIng ={selectedIngredient.ingSeq} />
+          <h2 className={style["category-text"]}>
+            {selectedIngredient.ingName}
+          </h2>
+          <IngredientScrapButtonComponent
+            ingredientIng={selectedIngredient.ingSeq}
+          />
         </div>
-        
-        
+
         <div className={style["ingredient-detail-meta"]}>
           <div className={style["ingredient-detail-head-post"]}>
-            <Image src={proxyImageURL + selectedIngredient.ingImg} fluid={true} />
+            <Image
+              src={proxyImageURL + selectedIngredient.ingImg}
+              fluid="true"
+            />
           </div>
 
           <div className={style["ingredient-detail-desc"]}>
             <div>평균가격</div>
             <div>
-              <IngredientGraphComponent/>
-            </div>   
+              <IngredientGraphComponent />
+            </div>
           </div>
         </div>
         <div className={style["footer"]}>
-          <RecommendedRecipeComponent/>
+          <RecommendedRecipeComponent />
         </div>
       </div>
     </>

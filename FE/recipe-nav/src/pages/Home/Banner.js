@@ -66,7 +66,7 @@ const Banner = () => {
           key="bg"
           className="banner-bg"
           style={{
-            backgroundImage: `url(${item.recImg})`,
+            backgroundImage: `url(${proxyImageURL + item.recImg})`,
             backgroundSize: `contain`,
           }}
         />

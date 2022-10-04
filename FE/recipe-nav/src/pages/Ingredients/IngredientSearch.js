@@ -9,7 +9,7 @@ import IngredientCardComponent from "../../components/ingredient/IngredientCardC
 import { useDispatch, useSelector } from "react-redux";
 import apiClient from "../../api";
 import { useNavigate } from "react-router-dom";
-import { 
+import {
   setIngredients,
   setSelectedIngredient,
   setPage,
@@ -64,6 +64,7 @@ const IngredientSearch = () => {
     console.log(current, pageSize);
     dispatch(setSize(pageSize));
   };
+
   useEffect(() => {
     console.log(searchString);
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -132,8 +133,6 @@ const IngredientSearch = () => {
     navigate("/ingredient/" + ingSeq);
   };
 
-
-
   return (
     <>
       <div className={style["search-container"]}>
@@ -171,9 +170,9 @@ const IngredientSearch = () => {
                     ingredient={ingredient}
                     ingredientClickHandle={ingredientClickHandle}
                   ></IngredientCardComponent>
-              );
-            })}
-          {ingredients.length == 0 && <h1>비어있다.</h1>}
+                );
+              })}
+            {ingredients.length == 0 && <h1>비어있다.</h1>}
           </div>
           <div className={style["page-container"]}>
             <Pagination
