@@ -124,7 +124,7 @@ const Banner = () => {
         <div className="banner page-wrapper">
             <div className="page">
                 <Row gutter={32}>
-                    <Col md={16} xs={24}>
+                    <Col md={24} xs={24}>
                         <div className="content-wrap">
                             <h1>
                                 오늘의 레시피
@@ -132,17 +132,6 @@ const Banner = () => {
                             <BannerAnim type="across" duration={550} ease="easeInOutQuint">
                                 {todayRecBanner}
                             </BannerAnim>
-                        </div>
-                    </Col>
-                    <Col md={8} xs={24}>
-                        <div className="content-wrap">
-                            <h1>
-                                주요지표
-                            </h1>
-                            <Row>
-                                {/* {chartChildren} */}
-                                {todayRecBanner}
-                            </Row>
                         </div>
                     </Col>
                 </Row>

@@ -18,8 +18,13 @@ const Graph = (props) => {
                 params: {}
             })
             .then((response) => {
-                setData(response.data);
-                //   dispatch(setRecipes(response.data.content));
+                if(response.data.length > 900){
+                    setData(response.data.slice(-900))
+                    console.log(response.data.slice(-900))
+                }
+                else{
+                    setData(response.data);
+                }
             })
             .catch((error) => {
                 console.log("요청 에러");
