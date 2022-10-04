@@ -6,15 +6,19 @@ import com.gumid105.recipenav.recipe.dto.ReqReviewDto;
 import com.gumid105.recipenav.recipe.dto.ReviewDto;
 import com.gumid105.recipenav.recipe.service.RecipeService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @RestController
+@Slf4j
 @RequestMapping("/recipes")
 @RequiredArgsConstructor
 public class RecipeController {
@@ -87,5 +91,19 @@ public class RecipeController {
     @GetMapping("/daily")
     public ResponseEntity<List<RecipeDto>> getDailyRecipes() {
         return ResponseEntity.ok(recipeService.getDailyRecipes());
+    }
+
+    @Scheduled(cron = "0 5 2 * * MON-FRI")
+    @PutMapping("/price")
+    public Map<String, Object> updatePrice() {
+        log.info("updatePrice 실행" + LocalDateTime.now());
+        Map<String, Object> response = new HashMap<>();
+        if (recipeService.updatePrice()>0){
+            response.put("result", "SUCCESS");
+        }else {
+            response.put("result", "FAIL");
+            response.put("reason", "업데이트 실패.");
+        }
+        return response;
     }
 }

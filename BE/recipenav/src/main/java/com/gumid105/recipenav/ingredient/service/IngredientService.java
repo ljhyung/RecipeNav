@@ -2,12 +2,11 @@ package com.gumid105.recipenav.ingredient.service;
 
 import com.gumid105.recipenav.config.RedisConfig;
 import com.gumid105.recipenav.ingredient.domain.Ingredient;
+import com.gumid105.recipenav.ingredient.domain.IngredientPrice;
 import com.gumid105.recipenav.ingredient.domain.IngredientPriceLog;
-import com.gumid105.recipenav.ingredient.dto.ChangeRate;
-import com.gumid105.recipenav.ingredient.dto.IngredientDto;
-import com.gumid105.recipenav.ingredient.dto.IngredientPriceLogDto;
-import com.gumid105.recipenav.ingredient.dto.IngredientPriceLogSeparateDto;
+import com.gumid105.recipenav.ingredient.dto.*;
 import com.gumid105.recipenav.ingredient.repository.IngredientPriceLogRepository;
+import com.gumid105.recipenav.ingredient.repository.IngredientPriceRepository;
 import com.gumid105.recipenav.ingredient.repository.IngredientRepository;
 import com.gumid105.recipenav.recipe.domain.Recipe;
 import com.gumid105.recipenav.recipe.dto.RecipeDto;
@@ -18,12 +17,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
@@ -34,6 +35,7 @@ public class IngredientService {
     private final IngredientRepository ingredientRepository;
     private final RecipeRepository recipeRepository;
     private final IngredientPriceLogRepository ingredientPriceLogRepository;
+    private final IngredientPriceRepository ingredientPriceRepository;
     private final RedisTemplate<String,byte[]> redisTemplate;
 
     public Page<Ingredient> getAllIngredientByPage(Integer page, Integer size){
@@ -46,6 +48,11 @@ public class IngredientService {
     public List<IngredientDto> getAllIngredient(){
         List<Ingredient> ingredientList = ingredientRepository.findAll();
         return IngredientDto.ofList(ingredientList);
+    }
+
+    public List<IngredientPriceDto> getIngredientPrice(Long ingredientSeq){
+        List<IngredientPrice> ingredientPriceList = ingredientPriceRepository.findIngredientPricesByIngredient_IngSeq(ingredientSeq);
+        return IngredientPriceDto.ofList(ingredientPriceList);
     }
 
     public IngredientDto getIngredientDetail(Long seq){
