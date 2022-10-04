@@ -18,9 +18,9 @@ const Graph = (props) => {
                 params: {}
             })
             .then((response) => {
-                if(response.data.length > 900){
-                    setData(response.data.slice(-900))
-                    console.log(response.data.slice(-900))
+                if(response.data.length > 300){
+                    setData(response.data.slice(-300))
+                    console.log(response.data.slice(-300))
                 }
                 else{
                     setData(response.data);
