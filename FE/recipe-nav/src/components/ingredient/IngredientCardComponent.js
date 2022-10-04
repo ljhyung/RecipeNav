@@ -9,7 +9,7 @@ import apiClient from "../../api/index";
 import { useSelector } from "react-redux";
 
 const IngredientCardComponent = (props) => {
-  const ingredient = props.ingredient;
+  let ingredient = { ...props.ingredient };
   let imageUrl = ingredient.ingImg;
   let logList = ingredient.ingredientPriceLogList?.slice(-10);
 
@@ -24,6 +24,26 @@ const IngredientCardComponent = (props) => {
       })
       .then((response) => {
         logList = response.data?.slice(-10);
+      });
+  }
+  if (ingredient.ingredientPrice == null) {
+    apiClient
+      .get(`/ingredients/price/${ingredient.ingSeq}`, {
+        headers: {
+          Authorization: accessToken,
+        },
+      })
+      .then((response) => {
+        console.log("응답 받음");
+        console.log(response.data);
+        const temp = response.data[0];
+        console.log(temp);
+        ingredient.ingredientPrice = {
+          ingMinCost: temp.ingMinCost,
+          ingMaxCost: temp.ingMaxCost,
+          ingAvgCost: temp.ingAvgCost,
+        };
+        console.log(ingredient.ingredientPrice);
       });
   }
 
@@ -71,9 +91,9 @@ const IngredientCardComponent = (props) => {
             ) : (
               <div>-%</div>
             )}
-            <div>최저가: {ingredient.ingredientPrice.ingMinCost}원</div>
-            <div>평균가: {ingredient.ingredientPrice.ingAvgCost}원</div>
-            <div>최대가: {ingredient.ingredientPrice.ingMaxCost}원</div>
+            <div>최저가: {ingredient.ingredientPrice?.ingMinCost}원</div>
+            <div>평균가: {ingredient.ingredientPrice?.ingAvgCost}원</div>
+            <div>최대가: {ingredient.ingredientPrice?.ingMaxCost}원</div>
           </div>
         </div>
         <div className={style.foot}></div>

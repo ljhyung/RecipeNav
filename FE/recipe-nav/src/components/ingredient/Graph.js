@@ -5,9 +5,12 @@ import { useSelector } from "react-redux";
 import Search from "antd/lib/input/Search";
 
 const Graph = (props) => {
-  const data = props.data;
+  let data = props.data;
   let formattedDate = [];
 
+  if (data == null) {
+    data = [];
+  }
   for (let i = 0; i < data.length; i++) {
     let category = "";
     let cost = 0;
@@ -58,7 +61,7 @@ const Graph = (props) => {
 
   return (
     <>
-      {formattedDate.length > 0 ? (
+      {formattedDate !== null && formattedDate.length > 0 ? (
         <Line className="graph-bg" {...config} />
       ) : (
         <h1>...</h1>
