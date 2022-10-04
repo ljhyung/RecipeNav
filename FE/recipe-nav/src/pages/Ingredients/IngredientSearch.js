@@ -91,6 +91,7 @@ const IngredientSearch = () => {
         .catch((error) => {
           console.log("요청 에러");
           console.log(error);
+          setIsReady(true);
         });
     } else {
       console.log(searchString);
@@ -111,8 +112,11 @@ const IngredientSearch = () => {
           let totalPage = parseInt(totalItem / size) + 1;
           dispatch(setPage(1));
           dispatch(setTotalItem(totalItem));
+          setIsReady(true);
         })
-        .catch((error) => {});
+        .catch((error) => {
+          setIsReady(true);
+        });
     }
   }, [page, size, searchString]);
 
