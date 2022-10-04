@@ -30,7 +30,7 @@ public class RecipeDto {
     private String recAmount;
     private String recLevel;
     private String recIngFrac;
-    private Integer recPrice;
+    private Double recPrice;
     private String recImg;
     private List<Review> reviews;
 
