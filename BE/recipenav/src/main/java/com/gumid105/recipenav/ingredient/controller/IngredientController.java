@@ -2,19 +2,24 @@ package com.gumid105.recipenav.ingredient.controller;
 
 import com.gumid105.recipenav.ingredient.domain.Ingredient;
 import com.gumid105.recipenav.ingredient.dto.IngredientDto;
+import com.gumid105.recipenav.ingredient.dto.IngredientPriceDto;
 import com.gumid105.recipenav.ingredient.dto.IngredientPriceLogDto;
 import com.gumid105.recipenav.ingredient.dto.IngredientPriceLogSeparateDto;
 import com.gumid105.recipenav.ingredient.service.IngredientService;
 import com.gumid105.recipenav.recipe.dto.RecipeDto;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+@Slf4j
 @RestController
 @RequestMapping("/ingredients")
 public class IngredientController {
@@ -32,6 +37,11 @@ public class IngredientController {
     @GetMapping("")
     public ResponseEntity<List<IngredientDto>> getIngredients() {
         return ResponseEntity.ok(ingredientService.getAllIngredient());
+    }
+
+    @GetMapping("/price/{ingredient-seq}")
+    public ResponseEntity<List<IngredientPriceDto>> getIngredientPrice(@PathVariable("ingredient-seq") Long ingredientsSeq) {
+        return ResponseEntity.ok(ingredientService.getIngredientPrice(ingredientsSeq));
     }
 
     @GetMapping("/list")
@@ -74,8 +84,10 @@ public class IngredientController {
     }
 
 
+    @Scheduled(cron = "0 0 2 * * MON-FRI")
     @PutMapping("/rate")
     public Map<String, Object> updateRate() {
+        log.info("updateRate 실행" + LocalDateTime.now());
         Map<String, Object> response = new HashMap<>();
         if (ingredientService.updateRate()>0){
             response.put("result", "SUCCESS");

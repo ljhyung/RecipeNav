@@ -1,12 +1,15 @@
 package com.gumid105.recipenav.recipe.service;
 
 import com.gumid105.recipenav.ingredient.domain.Ingredient;
+import com.gumid105.recipenav.ingredient.domain.IngredientPriceLog;
 import com.gumid105.recipenav.ingredient.repository.IngredientRepository;
 import com.gumid105.recipenav.recipe.domain.Recipe;
+import com.gumid105.recipenav.recipe.domain.RecipeIngredient;
 import com.gumid105.recipenav.recipe.domain.Review;
 import com.gumid105.recipenav.recipe.dto.RecipeDto;
 import com.gumid105.recipenav.recipe.dto.ReqReviewDto;
 import com.gumid105.recipenav.recipe.dto.ReviewDto;
+import com.gumid105.recipenav.recipe.repository.RecipeIngredientRepository;
 import com.gumid105.recipenav.recipe.repository.RecipeRepository;
 import com.gumid105.recipenav.recipe.repository.ReviewRepository;
 import com.gumid105.recipenav.user.dto.UserDto;
@@ -18,6 +21,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +34,7 @@ public class RecipeService {
     private final ReviewRepository reviewRepository;
     private final UserRepository userRepository;
     private final IngredientRepository ingredientRepository;
+    private final RecipeIngredientRepository recipeIngredientRepository;
 
     public Page<Recipe> getRecipes(Integer page, Integer size){
         PageRequest pageRequest = PageRequest.of(page,size);
@@ -116,6 +121,32 @@ public class RecipeService {
     public List<RecipeDto> getDailyRecipes(){
         List<Recipe> recipeList = recipeRepository.findRecipesByRandom();
         return RecipeDto.ofList(recipeList);
+    }
+
+    public int updatePrice(){
+        for(Long i=1l;i<538;i++) {
+            try {
+                System.out.println(i + " 진입");
+                Double recipeCost = 0d;
+                Recipe recipe = recipeRepository.findById(i).get();
+                List<RecipeIngredient> recipeIngredientList = recipeIngredientRepository.findRecipeIngredientsByRecipe_RecSeq(i);
+                for (RecipeIngredient ri : recipeIngredientList) {
+                    recipeCost += ri.getIngPrice()* Double.parseDouble(ri.getIngAmount());
+                }
+                System.out.println(i + " 레시피 가격 : " + recipeCost);
+                recipe.updatePrice(recipeCost);
+            }catch (Exception e) {
+        }
+
+        }
+        return 1;
+//        try {
+//
+//            }
+//            return 1;
+//        }catch (Exception e) {
+//            return 0;
+//        }
     }
 
 }

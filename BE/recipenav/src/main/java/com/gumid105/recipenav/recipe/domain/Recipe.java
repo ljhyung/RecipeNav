@@ -5,6 +5,7 @@ import com.gumid105.recipenav.user.domain.UserRecipe;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Entity
 @Getter
+@DynamicUpdate
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "t_recipe", schema = "recipenav")
 public class Recipe {
@@ -64,7 +66,7 @@ public class Recipe {
     private String recIngFrac;
 
     @Column(name = "rec_price")
-    private Integer recPrice;
+    private Double recPrice;
 
     @Column(name = "rec_img")
     private String recImg;
@@ -87,4 +89,8 @@ public class Recipe {
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<RecipeProcess> recipeProcessList = new ArrayList<>();
 
+
+    public void updatePrice (Double price){
+        this.recPrice = price;
+    }
 }

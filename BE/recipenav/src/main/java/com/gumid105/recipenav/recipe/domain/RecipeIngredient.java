@@ -38,7 +38,7 @@ public class RecipeIngredient {
     private String ingType;
 
     @Column(name = "ing_price")
-    private Integer ingPrice;
+    private Double ingPrice;
 
 //    @JsonManagedReference
 //    @OneToOne(mappedBy = "recipeIngredient")
