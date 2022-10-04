@@ -1,4 +1,4 @@
-import { Button, Card, Carousel, Input, Pagination } from "antd";
+import { Button, Card, Carousel, Input, Pagination, Row, Spin } from "antd";
 import Col from "antd/es/grid/col";
 import Search from "antd/lib/input/Search";
 import React, { useEffect, useState } from "react";
@@ -50,7 +50,7 @@ const IngredientSearch = () => {
   const page = useSelector((state) => state.ingredient.page);
   const size = useSelector((state) => state.ingredient.size);
   const totalItem = useSelector((state) => state.ingredient.totalItem);
-
+  const [isReady, setIsReady] = useState(false);
   const [tempString, setTempString] = useState("");
 
   const pageChageHadle = (chagePage, chagePageSize) => {
@@ -66,6 +66,7 @@ const IngredientSearch = () => {
   };
 
   useEffect(() => {
+    setIsReady(false);
     console.log(searchString);
     window.scrollTo({ top: 0, behavior: "smooth" });
     if (searchString == "" || searchString == null) {
@@ -80,6 +81,7 @@ const IngredientSearch = () => {
           },
         })
         .then((response) => {
+          setIsReady(true);
           console.log("식자재 요청");
           console.log(response);
           console.log(response.data.totalPages);
@@ -162,7 +164,16 @@ const IngredientSearch = () => {
           </div>
 
           <div className={style["ingredient-container"]}>
-            {ingredients.length > 0 &&
+            {!isReady && (
+              <Row>
+                <div style={{ height: "100vh" }}>
+                  <Spin tip="Loading..."></Spin>
+                </div>
+              </Row>
+            )}
+
+            {isReady &&
+              ingredients.length > 0 &&
               ingredients.map((ingredient, i) => {
                 return (
                   <IngredientCardComponent

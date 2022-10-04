@@ -47,6 +47,9 @@ const ingredientSlice = createSlice({
         }
       }
     },
+    setSelectedIngredientDirect(state, action) {
+      state.selectedIngredient = action.payload;
+    },
     setPage(state, action) {
       state.page = action.payload;
     },
@@ -76,5 +79,6 @@ export const {
   setSearchString,
   setMyIngredients,
   setRecommendedRecipes,
+  setSelectedIngredientDirect,
 } = ingredientSlice.actions;
 export default ingredientSlice.reducer;

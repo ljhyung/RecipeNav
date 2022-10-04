@@ -6,7 +6,10 @@ import Graph from "./Graph";
 const IngredientCardComponent = (props) => {
   const ingredient = props.ingredient;
   let imageUrl = ingredient.ingImg;
-  let logList = ingredient.ingredientPriceLogList.slice(-10);
+  let logList = ingredient.ingredientPriceLogList?.slice(-10);
+  if (logList == null) {
+    logList = [];
+  }
   if (imageUrl.startsWith("https")) {
   } else {
     imageUrl = proxyImageURL + imageUrl;
@@ -15,7 +18,7 @@ const IngredientCardComponent = (props) => {
     <>
       <div className={style["card-frame"]}>
         <div className={style.head}>
-          <Image src={imageUrl} style={{ borderRadius: "5px" }} height={200} />
+          <Image src={imageUrl} style={{ borderRadius: "5px" }} width={200} />
           <div className={style.graph}>
             <Graph data={logList} />
           </div>
