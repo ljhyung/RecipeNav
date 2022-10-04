@@ -1,12 +1,26 @@
 import { useEffect } from "react";
 import style from "./MyRecommendComponents.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import apiClient, { proxyImageURL } from "../../api/index";
 import { useState } from "react";
 import ReactMultiCarousel from "../common/ReactMultiCarousel";
+import { useNavigate } from "react-router-dom";
+import { setSelectedRecipeSimlar } from "../../store/slices/recipeSlice";
 const MyRecommendComponents = (props) => {
   const accessToken = useSelector((state) => state.auth.accessToken);
   const [myRecommendedRecipe, setMyRecommendedRecipe] = useState([]);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const recipeClickHadle = (val) => {
+    for (let i = 0; i < myRecommendedRecipe.length; i++) {
+      if (myRecommendedRecipe[i].recSeq == val) {
+        dispatch(setSelectedRecipeSimlar(myRecommendedRecipe[i]));
+      }
+    }
+    navigate(`/recipe/${val}`);
+  };
+
   useEffect(() => {
     apiClient
       .get("/my-infos/recipes/similar", {
@@ -38,7 +52,10 @@ const MyRecommendComponents = (props) => {
                   <div className={style["small-recipe-img"]}>
                     <img src={proxyImageURL + item.recImg} />
                   </div>
-                  <div className={style["small-recipe-box-text"]}>
+                  <div
+                    className={style["small-recipe-box-text"]}
+                    onClick={() => recipeClickHadle(item.recSeq)}
+                  >
                     {item.recName}
                   </div>
                 </div>

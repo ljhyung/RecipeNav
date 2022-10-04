@@ -56,7 +56,6 @@ const Graph = (props) => {
     },
   };
 
-  console.log(formattedDate);
   return (
     <>
       {formattedDate.length > 0 ? (

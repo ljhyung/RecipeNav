@@ -13,14 +13,7 @@ import apiClient, { proxyImageURL } from "../../api";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import {
-  setRecipes,
-  setSelectedRecipe,
-  setPage,
-  setSize,
-  setTotalItem,
-  setSearchString,
-} from "../../store/slices/recipeSlice";
+import { setSelectedRecipeSimlar } from "../../store/slices/recipeSlice";
 // import './Banner.scss';
 const { Element } = BannerAnim;
 const { BgElement } = Element;
@@ -36,9 +29,15 @@ const Banner = () => {
     //레시피 클릭했을 때,
     console.log(recSeq);
 
-    dispatch(setSelectedRecipe(recSeq));
+    console.log(todayRec);
 
-    navigate("/recipe/" + recSeq);
+    for (let i = 0; i < todayRec.length; i++) {
+      if (todayRec[i].recSeq == recSeq) {
+        dispatch(setSelectedRecipeSimlar(todayRec[i]));
+        navigate("/recipe/" + recSeq);
+        break;
+      }
+    }
   };
 
   useEffect(() => {
@@ -61,7 +60,7 @@ const Banner = () => {
 
   const todayRecBanner = todayRec.map((item, i) => {
     return (
-      <Element>
+      <Element key={i}>
         <BgElement
           key="bg"
           className="banner-bg"
@@ -86,7 +85,7 @@ const Banner = () => {
 
   const chartChildren = importantIngredients.map((item, i) => {
     return (
-      <Col md={12} xs={24} className="chart-element">
+      <Col key={i} md={12} xs={24} className="chart-element">
         <Card
           className="chartCard"
           bordered={false}
@@ -131,7 +130,6 @@ const Banner = () => {
               </BannerAnim>
             </div>
           </Col>
-
         </Row>
       </div>
     </div>

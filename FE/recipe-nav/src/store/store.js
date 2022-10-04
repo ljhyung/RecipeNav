@@ -10,4 +10,9 @@ export const store = configureStore({
     recipe: recipeSlice,
     ingredient: ingredientSlice,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      immutableCheck: false,
+      serializableCheck: false,
+    }),
 });

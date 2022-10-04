@@ -23,9 +23,10 @@ const RecipeSimilarComponent = (props) => {
     //레시피 클릭했을 때,
     console.log(recSeq);
 
-    for (let i = 0; i < setSimilarRecipes.length; i++) {
+    for (let i = 0; i < similarRecipes.length; i++) {
       if (similarRecipes[i].recSeq == recSeq) {
         dispatch(setSelectedRecipeSimlar(similarRecipes[i]));
+        console.log("qweqwqwe");
         break;
       }
     }

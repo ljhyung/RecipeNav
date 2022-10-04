@@ -71,6 +71,7 @@ const Mypage = (props) => {
       },
     })
     .then((response) => {
+      console.log("내정보 출력");
       console.log(response);
       const myinformation = response;
       console.log(myinformation);
@@ -135,7 +136,6 @@ const Mypage = (props) => {
               <Row>
                 <Col className={style.Userinfo} span={8} offset={1}>
                   <InfoTitelCard justify="space-evenly">내 정보</InfoTitelCard>
-
                   <div>
                     <img className={style.UserImage} alt="userimage" />
                   </div>
@@ -144,7 +144,6 @@ const Mypage = (props) => {
                   </div>
                   <div className={style.UserGender}>{user_Gender}</div>
                   <div className={style.UserAge}>{user_Age}</div>
-
                   <div className="ProfileEdit">
                     <SubmitButton onClick={moveToProfileEdit}>
                       프로필 수정
