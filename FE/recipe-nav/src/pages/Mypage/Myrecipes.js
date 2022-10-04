@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axiosClient from "../../api";
+import axiosClient, { proxyImageURL } from "../../api";
 import { Button, Row, Col, Statistic, Spin } from "antd";
 import styled from "styled-components";
 import "antd/dist/antd.css";
@@ -54,6 +54,11 @@ const Myrecipes = () => {
   }, []);
 
   const MyrecipesCard = myingredients.map((item, i) => {
+    console.log(item);
+    let imageUrl = item.recImg;
+    if (!imageUrl.startsWith("https")) {
+      imageUrl = proxyImageURL + imageUrl;
+    }
     return (
       <div className={style["card-item"]} key={i}>
         <div
