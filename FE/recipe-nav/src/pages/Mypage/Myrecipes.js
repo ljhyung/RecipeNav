@@ -70,7 +70,7 @@ const Myrecipes = () => {
             style={{
               width: 120,
               height: 120,
-              background: `url("${item.recImg}")`,
+              background: `url("${imageUrl}")`,
               backgroundSize: `contain`,
               backgroundRepeat: `no-repeat`,
               backgroundPosition: `center`,
