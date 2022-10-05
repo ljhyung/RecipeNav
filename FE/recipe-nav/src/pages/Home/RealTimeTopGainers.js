@@ -36,7 +36,13 @@ const Page3 = () => {
   const Other = data.map((item, i) => {
     if (i < 7 && i != pick) {
       return (
-        <Col md={12} xs={24} onClick={() => clickEvent(i)} className="other">
+        <Col
+          md={12}
+          xs={24}
+          onClick={() => clickEvent(i)}
+          key={i}
+          className="other"
+        >
           <div
             style={{
               width: 120,

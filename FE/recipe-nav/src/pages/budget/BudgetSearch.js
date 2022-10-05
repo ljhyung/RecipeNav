@@ -49,7 +49,7 @@ const BudgetSearch = (props) => {
   const searchClickHadler = (e) => {
     e.preventDefault();
     console.log("조회 버튼이 클릭되었습니다.", minPrice, maxPrice);
-    apiClient
+    return apiClient
       .get("/recipes/recommendation", {
         headers: {
           Authorization: accessToken,
@@ -81,8 +81,8 @@ const BudgetSearch = (props) => {
           scrollChangeHandle={scrollChangeHandle}
           changeMinPrice={changeMinPrice}
           changeMaxPrice={changeMaxPrice}
-            />
-        </div>
+        />
+      </div>
       <div className={style["result-print-panel"]}>
         {recipes.length !== 0 &&
           recipes.map((recipe, i) => {
@@ -93,9 +93,13 @@ const BudgetSearch = (props) => {
               ></ReciepeBoxComponent>
             );
           })}
-        
       </div>
-      {recipes.length === 0 && <h1 style={{textAlign:"center"}}><RobotOutlined />검색 결과가 존재하지 않습니다.</h1>}
+      {recipes.length === 0 && (
+        <h1 style={{ textAlign: "center" }}>
+          <RobotOutlined />
+          검색 결과가 존재하지 않습니다.
+        </h1>
+      )}
     </>
   );
 };
