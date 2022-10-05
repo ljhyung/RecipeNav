@@ -99,7 +99,6 @@ public class RecipeService {
         }
         return 0;
 
-//        return ReviewDto.of();
     }
 
     public List<RecipeDto> getSeasonRecipes(Integer month){
@@ -126,27 +125,18 @@ public class RecipeService {
     public int updatePrice(){
         for(Long i=1l;i<538;i++) {
             try {
-                System.out.println(i + " 진입");
                 Double recipeCost = 0d;
                 Recipe recipe = recipeRepository.findById(i).get();
                 List<RecipeIngredient> recipeIngredientList = recipeIngredientRepository.findRecipeIngredientsByRecipe_RecSeq(i);
                 for (RecipeIngredient ri : recipeIngredientList) {
                     recipeCost += ri.getIngPrice()* Double.parseDouble(ri.getIngAmount());
                 }
-                System.out.println(i + " 레시피 가격 : " + recipeCost);
                 recipe.updatePrice(recipeCost);
             }catch (Exception e) {
         }
 
         }
         return 1;
-//        try {
-//
-//            }
-//            return 1;
-//        }catch (Exception e) {
-//            return 0;
-//        }
     }
 
 }
