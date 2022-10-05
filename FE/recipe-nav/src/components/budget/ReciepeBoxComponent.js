@@ -23,7 +23,7 @@ const ReciepeBoxComponent = (props) => {
   return (
     <>
       <div className={style["card-frame"]}>
-        <div className={style["recipe-detail-head"]}>
+        <div>
           <h2 className={style["category-text"]}>{recipe.recName}</h2>
         </div>
 
@@ -32,7 +32,7 @@ const ReciepeBoxComponent = (props) => {
             <Image
               src={proxyImageURL + recipe.recImg}
               style={{ borderRadius: "10px" }}
-              fluid="true"
+              fluid
             />
           </div>
 
@@ -51,13 +51,13 @@ const ReciepeBoxComponent = (props) => {
               className={`${style["category-text"]} ${style["ingredient-bar"]}`}
             ></h3>
           </div>
+          <button
+            className={style["recipe-scrap-button"]}
+            onClick={detailClickEventHandle}
+          >
+            상세보기
+          </button>
         </div>
-        <button
-          className={style["recipe-scrap-button"]}
-          onClick={detailClickEventHandle}
-        >
-          상세보기
-        </button>
       </div>
     </>
   );

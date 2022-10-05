@@ -44,8 +44,8 @@ const NaverOauth = () => {
           //받아온 토큰값이 없으면 중단
         }
 
-        dispatch(setToken({ accessToken: Authorization }));
         dispatch(setAthenticated(true));
+        dispatch(setToken({ accessToken: Authorization }));
 
         axiosClient
           .get("/my-infos", {
@@ -56,7 +56,7 @@ const NaverOauth = () => {
           .then((res) => {
             console.log(res);
             if (res.data === null || res.data === "") {
-              console.log("받다온 사용자 정보의 데이터가 없습니다.");
+              console.log("받아온 사용자 정보의 데이터가 없습니다.");
               navigate("/login");
               return;
             }

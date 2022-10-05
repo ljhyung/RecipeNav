@@ -55,7 +55,6 @@ const Myrecipes = () => {
   }, []);
 
   const MyrecipesCard = myingredients.map((item, i) => {
-    console.log(item);
     let imageUrl = item.recImg;
     if (!imageUrl.startsWith("https")) {
       imageUrl = proxyImageURL + imageUrl;
@@ -88,26 +87,23 @@ const Myrecipes = () => {
       <div className="page">
         <h2>나의 레시피</h2>
         {loading ? (
-
-
           <SimpleBar style={{ maxHeight: 300 }} className={style["page"]}>
             <div className={style.box}>
-
               {myingredients.length > 0 && MyrecipesCard}
-              {myingredients.length === 0 &&
-                <div style={{ gridColumnStart: 1, gridColumnEnd: -1, fontSize: 20 }}>
+              {myingredients.length === 0 && (
+                <div
+                  style={{
+                    gridColumnStart: 1,
+                    gridColumnEnd: -1,
+                    fontSize: 20,
+                  }}
+                >
                   <StarTwoTone twoToneColor={"gold "} />
-                  <span>  을 눌러 추가할 수 있어요!</span>
-                </div>}
+                  <span> 을 눌러 추가할 수 있어요!</span>
+                </div>
+              )}
             </div>
-
-
-
-
           </SimpleBar>
-
-
-
         ) : (
           <Row>
             <Spin tip="Loading..."></Spin>
