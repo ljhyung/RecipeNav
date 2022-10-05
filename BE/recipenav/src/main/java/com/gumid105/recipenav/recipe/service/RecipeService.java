@@ -61,7 +61,7 @@ public class RecipeService {
     }
 
     public List<RecipeDto> getRecipeByPrice(Integer minPrice, Integer maxPrice){
-        List<Recipe> recipeList = recipeRepository.findRecipesByRecPriceIsBetween(minPrice, maxPrice);
+        List<Recipe> recipeList = recipeRepository.findRecipesByRecPriceIsBetween(minPrice.doubleValue(), maxPrice.doubleValue());
         return RecipeDto.ofList(recipeList);
     }
 
@@ -137,6 +137,13 @@ public class RecipeService {
 
         }
         return 1;
+    }
+
+
+    public Double getMaxRecipePrice(){
+        Optional<Recipe> optionalRecipe = recipeRepository.findFirstByOrderByRecPriceDesc();
+        Recipe recipe = optionalRecipe.get();
+        return recipe.getRecPrice();
     }
 
 }
