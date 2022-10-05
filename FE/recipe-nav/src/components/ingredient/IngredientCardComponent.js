@@ -7,6 +7,7 @@ import { CaretDownOutlined, CaretUpOutlined } from "@ant-design/icons";
 import { useMemo } from "react";
 import apiClient from "../../api/index";
 import { useSelector } from "react-redux";
+import IngredientScrapButtonCopmonent from "./IngredientScrapButtonComponent";
 
 const IngredientCardComponent = (props) => {
   let ingredient = { ...props.ingredient };
@@ -48,6 +49,7 @@ const IngredientCardComponent = (props) => {
   }
 
   const graph = useMemo(() => <Graph data={logList} />, []);
+
   if (imageUrl.startsWith("https")) {
   } else {
     imageUrl = proxyImageURL + imageUrl;
@@ -57,21 +59,23 @@ const IngredientCardComponent = (props) => {
     <>
       <div className={style["card-frame"]}>
         <div className={style.head}>
-          <Image
+          <img
+           onClick={() => props.ingredientClickHandle(ingredient.ingSeq)}
             src={imageUrl}
-            style={{
-              borderRadius: "5px",
-            }}
-            height={200}
+            className={style["img"]}
           />
           <div className={style.graph}>{graph}</div>
         </div>
         <div className={style.body}>
+          <div className={style.row}>
           <div
             className={style["ingredient-card-title"]}
             onClick={() => props.ingredientClickHandle(ingredient.ingSeq)}
           >
             {ingredient.ingName}
+          </div>
+          <IngredientScrapButtonCopmonent ingredientIng={ingredient.ingSeq}/>
+
           </div>
           <div className={style["line"]} />
 

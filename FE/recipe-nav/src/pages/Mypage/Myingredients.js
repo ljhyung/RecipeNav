@@ -9,6 +9,7 @@ import style from "./Myrecipes.module.css";
 import SimpleBar from "simplebar-react";
 import "simplebar-react/dist/simplebar.min.css";
 import { setSelectedIngredientDirect } from "../../store/slices/ingredientSlice";
+import { StarTwoTone } from "@ant-design/icons";
 const Myingredients = () => {
   const navigate = useNavigate();
   const accessToken = useSelector((state) => state.auth.accessToken);
@@ -65,7 +66,7 @@ const Myingredients = () => {
               height: 120,
               background: `url("${item.ingImg}")`,
               backgroundSize: `contain`,
-              backgroundRepeat: `no-repeat`,
+              backgroundRepeat: `no-crepeat`,
               backgroundPosition: `center`,
             }}
           />
@@ -81,7 +82,16 @@ const Myingredients = () => {
         <h2>나의 식자재</h2>
         {loading ? (
           <SimpleBar style={{ maxHeight: 300 }} className={style["page"]}>
-            <div className={style.box}>{myIngredientsCard}</div>
+            <div className={style.box}>
+
+            {myIngredientsCard.length > 0 && myIngredientsCard}
+
+            {myIngredientsCard.length===0 &&            
+            <div style={{gridColumnStart:1,gridColumnEnd:-1,fontSize:20}}>
+              <StarTwoTone twoToneColor={"gold "} />
+              <span>  을 눌러 추가할 수 있어요!</span>
+              </div>}
+              </div>
           </SimpleBar>
         ) : (
           <Row></Row>

@@ -3,6 +3,7 @@ import style from "./RecipeCardComponent.module.css";
 import { Image } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
 import { proxyImageURL } from "../../api";
+import { numberChage } from "../../api/numberFormatUtil";
 const RecipeCardComponent = (props) => {
   const recipe = props.recipe;
   return (
@@ -27,7 +28,7 @@ const RecipeCardComponent = (props) => {
             {recipe.recAmount}
           </div>
           <div>{recipe.recLevel}</div>
-          <div>{recipe.recPrice}</div>
+          <div> {numberChage( recipe.recPrice)}원</div>
         </div>
         <div className={style.foot}></div>
       </div>

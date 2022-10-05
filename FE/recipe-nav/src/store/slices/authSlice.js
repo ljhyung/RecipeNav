@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
-  authenticated: true,
+  authenticated: false,
   user: {
     nickName: "",
     gender: "",
     age: "",
   },
   accessToken:
-    "eyJraWQiOiJrZXkyIiwidHlwZSI6IkpXVCIsImFsZyI6IkhTMjU2In0.eyJpc3MiOiJyZWNpcGVuYXYiLCJhdWQiOiJST0xFX1VTRVIiLCJpYXQiOjE2NjQzNDAzMjIsInN1YiI6InVzZXIiLCJpc05ld1VzZXIiOjAsInVzZXJJZCI6IlVMYmw2bjNFSGc2c2FCNXUwY2I0ODJmUGc2VS1wN0dGSVoxdERtUTZqU00vbmF2ZXIiLCJ1c2VyU2VxIjo2fQ.jNcXtydMgBqywoD-9xzEuAo5aNARTGu34TsSJiftZn0",
+    "",
   refreshToken: "",
   myIngredients: [],
 };

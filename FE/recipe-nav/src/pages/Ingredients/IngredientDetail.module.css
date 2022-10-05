@@ -25,6 +25,13 @@
     
   }
 
+  .recipe-detail-head {
+    display: flex;
+  }
+  .recipe-detail-head > *:last-child{
+    margin-bottom: 2px;
+  }
+
   .category-text {
     font-weight: bold;
     font-size: xx-large;

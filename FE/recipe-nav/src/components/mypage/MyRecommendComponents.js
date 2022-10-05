@@ -48,7 +48,7 @@ const MyRecommendComponents = (props) => {
           <ReactMultiCarousel>
             {myRecommendedRecipe.map((item, index) => {
               return (
-                <div className={style["small-recipe-box"]}>
+                <div className={style["small-recipe-box"]} key={index}>
                   <div className={style["small-recipe-img"]}>
                     <img src={proxyImageURL + item.recImg} />
                   </div>
