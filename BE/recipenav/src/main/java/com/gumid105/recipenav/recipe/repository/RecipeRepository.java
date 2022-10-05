@@ -7,10 +7,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
-    List<Recipe> findRecipesByRecPriceIsBetween(Integer minPrice, Integer maxPrice);
+    List<Recipe> findRecipesByRecPriceIsBetween(Double minPrice, Double maxPrice);
 
     List<Recipe> findRecipesByRecNameContaining(String recipeName);
 
@@ -22,4 +23,6 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
     @Query(value = "select * from t_recipe order by RAND() limit 5", nativeQuery = true)
     List<Recipe> findRecipesByRandom();
+
+    Optional<Recipe> findFirstByOrderByRecPriceDesc();
 }
