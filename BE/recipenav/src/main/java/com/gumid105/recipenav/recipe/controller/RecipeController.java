@@ -106,4 +106,9 @@ public class RecipeController {
         }
         return response;
     }
+
+    @GetMapping("/max-recipe-price")
+    public Double getMaxRecipePrice() {
+        return recipeService.getMaxRecipePrice();
+    }
 }
