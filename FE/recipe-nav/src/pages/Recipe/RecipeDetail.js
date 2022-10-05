@@ -112,6 +112,7 @@ const RecipeDetail = (props) => {
                   return (
                     <RecipePhaseComponent
                       phase={phase}
+                      recOrder = {i}
                       key={phase.recProSeq}
                     ></RecipePhaseComponent>
                   );

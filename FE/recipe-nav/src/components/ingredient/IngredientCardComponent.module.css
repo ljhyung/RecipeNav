@@ -1,6 +1,8 @@
 .card-frame {
   padding: 10px;
   height: 300px;
+  width: 80vw;
+  margin: 0 auto;
   border: 1px solid white;
 }
 .head {
@@ -13,14 +15,17 @@
   border: 1px solid #eaf2ce;
 }
 
-.ingredient-card-title {
+.ingredient-card-title  {
   font-weight: bold;
-  font-size: larger;
+  font-size: 30px;
 }
 .graph {
   height: 200px;
-  width: 100%;
   text-align: right;
+}
+
+.row{
+  display: flex;
 }
 @media (max-width: 800px) {
   .head {
@@ -32,6 +37,9 @@
   .card-frame {
     height: auto;
     padding: none;
+  }
+  .graph {
+    width: 80vw;
   }
 }
 .ingredient-card-title:hover {
@@ -49,4 +57,16 @@
   grid-template-columns: repeat(4, 1fr);
   font-size: 16px;
   font-weight: 600;
+}
+
+.img{
+  border-radius: 5px;
+  height: 200px;
+  max-width: 100%;
+  cursor: pointer;
+}
+.img:hover{
+  transition-duration: 1s;
+  
+  scale: 1.1;
 }

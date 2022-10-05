@@ -23,7 +23,7 @@ const RecipePhaseComponent = (props) => {
         )}
         <div className={style["desc-box"]}>
           <div>
-            <h2>Step {phase.recOrder}</h2>
+            <h2>Step {props.recOrder}</h2>
           </div>
           <div className={style["split-line"]}></div>
           <div>
