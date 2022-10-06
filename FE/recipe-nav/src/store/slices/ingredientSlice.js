@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   myIngredients: [
     {
-      ingseq: "",
+      ingSeq: "",
       ingName: "",
       ingDescription: "",
       ingExDate: "",
@@ -68,9 +68,27 @@ const ingredientSlice = createSlice({
     setRecommendedRecipes(state, action) {
       state.recommendedRecipes = action.payload;
     },
+    addMyIgredient(state, action) {
+      let temp = [...state.myIngredients];
+      temp.push(action.payload);
+      state.myIngredients = temp;
+    },
+    deleteOneInMyIgredient(state, action) {
+      console.log(action.payload);
+      for (let i = 0; i < state.myIngredients.length; i++) {
+        if (action.payload == state.myIngredients[i]?.ingSeq) {
+          let temp = [...state.myIngredients];
+          temp.splice(i, 1);
+          state.myIngredients = temp;
+          console.log("삭제");
+        }
+      }
+    },
   },
 });
 export const {
+  addMyIgredient,
+  deleteOneInMyIgredient,
   setIngredients,
   setSelectedIngredient,
   setPage,

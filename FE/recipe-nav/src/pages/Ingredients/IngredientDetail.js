@@ -42,6 +42,7 @@ const IngredientDetail = (props) => {
           </h2>
           <IngredientScrapButtonComponent
             ingredientIng={selectedIngredient.ingSeq}
+            ingredient={selectedIngredient}
           />
         </div>
 

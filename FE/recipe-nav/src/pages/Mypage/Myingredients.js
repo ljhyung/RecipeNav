@@ -12,14 +12,15 @@ import { setSelectedIngredientDirect } from "../../store/slices/ingredientSlice"
 import { StarTwoTone } from "@ant-design/icons";
 const Myingredients = () => {
   const navigate = useNavigate();
-  const accessToken = useSelector((state) => state.auth.accessToken);
-  const [myingredients, setMyingredients] = useState([]);
-  const [loading, setLoading] = useState(false);
+
+  const myingredients = useSelector((state) => {
+    return state.ingredient.myIngredients;
+  });
+
+  console.log("내 식자재", myingredients);
+
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
-  const MyingredientsHandle = (e) => {
-    setMyingredients(e);
-    console.log("핸들러 확인용");
-  };
 
   const recipeClickHandle = (ingSeq) => {
     //레시피 클릭했을 때,
@@ -32,25 +33,6 @@ const Myingredients = () => {
     }
     navigate("/ingredient/" + ingSeq);
   };
-
-  useEffect(() => {
-    axiosClient
-      .get("/my-infos/ingredients", {
-        headers: {
-          Authorization: accessToken,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-
-        setLoading(true);
-        MyingredientsHandle(response.data);
-      })
-      .catch((error) => {
-        console.log("에러");
-        console.log(error);
-      });
-  }, []);
 
   const myIngredientsCard = myingredients.map((item, i) => {
     return (
@@ -83,15 +65,21 @@ const Myingredients = () => {
         {loading ? (
           <SimpleBar style={{ maxHeight: 300 }} className={style["page"]}>
             <div className={style.box}>
+              {myIngredientsCard.length > 0 && myIngredientsCard}
 
-            {myIngredientsCard.length > 0 && myIngredientsCard}
-
-            {myIngredientsCard.length===0 &&            
-            <div style={{gridColumnStart:1,gridColumnEnd:-1,fontSize:20}}>
-              <StarTwoTone twoToneColor={"gold "} />
-              <span>  을 눌러 추가할 수 있어요!</span>
-              </div>}
-              </div>
+              {myIngredientsCard.length === 0 && (
+                <div
+                  style={{
+                    gridColumnStart: 1,
+                    gridColumnEnd: -1,
+                    fontSize: 20,
+                  }}
+                >
+                  <StarTwoTone twoToneColor={"gold "} />
+                  <span> 을 눌러 추가할 수 있어요!</span>
+                </div>
+              )}
+            </div>
           </SimpleBar>
         ) : (
           <Row></Row>

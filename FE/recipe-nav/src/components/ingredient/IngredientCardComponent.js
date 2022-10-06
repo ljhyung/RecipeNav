@@ -60,7 +60,7 @@ const IngredientCardComponent = (props) => {
       <div className={style["card-frame"]}>
         <div className={style.head}>
           <img
-           onClick={() => props.ingredientClickHandle(ingredient.ingSeq)}
+            onClick={() => props.ingredientClickHandle(ingredient.ingSeq)}
             src={imageUrl}
             className={style["img"]}
           />
@@ -68,14 +68,16 @@ const IngredientCardComponent = (props) => {
         </div>
         <div className={style.body}>
           <div className={style.row}>
-          <div
-            className={style["ingredient-card-title"]}
-            onClick={() => props.ingredientClickHandle(ingredient.ingSeq)}
-          >
-            {ingredient.ingName}
-          </div>
-          <IngredientScrapButtonCopmonent ingredientIng={ingredient.ingSeq}/>
-
+            <div
+              className={style["ingredient-card-title"]}
+              onClick={() => props.ingredientClickHandle(ingredient.ingSeq)}
+            >
+              {ingredient.ingName}
+            </div>
+            <IngredientScrapButtonCopmonent
+              ingredientIng={ingredient.ingSeq}
+              ingredient={ingredient}
+            />
           </div>
           <div className={style["line"]} />
 
