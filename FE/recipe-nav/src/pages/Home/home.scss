@@ -146,35 +146,33 @@
         &-wrap {
             text-align: center;
             color: banner-text-color;
-
+            height: 400px;
             .banner-button {
-                margin: 400px 0 26px;
-                height: 35px;
+                height: 60px;
                 line-height: 35px;
                 border-radius: 35px;
                 background: #A68D60;
-
+                width: 250px;
                 padding: 0 28px;
-                font-size: 12px;
+                font-size: 20px;
                 color: white;
             }
         }
 
         &-en-name {
-            margin: 42px 0 0;
-            font-size: 12px;
+
             line-height: 32px;
-            color: white;
-            background-color: #A68D60;
+            font-size: 25px;
+            // bottom: 0;
         }
 
         &-title {
+            margin-top: 200px;
             font-size: 42px;
             line-height: 68px;
             text-indent: 2px;
             font-weight: 600;
-            color: #EAF2CE;
-            background-color: #A68D60;
+
         }
 
         &-cn-name {
@@ -410,7 +408,9 @@
             }
         }
     }
-
+    .banner-anim-thumb {
+        bottom: 30px;
+    }
     &-item {
         display: flex;
 
