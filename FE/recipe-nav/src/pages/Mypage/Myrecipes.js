@@ -13,16 +13,15 @@ import { StarTwoTone } from "@ant-design/icons";
 
 const Myrecipes = () => {
   const navigate = useNavigate();
-  const accessToken = useSelector((state) => state.auth.accessToken);
-  const [myingredients, setMyingredients] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
 
-  const MyingredientsHandle = (e) => {
-    setMyingredients(e);
-    setLoading(true);
-    console.log("핸들러 확인용");
-  };
+  const accessToken = useSelector((state) => state.auth.accessToken);
+
+  const myingredients = useSelector((state) => {
+    return state.recipe.myRecipes;
+  });
+
+  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
 
   const recipeClickHandle = (recSeq) => {
     //레시피 클릭했을 때,
@@ -36,23 +35,6 @@ const Myrecipes = () => {
     }
     navigate("/recipe/" + recSeq);
   };
-
-  useEffect(() => {
-    axiosClient
-      .get("/my-infos/recipes", {
-        headers: {
-          Authorization: accessToken,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        MyingredientsHandle(response.data);
-      })
-      .catch((error) => {
-        console.log("에러");
-        console.log(error);
-      });
-  }, []);
 
   const MyrecipesCard = myingredients.map((item, i) => {
     let imageUrl = item.recImg;

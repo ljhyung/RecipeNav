@@ -2,7 +2,10 @@ import style from "./RecipeScrapButtonCopmonent.module.css";
 import apiClient from "../../api/index";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux/es/exports";
-import { setMyRecipes } from "../../store/slices/recipeSlice";
+import {
+  addMyRecipe,
+  deleteOneInMyRecipe,
+} from "../../store/slices/recipeSlice";
 import { StarTwoTone } from "@ant-design/icons";
 import { message } from "antd";
 const RecipeScrapButtonCopmonent = (props) => {
@@ -37,21 +40,8 @@ const RecipeScrapButtonCopmonent = (props) => {
         .then((response) => {
           console.log(response);
           message.info("찜해제 완료");
-          apiClient
-            .get("/my-infos/recipes", {
-              headers: {
-                Authorization: accessToken,
-              },
-            })
-            .then((response) => {
-              console.log(response);
-              let myRecipes = response.data;
-              dispatch(setMyRecipes(myRecipes));
-              setSyncControl(false);
-            })
-            .catch((erorr) => {
-              console.log("나의 선호 레시피를 불러오던 중 에러");
-            });
+          dispatch(deleteOneInMyRecipe(recipeRec));
+          setSyncControl(false);
         })
         .catch((error) => {
           console.log(error);
@@ -71,27 +61,13 @@ const RecipeScrapButtonCopmonent = (props) => {
         .then((response) => {
           console.log(response);
           message.info("찜하기 완료");
-          apiClient
-            .get("/my-infos/recipes", {
-              headers: {
-                Authorization: accessToken,
-              },
-            })
-            .then((response) => {
-              console.log(response);
-              let myRecipes = response.data;
-              dispatch(setMyRecipes(myRecipes));
-              setSyncControl(false);
-            })
-            .catch((erorr) => {
-              console.log("나의 선호 레시피를 불러오던 중 에러");
-            });
+          dispatch(addMyRecipe(props.recipe));
+          setSyncControl(false);
         })
         .catch((error) => {
           console.log(error);
         });
     }
-    console.log(syncControl);
   };
   return (
     <>

@@ -8,6 +8,7 @@ import {
 } from "../../store/slices/authSlice";
 import { setMyRecipes } from "../../store/slices/recipeSlice";
 import { useDispatch } from "react-redux";
+import { setMyIngredients } from "../../store/slices/ingredientSlice";
 
 const NaverOauth = () => {
   const location = useLocation();
@@ -87,6 +88,22 @@ const NaverOauth = () => {
           })
           .catch((erorr) => {
             console.log("나의 선호 레시피를 불러오던 중 에러");
+          });
+
+        axiosClient
+          .get("/my-infos/ingredients", {
+            headers: {
+              Authorization,
+            },
+          })
+          .then((response) => {
+            console.log(response.data);
+
+            dispatch(setMyIngredients(response.data));
+          })
+          .catch((error) => {
+            console.log("에러");
+            console.log(error);
           });
       })
       .catch((error) => {

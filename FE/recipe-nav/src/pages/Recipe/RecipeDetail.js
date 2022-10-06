@@ -16,6 +16,7 @@ import { RollbackOutlined } from "@ant-design/icons";
 import RecipeMetaDataExposeComponent from "../../components/recipe/RecipeMetaDataExposeComponent";
 import RecipeScrapButtonCopmonent from "../../components/recipe/RecipeScrapButtonCopmonent";
 import RecipeSimilarComponent from "../../components/recipe/RecipeSimilarComponent";
+import { useEffect } from "react";
 const comparator = function (a, b) {
   return a.recOrder - b.recOrder;
 };
@@ -33,6 +34,18 @@ const RecipeDetail = (props) => {
   const backPageClickHandle = () => {
     navigate("/recipe");
   };
+
+  useEffect(() => {
+    axiosClient
+      .get(`/recipes/reviews/${selectedRecipe.recSeq}`, {
+        headers: {
+          Authorization: accessToken,
+        },
+      })
+      .then((response) => {
+        dispatch(setSelectedRecipeReview(response.data));
+      });
+  }, []);
 
   const onReviewEditHandle = (param) => {
     console.log(param);
@@ -73,7 +86,10 @@ const RecipeDetail = (props) => {
       <div className={style["recipe-detail-container"]}>
         <div className={style["recipe-detail-head"]}>
           <h2 className={style["category-text"]}>{selectedRecipe.recName}</h2>
-          <RecipeScrapButtonCopmonent recipeRec={selectedRecipe.recSeq} />
+          <RecipeScrapButtonCopmonent
+            recipeRec={selectedRecipe.recSeq}
+            recipe={selectedRecipe}
+          />
         </div>
 
         <div className={style["recipe-detail-meta"]}>
@@ -112,7 +128,7 @@ const RecipeDetail = (props) => {
                   return (
                     <RecipePhaseComponent
                       phase={phase}
-                      recOrder = {i}
+                      recOrder={i}
                       key={phase.recProSeq}
                     ></RecipePhaseComponent>
                   );
