@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  myRecipes:[
+  myRecipes: [
     {
       "recSeq": 5,
       "recName": "식빵고구마파이",
@@ -189,7 +189,7 @@ const recipeSlice = createSlice({
     setSearchString(state, action) {
       state.searchString = action.payload;
     },
-    setMyRecipes(state,action){
+    setMyRecipes(state, action) {
       state.myRecipes = action.payload;
     },
   },
