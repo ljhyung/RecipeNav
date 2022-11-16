@@ -18,12 +18,12 @@ const RecipePhaseComponent = (props) => {
       <div className={style["phase-container"]}>
         {phase.proUrl.trim() !== "" && phase.proUrl !== null && (
           <div className={style["imgage-box"]}>
-            <Image width={400} src={proxyImageURL+phase.proUrl}></Image>
+            <Image src={proxyImageURL + phase.proUrl}></Image>
           </div>
         )}
         <div className={style["desc-box"]}>
           <div>
-            <h2>Step {phase.recOrder}</h2>
+            <h2>Step {props.recOrder}</h2>
           </div>
           <div className={style["split-line"]}></div>
           <div>

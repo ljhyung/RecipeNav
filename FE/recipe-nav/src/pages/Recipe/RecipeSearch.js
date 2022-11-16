@@ -1,4 +1,4 @@
-import { Carousel, Input, Pagination } from "antd";
+import { Carousel, Input, Pagination, Row, Spin } from "antd";
 import Col from "antd/es/grid/col";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
@@ -16,7 +16,7 @@ import {
   setTotalItem,
   setSearchString,
 } from "../../store/slices/recipeSlice";
-import { proxyImageURL } from "../../api";
+import EmptySearchPage from "../../components/common/EmptySearchPage";
 
 const CustomInput = styled(Input)`
   height: 50px;
@@ -50,6 +50,7 @@ const RecipeSearch = () => {
   const size = useSelector((state) => state.recipe.size);
   const totalItem = useSelector((state) => state.recipe.totalItem);
 
+  const [isReady, setIsReady] = useState(false);
   const [tempString, setTempString] = useState("");
 
   const pageChageHadle = (chagePage, chagePageSize) => {
@@ -66,6 +67,7 @@ const RecipeSearch = () => {
 
   useEffect(() => {
     console.log(searchString);
+    setIsReady(false);
     window.scrollTo({ top: 0, behavior: "smooth" });
     if (searchString == "" || searchString == null) {
       apiClient
@@ -84,6 +86,7 @@ const RecipeSearch = () => {
           console.log(response.data.totalPages);
           dispatch(setRecipes(response.data.content));
           dispatch(setTotalItem(response.data.totalElements));
+          setIsReady(true);
         })
         .catch((error) => {
           console.log("요청 에러");
@@ -101,6 +104,7 @@ const RecipeSearch = () => {
           },
         })
         .then((response) => {
+          setIsReady(true);
           console.log("레시피 요청");
           console.log(response);
           dispatch(setRecipes(response.data));
@@ -160,7 +164,16 @@ const RecipeSearch = () => {
           </div>
 
           <div className={style["recipe-container"]}>
-            {recipes.length > 0 &&
+            {!isReady && (
+              <Row justify="center">
+                <div style={{ height: "100vh" }}>
+                  <Spin tip="Loading..."></Spin>
+                </div>
+              </Row>
+            )}
+
+            {isReady &&
+              recipes.length > 0 &&
               recipes.map((recipe, i) => {
                 return (
                   <RecipeCardComponent
@@ -170,7 +183,10 @@ const RecipeSearch = () => {
                   ></RecipeCardComponent>
                 );
               })}
-            {recipes.length == 0 && <h1>비어있다.</h1>}
+
+            {isReady && recipes.length == 0 && (
+              <EmptySearchPage></EmptySearchPage>
+            )}
           </div>
           <div className={style["page-container"]}>
             <Pagination

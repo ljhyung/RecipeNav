@@ -15,10 +15,7 @@ import IngredientDetail from "./pages/Ingredients/IngredientDetail";
 
 import BudgetSearch from "./pages/budget/BudgetSearch";
 
-//https://hururuek-chapchap.tistory.com/212
-//최상단 컴포넌트 , 라우터 관리
-
-//프로그래밍 라우팅 이동
+//https://hururuek-chapchap.tistory.com/212 최상단 컴포넌트 , 라우터 관리 프로그래밍 라우팅 이동
 //
 //
 //
@@ -31,31 +28,34 @@ function App() {
     <Routes>
       <Route
         path="/"
-        element={authenticated ? <Nav /> : <Navigate to="/login" replace />}
+        element={
+          authenticated ? <Nav /> : <Navigate to="/login" replace="replace" />
+        }
       >
         <Route path="/" element={<Home />} />
 
         <Route path="/mypage" element={<Mypage />} />
-        <Route path="/profile-edit" element={<ProfileEdit />} />
         <Route path="/recipe">
-          <Route index element={<RecipeSearch />} />
+          <Route index="index" element={<RecipeSearch />} />
           <Route path=":recSeq" element={<RecipeDetail />} />
         </Route>
 
         <Route path="/ingredient">
-          <Route index element={<IngredientSearch />} />
+          <Route index="index" element={<IngredientSearch />} />
           <Route path=":ingSeq" element={<IngredientDetail />} />
         </Route>
 
-
         <Route path="/budget" element={<BudgetSearch />}></Route>
-
       </Route>
 
-      <Route path="/login" element={<Signin />} />
+      <Route path="/profile-edit" element={<ProfileEdit />} />
+      <Route
+        path="/login"
+        element={!authenticated ? <Signin /> : <Navigate to="/" />}
+      />
 
       <Route path="oauth/naver" element={<NaverOauth />} />
-      <Route path="*" element={<h1>에러</h1>} />
+      <Route path="*" element={<h1> 에러</h1>} />
     </Routes>
   );
 }

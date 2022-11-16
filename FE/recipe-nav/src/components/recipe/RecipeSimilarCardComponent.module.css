@@ -1,0 +1,26 @@
+.card-frame {
+  padding: 10px;
+  border: 1px solid white;
+  flex-grow: 1;
+  min-width: 20%;
+}
+
+.card-frame:hover {
+  border: 1px solid #eaf2ce;
+}
+
+.recipe-card-title {
+  font-weight: bold;
+  font-size: larger;
+}
+
+.recipe-card-title:hover {
+  cursor: pointer;
+  color: #a68d60;
+}
+.body {
+}
+.line {
+  height: 1px;
+  box-shadow: #a68d60 0px 1px 1px;
+}

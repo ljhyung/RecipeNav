@@ -2,6 +2,7 @@ import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { Input, Slider } from "antd";
 import style from "./PriceSearchInput.module.css";
 
+import React, { useState } from "react";
 const viewKorean = (num) => {
   num = num + "";
   let hanA = new Array(
@@ -99,7 +100,18 @@ const PriceSearchInput = (props) => {
         <div />
       </div>
       <div className={style["button-box"]}>
-        <button className={style["button"]} onClick={searchClickHadler}>
+        <button
+          className={style["button"]}
+          onClick={(e) => {
+            e.target.disabled = true;
+            e.target.innerHTML = "조회중";
+            searchClickHadler(e).then(() => {
+              console.log("검색 끝");
+              e.target.disabled = false;
+              e.target.innerHTML = "조회";
+            });
+          }}
+        >
           조회
         </button>
       </div>

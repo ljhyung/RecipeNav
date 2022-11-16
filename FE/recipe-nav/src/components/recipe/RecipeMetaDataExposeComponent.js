@@ -1,5 +1,6 @@
 import { CaretRightOutlined, DollarCircleOutlined } from "@ant-design/icons";
 import style from "./RecipeMetaDataExposeComponent.module.css"
+import {numberChage} from "../../api/numberFormatUtil"
 const RecipeMetaDataExposeComponent =(props)=>{
 
     const selectedRecipe = props.selectedRecipe;
@@ -8,7 +9,7 @@ const RecipeMetaDataExposeComponent =(props)=>{
     const cateFrac = selectedRecipe.cateFrac;
     const foodFrac =selectedRecipe.foodFrac;
     const recIngFrac =selectedRecipe.recIngFrac.trim() ? selectedRecipe.recIngFrac : "미표기";
-   const recCalorie = selectedRecipe.recCalorie;
+   const recCalorie = /^0|k|c/i.test(selectedRecipe.recCalorie) ? "-" : selectedRecipe.recCalorie;
     const recPrice = selectedRecipe.recPrice;
     
     return <>
@@ -19,8 +20,8 @@ const RecipeMetaDataExposeComponent =(props)=>{
     <p className={style.calorie}>칼로리 : {recCalorie}</p>
     <div className={style.price}>
          <span className={style["price-icon"]}>
-         <DollarCircleOutlined />
-         </span> {recPrice}
+         <DollarCircleOutlined style={{color:"gold"}} />
+         </span> {numberChage(recPrice)} <span>원</span>
     </div>
 </>
 }

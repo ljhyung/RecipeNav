@@ -1,0 +1,42 @@
+.item-container {
+  background-color: white;
+  padding: 10px;
+  width: 100%;
+  box-shadow: 1px 1px 10px rgb(189, 189, 189);
+}
+.item-panel {
+}
+.small-recipe-img {
+  text-align: center;
+}
+.small-recipe-img > img {
+  height: 100px;
+}
+
+.small-recipe-box-text {
+  font-weight: bold;
+  text-align: center;
+}
+.small-recipe-box-text:hover {
+  cursor: pointer;
+  color: #a68d60;
+}
+.item-title {
+  color: black;
+  font-weight: 900;
+  font-size: large;
+}
+.item-panel {
+  width: 100%;
+  max-width: 1250px;
+  padding: 0 24px;
+  margin: auto;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+h2 {
+  text-align: left;
+  margin-left: 12px;
+  font-size: 1.75rem;
+  font-weight: 1200;
+}

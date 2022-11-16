@@ -41,6 +41,9 @@
   border-radius: 5px;
   border: 1px solid #337f3b;
 }
+.button:disabled {
+  background-color: rebeccapurple;
+}
 .button:hover {
   background-color: #337f3b;
 }

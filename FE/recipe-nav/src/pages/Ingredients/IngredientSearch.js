@@ -1,4 +1,4 @@
-import { Button, Card, Carousel, Input, Pagination } from "antd";
+import { Button, Card, Carousel, Input, Pagination, Row, Spin } from "antd";
 import Col from "antd/es/grid/col";
 import Search from "antd/lib/input/Search";
 import React, { useEffect, useState } from "react";
@@ -9,7 +9,7 @@ import IngredientCardComponent from "../../components/ingredient/IngredientCardC
 import { useDispatch, useSelector } from "react-redux";
 import apiClient from "../../api";
 import { useNavigate } from "react-router-dom";
-import { 
+import {
   setIngredients,
   setSelectedIngredient,
   setPage,
@@ -50,8 +50,8 @@ const IngredientSearch = () => {
   const page = useSelector((state) => state.ingredient.page);
   const size = useSelector((state) => state.ingredient.size);
   const totalItem = useSelector((state) => state.ingredient.totalItem);
-
-  const [tempString, setTempString] = useState("");
+  const [isReady, setIsReady] = useState(false);
+  const [tempString, setTempString] = useState(searchString);
 
   const pageChageHadle = (chagePage, chagePageSize) => {
     console.log("페이지 체인지");
@@ -64,7 +64,9 @@ const IngredientSearch = () => {
     console.log(current, pageSize);
     dispatch(setSize(pageSize));
   };
+
   useEffect(() => {
+    setIsReady(false);
     console.log(searchString);
     window.scrollTo({ top: 0, behavior: "smooth" });
     if (searchString == "" || searchString == null) {
@@ -79,6 +81,7 @@ const IngredientSearch = () => {
           },
         })
         .then((response) => {
+          setIsReady(true);
           console.log("식자재 요청");
           console.log(response);
           console.log(response.data.totalPages);
@@ -88,6 +91,7 @@ const IngredientSearch = () => {
         .catch((error) => {
           console.log("요청 에러");
           console.log(error);
+          setIsReady(true);
         });
     } else {
       console.log(searchString);
@@ -108,8 +112,11 @@ const IngredientSearch = () => {
           let totalPage = parseInt(totalItem / size) + 1;
           dispatch(setPage(1));
           dispatch(setTotalItem(totalItem));
+          setIsReady(true);
         })
-        .catch((error) => {});
+        .catch((error) => {
+          setIsReady(true);
+        });
     }
   }, [page, size, searchString]);
 
@@ -132,8 +139,6 @@ const IngredientSearch = () => {
     navigate("/ingredient/" + ingSeq);
   };
 
-
-
   return (
     <>
       <div className={style["search-container"]}>
@@ -149,6 +154,7 @@ const IngredientSearch = () => {
             </Carousel>
             <div className={style["input-frame"]}>
               <CustomInput
+                value={tempString}
                 placeholder="식자재 이름"
                 onChange={onSearchChangeHandle}
                 onKeyDown={KeyboardEvent.enter}
@@ -163,7 +169,16 @@ const IngredientSearch = () => {
           </div>
 
           <div className={style["ingredient-container"]}>
-            {ingredients.length > 0 &&
+            {!isReady && (
+              <Row>
+                <div style={{ height: "100vh" }}>
+                  <Spin tip="Loading..."></Spin>
+                </div>
+              </Row>
+            )}
+
+            {isReady &&
+              ingredients.length > 0 &&
               ingredients.map((ingredient, i) => {
                 return (
                   <IngredientCardComponent
@@ -171,9 +186,9 @@ const IngredientSearch = () => {
                     ingredient={ingredient}
                     ingredientClickHandle={ingredientClickHandle}
                   ></IngredientCardComponent>
-              );
-            })}
-          {ingredients.length == 0 && <h1>비어있다.</h1>}
+                );
+              })}
+            {ingredients.length == 0 && <h1>비어있다.</h1>}
           </div>
           <div className={style["page-container"]}>
             <Pagination

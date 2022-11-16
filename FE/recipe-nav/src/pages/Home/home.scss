@@ -13,16 +13,17 @@
     margin: auto;
     overflow: hidden;
 
-    >h1 {
+    > h1 {
         margin: 144px auto 32px;
         font-size: 38px;
         line-height: 46px;
         color: #0d1a26;
         font-weight: 400;
         text-align: center;
+
     }
 
-    >i {
+    > i {
         width: 64px;
         margin: auto;
         height: 2px;
@@ -145,35 +146,33 @@
         &-wrap {
             text-align: center;
             color: banner-text-color;
-
+            height: 400px;
             .banner-button {
-                margin: 400px 0 26px;
-                height: 35px;
+                height: 60px;
                 line-height: 35px;
                 border-radius: 35px;
                 background: #A68D60;
-
+                width: 250px;
                 padding: 0 28px;
-                font-size: 12px;
+                font-size: 20px;
                 color: white;
             }
         }
 
         &-en-name {
-            margin: 42px 0 0;
-            font-size: 12px;
+
             line-height: 32px;
-            color: white;
-            background-color: #A68D60;
+            font-size: 25px;
+            // bottom: 0;
         }
 
         &-title {
+            margin-top: 200px;
             font-size: 42px;
             line-height: 68px;
             text-indent: 2px;
             font-weight: 600;
-            color: #EAF2CE;
-            background-color: #A68D60;
+
         }
 
         &-cn-name {
@@ -287,14 +286,10 @@
         margin: 0 auto 64px;
     }
 
-
-
     .box {
         width: 100%;
         height: 200px;
         margin: 0 auto;
-
-
 
         .contents {
             white-space: nowrap;
@@ -310,54 +305,20 @@
                 display: inline-block;
                 padding: 10px 20px;
                 margin-right: 10px;
+                &-title {
+                    font-size: large;
+                    font-weight: 700;
+                    color: black;
+                    text-align: center;
+                }
             }
         }
 
-        .contentst::-webkit-scrollbar {
+        .contents::-webkit-scrollbar {
             display: none;
         }
     }
 
-    &-item {
-        display: flex;
-
-        &-link {
-            display: block;
-            width: 180px;
-            margin: auto;
-            height: auto;
-            text-align: center;
-        }
-
-        &-img {
-            width: 90px;
-            height: 90px;
-
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 100%;
-            background: #fff;
-            position: relative;
-            z-index: 1;
-        }
-
-        &-title {
-            margin-top: 12px;
-            font-size: 20px;
-            color: #0D1A26;
-        }
-
-        p {
-            color: #697B8C;
-            font-size: 10px;
-            margin-top: 8px;
-        }
-    }
 }
 
 .page3 {
@@ -447,7 +408,9 @@
             }
         }
     }
-
+    .banner-anim-thumb {
+        bottom: 30px;
+    }
     &-item {
         display: flex;
 

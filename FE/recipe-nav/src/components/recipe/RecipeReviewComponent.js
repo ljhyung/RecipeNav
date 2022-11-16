@@ -14,9 +14,9 @@ const RecipeReviewComponent = (props) => {
             <div key={review.recRevSeq} className={style["review-box"]}>
               <div className={style["review-head"]}>
                 <div className={style["review-name"]}>
-                  {review.recRevRegUser == null
+                  {review.userName == null
                     ? "무명"
-                    : "review.recRevRegUser"}
+                    : review.userName}
                 </div>
                 <div className={style["review-date"]}>
                   {timeFormatChange(review.revModDate)}

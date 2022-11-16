@@ -1,19 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  myIngredients:[
+  myIngredients: [
     {
-        ingseq: "",
-        ingName: "",
-        ingDescription: "",
-        ingExDate: "",
-        ingCalorie: "",
-        ingSeason: "",
-        ingCategory: "",
-        ingImg: "",
-        userIngredients: [],
-
-    }
+      ingSeq: "",
+      ingName: "",
+      ingDescription: "",
+      ingExDate: "",
+      ingCalorie: "",
+      ingSeason: "",
+      ingCategory: "",
+      ingImg: "",
+      userIngredients: [],
+    },
   ],
   ingredients: [],
   selectedIngredient: {
@@ -26,16 +25,11 @@ const initialState = {
     ingCategory: "",
     ingImg: "",
     userIngredients: [],
-
-
-
   },
   page: 1,
-  size: 50,
+  size: 10,
   totalItem: 0,
   searchString: "",
-
-
 };
 
 const ingredientSlice = createSlice({
@@ -53,6 +47,9 @@ const ingredientSlice = createSlice({
         }
       }
     },
+    setSelectedIngredientDirect(state, action) {
+      state.selectedIngredient = action.payload;
+    },
     setPage(state, action) {
       state.page = action.payload;
     },
@@ -65,15 +62,33 @@ const ingredientSlice = createSlice({
     setSearchString(state, action) {
       state.searchString = action.payload;
     },
-    setMyIngredients(state,action){
+    setMyIngredients(state, action) {
       state.myIngredients = action.payload;
     },
-    setRecommendedRecipes(state,action){
-        state.recommendedRecipes = action.payload;
-      },
+    setRecommendedRecipes(state, action) {
+      state.recommendedRecipes = action.payload;
+    },
+    addMyIgredient(state, action) {
+      let temp = [...state.myIngredients];
+      temp.push(action.payload);
+      state.myIngredients = temp;
+    },
+    deleteOneInMyIgredient(state, action) {
+      console.log(action.payload);
+      for (let i = 0; i < state.myIngredients.length; i++) {
+        if (action.payload == state.myIngredients[i]?.ingSeq) {
+          let temp = [...state.myIngredients];
+          temp.splice(i, 1);
+          state.myIngredients = temp;
+          console.log("삭제");
+        }
+      }
+    },
   },
 });
 export const {
+  addMyIgredient,
+  deleteOneInMyIgredient,
   setIngredients,
   setSelectedIngredient,
   setPage,
@@ -81,7 +96,7 @@ export const {
   setTotalItem,
   setSearchString,
   setMyIngredients,
-  setRecommendedRecipes
+  setRecommendedRecipes,
+  setSelectedIngredientDirect,
 } = ingredientSlice.actions;
 export default ingredientSlice.reducer;
-

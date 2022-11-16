@@ -1,5 +1,5 @@
 import { SendOutlined } from "@ant-design/icons";
-import { Input, Select } from "antd";
+import { Alert, Input, message, Select } from "antd";
 import { Option } from "antd/lib/mentions";
 import { useState } from "react";
 import RecipeGradeComponet from "./RecipeGradeComponet";
@@ -9,17 +9,25 @@ const RecipeReviewInput = (props) => {
   const [reviewText, setReviewText] = useState("");
   const [reviewTitle, setReviewTitle] = useState("");
   const [reviewGrade, setReviewGrade] = useState(3);
-
+  const [isValid,setIsValid] = useState(true);
   const onChageHandle = (e) => {
     setReviewText(e.target.value);
   };
   const titleChangeHadle = (e) => {
     setReviewTitle(e.target.value);
+    setIsValid(true)
   };
   const onChageGrade = (e) => {
     setReviewGrade(e);
   };
   const onClickHandle = (e) => {
+
+    if(reviewTitle== null || reviewTitle===""){
+      setIsValid(false);
+      return;
+    }
+
+
     props.onClickHandle({ reviewTitle, reviewText, reviewGrade });
     setReviewText("");
     setReviewTitle("");
@@ -72,7 +80,13 @@ const RecipeReviewInput = (props) => {
             <SendOutlined />
           </div>
         </button>
+       
       </div>
+    {
+      !isValid
+      &&
+      <Alert message="타이틀은 반드시 입력하여야 합니다." type="error" style={{fontWeight:"bold"}}  showIcon="true"/>
+    }   
     </>
   );
 };

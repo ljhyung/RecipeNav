@@ -8,6 +8,7 @@ import {
 } from "../../store/slices/authSlice";
 import { setMyRecipes } from "../../store/slices/recipeSlice";
 import { useDispatch } from "react-redux";
+import { setMyIngredients } from "../../store/slices/ingredientSlice";
 
 const NaverOauth = () => {
   const location = useLocation();
@@ -44,8 +45,8 @@ const NaverOauth = () => {
           //받아온 토큰값이 없으면 중단
         }
 
-        dispatch(setToken({ accessToken: Authorization }));
         dispatch(setAthenticated(true));
+        dispatch(setToken({ accessToken: Authorization }));
 
         axiosClient
           .get("/my-infos", {
@@ -56,14 +57,17 @@ const NaverOauth = () => {
           .then((res) => {
             console.log(res);
             if (res.data === null || res.data === "") {
-              console.log("받다온 사용자 정보의 데이터가 없습니다.");
+              console.log("받아온 사용자 정보의 데이터가 없습니다.");
               navigate("/login");
               return;
             }
-            dispatch(setUser({nickName:res.data.userName,
-              gender:res.data.userGender,
-              age:res.data.userAge
-            }));
+            dispatch(
+              setUser({
+                nickName: res.data.userName,
+                gender: res.data.userGender,
+                age: res.data.userAge,
+              }),
+            );
             navigate("/");
           })
           .catch((error) => {
@@ -71,27 +75,41 @@ const NaverOauth = () => {
             navigate("/login");
           });
 
-          axiosClient.get("/my-infos/recipes",{
+        axiosClient
+          .get("/my-infos/recipes", {
             headers: {
               Authorization,
             },
           })
-          .then(response=>{
+          .then((response) => {
             console.log(response);
             let myRecipes = response.data;
             dispatch(setMyRecipes(myRecipes));
-          }).catch((erorr)=>{
-            console.log("나의 선호 레시피를 불러오던 중 에러");
           })
+          .catch((erorr) => {
+            console.log("나의 선호 레시피를 불러오던 중 에러");
+          });
 
+        axiosClient
+          .get("/my-infos/ingredients", {
+            headers: {
+              Authorization,
+            },
+          })
+          .then((response) => {
+            console.log(response.data);
 
+            dispatch(setMyIngredients(response.data));
+          })
+          .catch((error) => {
+            console.log("에러");
+            console.log(error);
+          });
       })
       .catch((error) => {
         navigate("/");
         console.log(error);
       });
-
-
   });
 
   return (
